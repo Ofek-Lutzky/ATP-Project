@@ -14,7 +14,7 @@ public class EmptyMazeGenerator extends AMazeGenerator{
             }
         }
 
-        Maze rtnMaze = new Maze(new Position(0,0), new Position(0,0), emptyBoard);
+        Maze rtnMaze = new Maze(new Position(0,0), new Position(rows-1,columns-1), emptyBoard);
         return rtnMaze;
     }
 }

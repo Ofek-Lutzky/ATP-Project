@@ -13,8 +13,16 @@ public class RunMazeGenerator {
 //        System.out.println(p);
 
         //emptyMaze test
-        EmptyMazeGenerator eMaze = new EmptyMazeGenerator();
-        Maze maze = eMaze.generate(10,20);
+//        EmptyMazeGenerator eMaze = new EmptyMazeGenerator();
+//        float num = eMaze.measureAlgorithmTimeMillis(1000,1000);
+//        System.out.println(num);
+//        Maze maze = eMaze.generate(10,20);
+//        maze.Print();
+
+        SimpleMazeGenerator sMaze = new SimpleMazeGenerator();
+        float num = sMaze.measureAlgorithmTimeMillis(1000,1000);
+        System.out.println(num);
+        Maze maze = sMaze.generate(10,20);
         maze.Print();
 
     }

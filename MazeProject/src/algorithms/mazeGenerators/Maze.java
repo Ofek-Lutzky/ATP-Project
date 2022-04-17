@@ -9,6 +9,11 @@ public class Maze {
     private Position startPosition;
     private Position goalPosition;
     private int[][] board;
+//    0 = not visited
+//    1 = Wall
+//    2 = Visited
+//    8 = Start node
+//    9 = target node
 
     public Maze(Position startPosition, Position goalPosition, int[][] board) {
         this.startPosition = startPosition;
@@ -25,19 +30,6 @@ public class Maze {
     }
 
     public void Print(){
-//        for (int i = 0; i < this.board.length; i++){
-//            for (int j = 0; j < this.board[0].length; j++){
-//                if (i == this.getStartPosition().getRowIndex() && j == this.getStartPosition().getColumnIndex())
-//                    System.out.println("S");
-//                else if(i == this.getGoalPosition().getRowIndex() && j == this.getGoalPosition().getColumnIndex())
-//                    System.out.println("E");
-//                else
-//                    System.out.println(String.valueOf(this.board[i][j]));
-//            }
-//            System.out.println();
-//        }
-
-
         String[][] toPrint = new String[board.length][board[0].length];
         for (int i = 0; i < this.board.length; i++){
             for (int j = 0; j < this.board[0].length; j++){
