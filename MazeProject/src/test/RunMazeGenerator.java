@@ -19,11 +19,17 @@ public class RunMazeGenerator {
 //        Maze maze = eMaze.generate(10,20);
 //        maze.Print();
 
-        SimpleMazeGenerator sMaze = new SimpleMazeGenerator();
-        float num = sMaze.measureAlgorithmTimeMillis(1000,1000);
+//        SimpleMazeGenerator sMaze = new SimpleMazeGenerator();
+//        float num = sMaze.measureAlgorithmTimeMillis(1000,1000);
+//        System.out.println(num);
+//        Maze maze = sMaze.generate(10,20);
+//        maze.Print();
+
+        MyMazeGenerator mMaze = new MyMazeGenerator();
+        float num = mMaze.measureAlgorithmTimeMillis(1000,1000);
         System.out.println(num);
-        Maze maze = sMaze.generate(10,20);
-        maze.Print();
+        //Maze maze = mMaze.generate(10,20);
+        //maze.Print();
 
     }
 
