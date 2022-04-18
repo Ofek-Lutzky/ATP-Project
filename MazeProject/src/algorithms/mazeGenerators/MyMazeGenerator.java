@@ -116,7 +116,7 @@ public class MyMazeGenerator extends AMazeGenerator{
                 // now we want to know how we went so we will call direction func
 //                int dir = this.direction(x,y,nx,ny);
 //                board[x][y] = dir;
-//                board[nx][ny] = -dir; // opposite direction
+//                board[nx][ny] = -dir; // opposite directionn
 //                board[x][y] = 1;
                 board[nx][ny] = 1;
             }
