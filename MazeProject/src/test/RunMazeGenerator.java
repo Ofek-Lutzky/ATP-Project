@@ -26,7 +26,7 @@ public class RunMazeGenerator {
 //        maze.Print();
 
         MyMazeGenerator mMaze = new MyMazeGenerator();
-        float num = mMaze.measureAlgorithmTimeMillis(1000,1000);
+        float num = mMaze.measureAlgorithmTimeMillis(3,3);
         System.out.println(num);
         //Maze maze = mMaze.generate(10,20);
         //maze.Print();
