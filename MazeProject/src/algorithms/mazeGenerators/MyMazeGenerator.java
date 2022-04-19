@@ -11,24 +11,34 @@ public class MyMazeGenerator extends AMazeGenerator{
         int columnFirst = randomGenerator.nextInt(columns-1);
         this.addPath(rowFirst,columnFirst,board, path);
         board[rowFirst][columnFirst] = 1;
-        this.Prim(rows,columns,board,path);
+        //todo for my algo the walls are 0 and the path is 1
+//        this.Prim(rows,columns,board,path);
+        this.Prim(0,0,board,path);
+        Maze result = new Maze(new Position(0,0),new Position(rowFirst,columnFirst),board);
+//        for (int i = 0; i < board.length; i++){
+//            System.out.println(Arrays.toString(board[i]));
+//        }
 
-        for (int i = 0; i < board.length; i++){
-            System.out.println(Arrays.toString(board[i]));
-        }
-
-        return null;
+        return result;
     }
 
     public void addPath(int x, int y, int[][] board, ArrayList<int[]> path){
         //todo check y < grid.length if its not x
-        if (y>=0 && x>=0 && x < board.length && y < board[x].length && board[x][y] == 0 && !path.contains(new int[]{x, y})){
+//        int [] cell = {x,y};
+        if (y>=0 && x>=0 && x < board.length && y < board[x].length && board[x][y] == 0 && !pathContain(x,y,path)){
 //            board[x][y] = 0;
             path.add(new int[]{x, y});//todo check
         }
     }
 
-
+    private boolean pathContain(int x, int y, ArrayList<int[]> path){
+        for (int i = 0;i < path.size();i++){
+            if (path.get(i)[0] == x && path.get(i)[1] == y){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void markAsVisited(int x, int y, int[][] board, ArrayList<int[]> path){
 //        board[x][y] = 1;
@@ -149,10 +159,10 @@ public class MyMazeGenerator extends AMazeGenerator{
             this.markAsVisited(x, y, board, path);
 
 
-            for (int i = 0; i < board.length; i++){
-                System.out.println(Arrays.toString(board[i]));
-            }
-            System.out.println("\n");
+//            for (int i = 0; i < board.length; i++){
+//                System.out.println(Arrays.toString(board[i]));
+//            }
+//            System.out.println("\n");
 
 
         }

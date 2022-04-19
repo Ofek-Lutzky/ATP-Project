@@ -12,7 +12,7 @@ public class RunMazeGenerator {
 //        Position p = new Position( 0,2);
 //        System.out.println(p);
 
-        //emptyMaze test
+        //test
 //        EmptyMazeGenerator eMaze = new EmptyMazeGenerator();
 //        float num = eMaze.measureAlgorithmTimeMillis(1000,1000);
 //        System.out.println(num);
@@ -26,10 +26,12 @@ public class RunMazeGenerator {
 //        maze.Print();
 
         MyMazeGenerator mMaze = new MyMazeGenerator();
-        float num = mMaze.measureAlgorithmTimeMillis(3,3);
+        float num = mMaze.measureAlgorithmTimeMillis(10,11);
         System.out.println(num);
-        //Maze maze = mMaze.generate(10,20);
-        //maze.Print();
+        Maze maze = mMaze.generate(30,30);
+        maze.Print();
+        System.out.println(maze.getStartPosition());
+        System.out.println(maze.getGoalPosition());
 
     }
 

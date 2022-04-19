@@ -37,8 +37,18 @@ public class Maze {
                     toPrint[i][j] = "S";
                 else if(i == this.getGoalPosition().getRowIndex() && j == this.getGoalPosition().getColumnIndex())
                     toPrint[i][j] = "E";
-                else
-                    toPrint[i][j] = String.valueOf(this.board[i][j]);
+                else{
+                    if (this.board[i][j] == 1){
+
+                        toPrint[i][j] = " ";
+                    }
+                    else {
+                        toPrint[i][j] = "▓";
+                    }
+
+//                    toPrint[i][j] = String.valueOf(this.board[i][j]);
+                }
+
             }
         }
 
