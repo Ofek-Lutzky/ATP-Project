@@ -17,19 +17,19 @@ public class RunMazeGenerator {
         float num = eMaze.measureAlgorithmTimeMillis(1000,1000);
         System.out.println(num);
         Maze maze = eMaze.generate(10,20);
-        maze.Print();
+        maze.print();
 
         SimpleMazeGenerator sMaze = new SimpleMazeGenerator();
         float num1 = sMaze.measureAlgorithmTimeMillis(1000,1000);
         System.out.println(num1);
         Maze maze1 = sMaze.generate(10,20);
-        maze1.Print();
+        maze1.print();
 
         MyMazeGenerator mMaze = new MyMazeGenerator();
         float num2 = mMaze.measureAlgorithmTimeMillis(10,11);
         System.out.println(num2);
         Maze maze2 = mMaze.generate(30,30);
-        maze2.Print();
+        maze2.print();
         System.out.println(maze.getStartPosition());
         System.out.println(maze.getGoalPosition());
 
@@ -37,9 +37,9 @@ public class RunMazeGenerator {
 
     public static void  testMazeGenerator(IMazeGenerator mazeGenerator){
 
-        //todo test they gave to delete when send the task
-//        // prints the time it takes the algorithm to run System.out.println(String.format("Maze generation
-//        time(ms): %s", mazeGenerator.measureAlgorithmTimeMillis(100/*rows*/,100/*columns*/)));
+//        //todo test they gave to delete when send the task
+//        // prints the time it takes the algorithm to run
+//        System.out.println(String.format("Maze generation time(ms): %s", mazeGenerator.measureAlgorithmTimeMillis(100/*rows*/,100/*columns*/)));
 //        // generate another maze
 //        Maze maze = mazeGenerator.generate(100/*rows*/, 100/*columns*/);
 //        // prints the maze

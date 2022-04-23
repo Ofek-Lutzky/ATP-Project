@@ -5,6 +5,9 @@ import java.util.Arrays;
 
 public class Maze {
     //todo add method as we like
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_RED = "\u001B[31m";
 
     private Position startPosition;
     private Position goalPosition;
@@ -29,14 +32,14 @@ public class Maze {
         return this.goalPosition;
     }
 
-    public void Print(){
+    public void print(){
         String[][] toPrint = new String[board.length][board[0].length];
         for (int i = 0; i < this.board.length; i++){
             for (int j = 0; j < this.board[0].length; j++){
                 if (i == this.getStartPosition().getRowIndex() && j == this.getStartPosition().getColumnIndex())
-                    toPrint[i][j] = "S";
+                    toPrint[i][j] = ANSI_GREEN +"S" + ANSI_RESET;
                 else if(i == this.getGoalPosition().getRowIndex() && j == this.getGoalPosition().getColumnIndex())
-                    toPrint[i][j] = "E";
+                    toPrint[i][j] = ANSI_RED + "E" + ANSI_RESET;
                 else{
                     if (this.board[i][j] == 1){
 
