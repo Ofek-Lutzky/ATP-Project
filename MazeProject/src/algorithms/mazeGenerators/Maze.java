@@ -43,10 +43,10 @@ public class Maze {
                 else{
                     if (this.board[i][j] == 1){
 
-                        toPrint[i][j] = " ";
+                        toPrint[i][j] = "▓";
                     }
                     else {
-                        toPrint[i][j] = "▓";
+                        toPrint[i][j] = " ";
                     }
 
 //                    toPrint[i][j] = String.valueOf(this.board[i][j]);

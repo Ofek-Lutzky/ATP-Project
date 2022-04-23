@@ -26,9 +26,9 @@ public class RunMazeGenerator {
         maze1.print();
 
         MyMazeGenerator mMaze = new MyMazeGenerator();
-        float num2 = mMaze.measureAlgorithmTimeMillis(10,11);
+        float num2 = mMaze.measureAlgorithmTimeMillis(1000,1000);
         System.out.println(num2);
-        Maze maze2 = mMaze.generate(30,30);
+        Maze maze2 = mMaze.generate(100,100);
         maze2.print();
         System.out.println(maze.getStartPosition());
         System.out.println(maze.getGoalPosition());
