@@ -14,24 +14,28 @@ public class RunMazeGenerator {
 
         //test
         EmptyMazeGenerator eMaze = new EmptyMazeGenerator();
-        float num = eMaze.measureAlgorithmTimeMillis(1000,1000);
-        System.out.println(num);
-        Maze maze = eMaze.generate(10,20);
+//        float num = eMaze.measureAlgorithmTimeMillis(1000,1000);
+//        System.out.println(num);
+        Maze maze = eMaze.generate(10,10);
         maze.print();
-
-        SimpleMazeGenerator sMaze = new SimpleMazeGenerator();
-        float num1 = sMaze.measureAlgorithmTimeMillis(1000,1000);
-        System.out.println(num1);
-        Maze maze1 = sMaze.generate(10,20);
-        maze1.print();
-
-        MyMazeGenerator mMaze = new MyMazeGenerator();
-        float num2 = mMaze.measureAlgorithmTimeMillis(1000,1000);
-        System.out.println(num2);
-        Maze maze2 = mMaze.generate(100,100);
-        maze2.print();
         System.out.println(maze.getStartPosition());
         System.out.println(maze.getGoalPosition());
+
+        SimpleMazeGenerator sMaze = new SimpleMazeGenerator();
+//        float num1 = sMaze.measureAlgorithmTimeMillis(1000,1000);
+//        System.out.println(num1);
+        Maze maze1 = sMaze.generate(10,10);
+        maze1.print();
+        System.out.println(maze1.getStartPosition());
+        System.out.println(maze1.getGoalPosition());
+
+        MyMazeGenerator mMaze = new MyMazeGenerator();
+//        float num2 = mMaze.measureAlgorithmTimeMillis(1000,1000);
+//        System.out.println(num2);
+        Maze maze2 = mMaze.generate(10,10);
+        maze2.print();
+        System.out.println(maze2.getStartPosition());
+        System.out.println(maze2.getGoalPosition());
 
     }
 

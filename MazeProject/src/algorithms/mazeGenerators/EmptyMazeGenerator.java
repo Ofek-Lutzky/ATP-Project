@@ -15,7 +15,9 @@ public class EmptyMazeGenerator extends AMazeGenerator{
 //        }
         //todo check id you really need the loops becuase java gives 0 auto
 
-        Maze rtnMaze = new Maze(new Position(0,0), new Position(rows-1,columns-1), emptyBoard);
-        return rtnMaze;
+        int[] startEndArray = this.startEndFunc(rows, columns);
+
+        //return maze object
+        return new Maze(new Position(startEndArray[0], startEndArray[1]), new Position(startEndArray[2], startEndArray[3]), emptyBoard);
     }
 }

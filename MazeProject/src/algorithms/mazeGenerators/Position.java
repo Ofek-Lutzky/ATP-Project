@@ -24,4 +24,7 @@ public class Position {
         return String.format("{%d,%d}", this.getRowIndex(), this.getColumnIndex());
 //        return "{" + String.valueOf(this.getRowIndex()) + "," + String.valueOf(this.getColumnIndex()) + "}";
     }
+
+    //todo implement equal method
+//    public boolean equals(Object o){ return true;}
 }

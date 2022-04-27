@@ -8,16 +8,17 @@ public class MyMazeGenerator extends AMazeGenerator {
     public Maze generate(int rows, int columns) {
         // first making an empty board
         int[][] board = new int[rows][columns];
+
         // the path will help us determine from what cells we will randomly pick in prim algo
         ArrayList<int[]> path = new ArrayList<>();
-        //randomize the end point
+
+        //randomize cell to start the algorithm from
         Random randomGenerator = new Random();
         int rowFirst = randomGenerator.nextInt(rows - 1);
         int columnFirst = randomGenerator.nextInt(columns - 1);
         this.addPath(rowFirst, columnFirst, board, path);
         board[rowFirst][columnFirst] = 1;
-        //todo for my algo the walls are 0 and the path is 1
-//        this.Prim(rows,columns,board,path);
+
         this.Prim(board, path);
 
         //change the board that return from prim the 1's and 0's
@@ -32,8 +33,11 @@ public class MyMazeGenerator extends AMazeGenerator {
             }
         }
 
+        int[] startEndArray = this.startEndFunc(rows, columns);
+        board = this.putStartEndOnBoard(startEndArray, board);
+
         //return maze object
-        return new Maze(new Position(0, 0), new Position(rowFirst, columnFirst), board);
+        return new Maze(new Position(startEndArray[0], startEndArray[1]), new Position(startEndArray[2], startEndArray[3]), board);
     }
 
     //method that checking if we can add the cell to path array
