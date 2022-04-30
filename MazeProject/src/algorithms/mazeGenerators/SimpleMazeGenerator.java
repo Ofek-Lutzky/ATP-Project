@@ -13,7 +13,6 @@ public class SimpleMazeGenerator extends AMazeGenerator{
         for (int i = 0; i < simpleBoard.length; i++){
             for (int j = 0; j < simpleBoard[0].length; j++){
                 simpleBoard[i][j] = ThreadLocalRandom.current().nextInt(0, 1+1);
-                //todo it can give me a maze without answer
             }
         }
 

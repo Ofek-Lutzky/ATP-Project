@@ -20,11 +20,8 @@ public class Position {
     }
 
     public String toString(){
-        //todo check if the start and the end position need to be added to here as some kind of print
         return String.format("{%d,%d}", this.getRowIndex(), this.getColumnIndex());
 //        return "{" + String.valueOf(this.getRowIndex()) + "," + String.valueOf(this.getColumnIndex()) + "}";
     }
 
-    //todo implement equal method
-//    public boolean equals(Object o){ return true;}
 }

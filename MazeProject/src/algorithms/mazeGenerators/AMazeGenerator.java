@@ -7,8 +7,6 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
     @Override
     public abstract Maze generate(int rows, int columns); //we will leave it abstract for the childrens to implement
 
-    //todo check: in the pdf there is a,b,c is be needed?
-
     @Override
     public long measureAlgorithmTimeMillis(int rows, int columns) {
 
@@ -18,8 +16,6 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
 
         return timeAfter-timeBefore;
     }
-
-    //todo function that place the S, and the E in the maze board and doing all the validility checks
 
 
     //the function will return array of four integers that sighn the place of the start and the end
@@ -117,7 +113,7 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
 
     //add the neighbors
     private ArrayList<int[]> neighbors(int x, int y, int[][] board) {
-        //todo check
+
         ArrayList<int[]> nb = new ArrayList<>();
 
         if (x > 0 && insideBoard(x - 1, y, board)) {

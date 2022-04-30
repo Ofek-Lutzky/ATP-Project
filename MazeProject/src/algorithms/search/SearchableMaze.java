@@ -125,7 +125,7 @@ public class SearchableMaze implements ISearchable{
         return false;
     }
 
-    //todo check why the contain method not working
+
     private boolean neighborsContain(int x, int y, ArrayList<AState> nb) {
         for (int i = 0; i < nb.size(); i++) {
             if (((MazeState)nb.get(i)).getRow() == x && ((MazeState)nb.get(i)).getColumn() == y) {

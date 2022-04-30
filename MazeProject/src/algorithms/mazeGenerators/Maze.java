@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Maze {
-    //todo add method as we like
+    //todo delete when finish
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -17,8 +17,8 @@ public class Maze {
     private int[][] board;
 //    0 = not visited
 //    1 = Wall
-//    S = start
-//    E = End
+//    S = start also 0
+//    E = End also 0
 
 
     public Maze(Position startPosition, Position goalPosition, int[][] board) {
@@ -65,9 +65,7 @@ public class Maze {
 //            System.out.println(Arrays.toString(toPrint[i]));
 //        }
 
-        //todo S as the start and E as the exit check about if the print of them is here or in position
 
-        //todo
 
         System.out.print("{");
         for (int i = 0; i < this.board.length; i++){

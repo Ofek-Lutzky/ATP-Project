@@ -22,7 +22,6 @@ public class MyMazeGenerator extends AMazeGenerator {
         this.Prim(board, path);
 
         //change the board that return from prim the 1's and 0's
-        //todo check if there is better way to change the 0 to one and one to zero
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 if (board[i][j] == 0) {
@@ -70,7 +69,7 @@ public class MyMazeGenerator extends AMazeGenerator {
 
     //add the neighbors
     public ArrayList<int[]> neighbors(int x, int y, int[][] board) {
-        //todo check
+
         ArrayList<int[]> nb = new ArrayList<>();
 
         if (x > 1 && inside(x - 2, y, board)) {
@@ -116,7 +115,7 @@ public class MyMazeGenerator extends AMazeGenerator {
             board[x - 1][y] = 1;
             board[x - 2][y] = 1; //the same as board[nx][y] = 1
         }
-        return board;//todo
+        return board;
 
     }
 

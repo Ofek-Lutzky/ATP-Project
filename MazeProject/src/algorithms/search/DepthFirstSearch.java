@@ -66,8 +66,6 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
     }
 
     //todo i did function instead of the contain method
-    // i need to look for a better way or to check why it isn't ok?
-
     private Boolean compare(HashSet<AState> visited,AState s){
         Object[] a = visited.toArray();
         for (int i = 0; i < a.length; i++){
