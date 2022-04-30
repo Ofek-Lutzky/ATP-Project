@@ -68,7 +68,7 @@ public class MyMazeGenerator extends AMazeGenerator {
 
 
     //add the neighbors
-    public ArrayList<int[]> neighbors(int x, int y, int[][] board) {
+    private ArrayList<int[]> neighbors(int x, int y, int[][] board) {
 
         ArrayList<int[]> nb = new ArrayList<>();
 

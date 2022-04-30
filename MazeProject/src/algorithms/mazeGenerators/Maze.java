@@ -99,7 +99,7 @@ public class Maze {
         System.out.print("};\n");
     }
 
-    public int[][] getBoard() {
+    public int[][] getMap() {
         return board;
     }
 

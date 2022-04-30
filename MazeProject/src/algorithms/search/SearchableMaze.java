@@ -42,7 +42,7 @@ public class SearchableMaze implements ISearchable{
     public ArrayList<AState> getAllPossibleStates(AState state) {
         ArrayList<AState> nb = new ArrayList<>();
 
-        int[][] board = this.maze.getBoard();
+        int[][] board = this.maze.getMap();
         int x = ((MazeState) state).getRow();
         int y = ((MazeState) state).getColumn();
 

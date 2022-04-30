@@ -28,15 +28,15 @@ public class Solution {
 
         //A nice presentation for us
 
-        String[][] toPrint = new String[maze.getBoard().length][maze.getBoard()[0].length];
-        for (int i = 0; i < maze.getBoard().length; i++) {
-            for (int j = 0; j < maze.getBoard()[0].length; j++) {
+        String[][] toPrint = new String[maze.getMap().length][maze.getMap()[0].length];
+        for (int i = 0; i < maze.getMap().length; i++) {
+            for (int j = 0; j < maze.getMap()[0].length; j++) {
                 if (i == maze.getStartPosition().getRowIndex() && j == maze.getStartPosition().getColumnIndex())
                     toPrint[i][j] = ANSI_GREEN + "S" + ANSI_RESET;
                 else if (i == maze.getGoalPosition().getRowIndex() && j == maze.getGoalPosition().getColumnIndex())
                     toPrint[i][j] = ANSI_RED + "E" + ANSI_RESET;
                 else {
-                    if (maze.getBoard()[i][j] == 1) {
+                    if (maze.getMap()[i][j] == 1) {
 
                         toPrint[i][j] = "▓";
                     } else {
@@ -55,7 +55,7 @@ public class Solution {
         }
 
 //
-        for (int i = 0; i < maze.getBoard().length; i++) {
+        for (int i = 0; i < maze.getMap().length; i++) {
             System.out.println(Arrays.toString(toPrint[i]));
         }
     }
