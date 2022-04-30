@@ -114,47 +114,6 @@ public class SearchableMaze implements ISearchable{
             }
         }
 
-
-        //////////////////////////////////////////////
-//        if (x > 0 && insideBoard(x - 1, y, board)) {
-//            nb.add(new MazeState(new Position(x - 1, y)));
-//
-//            if (insideBoard(x - 1, y-1, board) && !neighborsContain(x - 1, y-1, nb)){
-//                nb.add(new MazeState(new Position(x - 1, y-1)));
-//            }
-//            if (insideBoard(x - 1, y+1, board) && !neighborsContain(x - 1, y+1, nb)){
-//                nb.add(new MazeState(new Position(x - 1, y+1)));
-//            }
-//        }
-//        if (x + 1 < board.length && insideBoard(x + 1, y, board)) {
-//            nb.add(new MazeState(new Position(x + 1, y)));
-//            if (insideBoard(x + 1, y-1, board) && !neighborsContain(x + 1, y-1, nb)){
-//                nb.add(new MazeState(new Position(x + 1, y-1)));
-//            }
-//            if (insideBoard(x + 1, y+1, board) && !neighborsContain(x + 1, y+1, nb)){
-//                nb.add(new MazeState(new Position(x + 1, y+1)));
-//            }
-//        }
-//        if (y > 0 && insideBoard(x, y - 1, board)) {
-//            nb.add(new MazeState(new Position(x, y - 1)));
-//            if (insideBoard(x-1, y - 1, board) && !neighborsContain(x - 1, y-1, nb)) {
-//                nb.add(new MazeState(new Position(x-1, y - 1)));
-//            }
-//            if (insideBoard(x+1, y - 1, board) && !neighborsContain(x+1, y - 1, nb)) {
-//                nb.add(new MazeState(new Position(x+1, y - 1)));
-//            }
-//        }
-//        if (y + 1 < board[x].length && insideBoard(x, y + 1, board)) {
-//            nb.add(new MazeState(new Position(x, y + 1)));
-//            if (insideBoard(x-1, y + 1, board) && !neighborsContain(x-1, y + 1, nb)) {
-//                nb.add(new MazeState(new Position(x-1, y + 1)));
-//            }
-//            if (insideBoard(x+1, y + 1, board) && !neighborsContain(x+1, y + 1, nb)) {
-//                nb.add(new MazeState(new Position(x+1, y + 1)));
-//            }
-//
-//        }
-
         return nb;
     }
 

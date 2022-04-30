@@ -34,11 +34,4 @@ public class MazeState extends AState {
         return "{" + this.getRow() + "," + this.getColumn() + "}";
     }
 
-
-
-    @Override
-    public int compareTo(AState o) {
-        //i want that the Queue always enter in the end
-        return -1;
-    }
 }

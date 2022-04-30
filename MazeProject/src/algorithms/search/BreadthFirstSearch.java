@@ -2,26 +2,28 @@ package algorithms.search;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Stack;
 
 public class BreadthFirstSearch extends ASearchingAlgorithm{
     public BreadthFirstSearch() {
         this.setName("BreadthFirstSearch");
+        this.openList = new LinkedList<AState>();
     }
 
 
     @Override
     public Solution solve(ISearchable s) {
         HashSet<AState> visited = new HashSet<>();
-        this.addOpenList(s.getStartState());
+        this.openList.add(s.getStartState());
 //        boolean gotToEnd = false;
         AState rtnNode = null;
 
-        while(!this.getOpenList().isEmpty()){
+        while(!this.openList.isEmpty()){
 
             this.addOneToVisited();
 
-            AState currentState = this.dequeFromQueue();
+            AState currentState = this.openList.remove();
             visited.add(currentState);
 
             if (currentState.equals(s.getGoalState())){
@@ -34,7 +36,7 @@ public class BreadthFirstSearch extends ASearchingAlgorithm{
 
             for (int i = 0; i < nb.size(); i++){
                 if (!compare(visited, nb.get(i))){
-                    this.addOpenList(nb.get(i));
+                    this.openList.add(nb.get(i));
                     nb.get(i).setCameFrom(currentState);
                 }
             }

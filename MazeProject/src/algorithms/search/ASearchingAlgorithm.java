@@ -1,15 +1,15 @@
 package algorithms.search;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 public abstract class ASearchingAlgorithm implements ISearchingAlgorithm{
 //    ISearchable problem; //todo delete
     //todo if need this here or as field of the subClasses
-    private PriorityQueue<AState> openList;
+    Queue<AState> openList;
     private int visitedNodes;
     private String name;
 
     public ASearchingAlgorithm() {
-        this.openList = new PriorityQueue<AState>();
         this.visitedNodes = 0;
     }
 
@@ -30,16 +30,16 @@ public abstract class ASearchingAlgorithm implements ISearchingAlgorithm{
         this.name = s;
     }
 
-    public void addOpenList(AState s){
-        this.openList.add(s);
-    }
+//    public void addOpenList(AState s){
+//        this.openList.add(s);
+//    }
+//
+//    public PriorityQueue<AState> getOpenList(){
+//        return this.openList;
+//    }
 
-    public PriorityQueue<AState> getOpenList(){
-        return this.openList;
-    }
-
-    public AState dequeFromQueue(){
-        return this.openList.poll();
-    }
+//    public AState dequeFromQueue(){
+//        return this.openList.poll();
+//    }
 
 }

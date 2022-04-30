@@ -1,6 +1,6 @@
 package algorithms.search;
 
-public abstract class AState implements Comparable<AState> {
+public abstract class AState{
     protected String state;
     protected double cost;
     protected AState cameFrom = null;
