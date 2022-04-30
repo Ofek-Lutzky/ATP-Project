@@ -18,4 +18,19 @@ public class MazeState extends AState{
     public int getColumn(){
         return this.position.getColumnIndex();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof MazeState)){
+            return false;
+        }
+
+        MazeState other = (MazeState) o;
+        return this.getRow() == other.getRow() && this.getColumn() == other.getColumn();
+    }
+
+    @Override
+    public String toString() {
+        return "{" + this.getRow() + "," + this.getColumn() + "}";
+    }
 }

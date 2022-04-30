@@ -1,6 +1,9 @@
 package algorithms.mazeGenerators;
 
+import algorithms.search.AState;
+
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Maze {
@@ -101,4 +104,6 @@ public class Maze {
     public int[][] getBoard() {
         return board;
     }
+
+
 }

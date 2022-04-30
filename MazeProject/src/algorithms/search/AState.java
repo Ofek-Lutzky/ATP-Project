@@ -11,13 +11,19 @@ public abstract class AState {
         return this.cost;
     }
 
+    public void setCost(double cost){this.cost = cost; }
+
+    public AState getCameFrom(){
+        return this.cameFrom;
+    }
+
     public void setCameFrom(AState cF){
         this.cameFrom = cF;
     }
 
-    //todo check about this
-//    @Override
-//    public boolean equals(Object o){
-//        return false;
-//    }
+    @Override
+    public abstract boolean equals(Object o);
+
+    @Override
+    public abstract String toString();
 }

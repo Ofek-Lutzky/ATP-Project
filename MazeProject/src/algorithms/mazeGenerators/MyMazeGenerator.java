@@ -34,7 +34,7 @@ public class MyMazeGenerator extends AMazeGenerator {
         }
 
         int[] startEndArray = this.startEndFunc(rows, columns);
-        board = this.putStartEndOnBoard(startEndArray, board);
+        board = this.makeAPassToStartEnd(startEndArray, board);
 
         //return maze object
         return new Maze(new Position(startEndArray[0], startEndArray[1]), new Position(startEndArray[2], startEndArray[3]), board);

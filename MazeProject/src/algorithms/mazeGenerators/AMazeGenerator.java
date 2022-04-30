@@ -42,6 +42,7 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
             columnStart = randomGenerator.nextInt(columns - 1);
         }
 
+
         int columnEnd = randomGenerator.nextInt(columns - 1);
         int rowEnd;
         // for the end we changed the range we picking the random so it probaly fall on other cell then the start in a better way
@@ -54,6 +55,20 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
             rowEnd = randomGenerator.nextInt(rows - 1);
         }
 
+        while (columnEnd == columnStart && rowStart == rowEnd){
+            columnEnd = randomGenerator.nextInt(columns - 1);
+
+            // for the end we changed the range we picking the random so it probaly fall on other cell then the start in a better way
+
+            if (columnEnd != 0 && columnEnd != columns-1){
+                int[] pickRow = new int[]{0,rows-1};
+                rowEnd = pickRow[randomGenerator.nextInt(2)];
+            }
+            else{
+                rowEnd = randomGenerator.nextInt(rows - 1);
+            }
+        }
+
         rand[0] = rowStart;
         rand[1] = columnStart;
         rand[2] = rowEnd;
@@ -62,9 +77,12 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
         return rand;
     }
 
-    //put the S and the E on the board and doing fix to check that there will be a pass
+    //check S and the E are ok, doing fix to check that there will be a pass
     //break one wall if there isn't
-    public int[][] putStartEndOnBoard(int[] startEndArray, int[][] board){
+    public int[][] makeAPassToStartEnd(int[] startEndArray, int[][] board){
+        board[startEndArray[0]][startEndArray[1]] = 0;
+        board[startEndArray[2]][startEndArray[3]] = 0;
+
         ArrayList<int[]> sNb = neighbors(startEndArray[0], startEndArray[1], board);
         ArrayList<int[]> eNb = neighbors(startEndArray[2], startEndArray[3], board);
 
