@@ -4,7 +4,7 @@ import java.util.PriorityQueue;
 public abstract class ASearchingAlgorithm implements ISearchingAlgorithm{
 //    ISearchable problem; //todo delete
     //todo if need this here or as field of the subClasses
-    protected PriorityQueue<AState> openList;
+    private PriorityQueue<AState> openList;
     private int visitedNodes;
     private String name;
 
@@ -29,4 +29,17 @@ public abstract class ASearchingAlgorithm implements ISearchingAlgorithm{
     public void setName(String s){
         this.name = s;
     }
+
+    public void addOpenList(AState s){
+        this.openList.add(s);
+    }
+
+    public PriorityQueue<AState> getOpenList(){
+        return this.openList;
+    }
+
+    public AState dequeFromQueue(){
+        return this.openList.poll();
+    }
+
 }

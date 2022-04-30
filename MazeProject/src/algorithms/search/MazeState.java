@@ -3,7 +3,7 @@ import algorithms.mazeGenerators.Position;
 
 //this class will help us to change the problem to be maze kind
 //Before we get it as a Astate generic
-public class MazeState extends AState{
+public class MazeState extends AState {
 
     Position position;
 
@@ -32,5 +32,13 @@ public class MazeState extends AState{
     @Override
     public String toString() {
         return "{" + this.getRow() + "," + this.getColumn() + "}";
+    }
+
+
+
+    @Override
+    public int compareTo(AState o) {
+        //i want that the Queue always enter in the end
+        return -1;
     }
 }

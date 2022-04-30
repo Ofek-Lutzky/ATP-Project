@@ -19,6 +19,7 @@ public class SimpleMazeGenerator extends AMazeGenerator{
 
 
         int[] startEndArray = this.startEndFunc(rows, columns);
+        simpleBoard = this.makeAPassToStartEnd(startEndArray, simpleBoard);
 
 
         //we will do a pass that certify that we have at least one solution for the maze.

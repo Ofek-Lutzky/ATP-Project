@@ -8,7 +8,7 @@ import java.util.Stack;
 public class DepthFirstSearch extends ASearchingAlgorithm{
 
     public DepthFirstSearch() {
-        this.setName("DFS");
+        this.setName("DepthFirstSearch");
     }
 
     /**

@@ -12,11 +12,11 @@ public class RunSearchOnMaze {
         Maze maze = mg.generate(30, 30);
 //        maze.print();
         SearchableMaze searchableMaze = new SearchableMaze(maze);
-//        solveProblem(searchableMaze, new BreadthFirstSearch());
+        solveProblem(searchableMaze, new BreadthFirstSearch(),maze);
         solveProblem(searchableMaze, new DepthFirstSearch(), maze);
 //        solveProblem(searchableMaze, new BestFirstSearch());
     }
-    private static void solveProblem(ISearchable domain, ISearchingAlgorithm searcher, Maze maze) {
+    private static void solveProblem(ISearchable domain, ISearchingAlgorithm searcher, Maze maze) {//todo don't forget to remove the maze from signeture
         //Solve a searching problem with a searcher
         Solution solution = searcher.solve(domain);
         System.out.println(String.format("'%s' algorithm - nodes evaluated: %s", searcher.getName(), searcher.getNumberOfNodesEvaluated()));
