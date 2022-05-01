@@ -1,15 +1,18 @@
 package algorithms.search;
 
 public abstract class AState{
-    protected String state;
-    protected double cost;
-    protected AState cameFrom = null;
+    //todo check if i need cost and state?
+    private String state;
+    private double cost = 10;
+    private AState cameFrom = null;
 
     public AState() { }
 
-    public abstract double getCost();
+    public double getCost(){
+        return this.cost;
+    }
 
-    public void setCost(double cost){this.cost = cost; }
+    //public void setCost(double cost){this.cost = cost; }
 
     public AState getCameFrom(){
         return this.cameFrom;

@@ -21,7 +21,7 @@ public class MazeState extends AState {
 
     @Override
     public double getCost() {
-        if (((MazeState)this.getCameFrom()) == null){
+        if (this.getCameFrom() == null){
             return 0;
         }
         if (isSlant()){
