@@ -20,6 +20,32 @@ public class MazeState extends AState {
     }
 
     @Override
+    public double getCost() {
+        if (((MazeState)this.getCameFrom()) == null){
+            return 0;
+        }
+        if (isSlant()){
+            return 15;
+        }
+        else{
+            return 10;
+        }
+    }
+
+    private boolean isSlant(){
+        int fatherRow = ((MazeState)this.getCameFrom()).getRow();
+        int fatherColumn = ((MazeState)this.getCameFrom()).getColumn();
+        if (fatherRow+1 == this.getRow() && fatherColumn+1 == this.getColumn() ||
+                fatherRow-1 == this.getRow() && fatherColumn+1 == this.getColumn() ||
+                fatherRow+1 == this.getRow() && fatherColumn-1 == this.getColumn() ||
+                fatherRow-1 == this.getRow() && fatherColumn-1 == this.getColumn()){
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (!(o instanceof MazeState)){
             return false;

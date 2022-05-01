@@ -7,9 +7,7 @@ public abstract class AState{
 
     public AState() { }
 
-    public double getCost(){
-        return this.cost;
-    }
+    public abstract double getCost();
 
     public void setCost(double cost){this.cost = cost; }
 
@@ -26,4 +24,5 @@ public abstract class AState{
 
     @Override
     public abstract String toString();
+
 }
