@@ -39,6 +39,7 @@ public class MyMazeGenerator extends AMazeGenerator {
         return new Maze(new Position(startEndArray[0], startEndArray[1]), new Position(startEndArray[2], startEndArray[3]), board);
     }
 
+    //original
     //method that checking if we can add the cell to path array
     public void addPath(int x, int y, int[][] board, ArrayList<int[]> path) {
         //checks that the cell inside the board and there is no duplicate by path contains
@@ -46,6 +47,14 @@ public class MyMazeGenerator extends AMazeGenerator {
             path.add(new int[]{x, y});
         }
     }
+
+    //method that checking if we can add the cell to path array
+//    public void addPath(int x, int y, int[][] board, ArrayList<int[]> path) {
+//        //checks that the cell inside the board and there is no duplicate by path contains
+//        if (y >= 0 && x >= 0 && x < board.length && y < board[x].length && board[x][y] == 0) {
+//            path.add(new int[]{x, y});
+//        }
+//    }
 
     //like an equal private method to help us check if the array already contain the cell.
     private boolean pathContain(int x, int y, ArrayList<int[]> path) {
@@ -138,7 +147,7 @@ public class MyMazeGenerator extends AMazeGenerator {
             path.remove(toDelete);
             int x = toDelete[0];
             int y = toDelete[1];
-            //board[x][y] = 1; // marked as visited
+//            board[x][y] = 1; // marked as visited
 
             //we are finding his neighbors bottom, left, right, top and visited so i can connect to who ever i want
             ArrayList<int[]> n = neighbors(x, y, board);

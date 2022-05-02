@@ -87,6 +87,8 @@ public abstract class AMaze3DGenerator implements IMazeGenerator3D{
         board[startEndArray[0]][startEndArray[1]][startEndArray[2]] = 0;
         board[startEndArray[3]][startEndArray[4]][startEndArray[5]] = 0;
 
+
+        //todo falling not giving nighbors
         ArrayList<int[]> sNb = neighbors3D(startEndArray[0], startEndArray[1], startEndArray[2], board);
         ArrayList<int[]> eNb = neighbors3D(startEndArray[3], startEndArray[4], startEndArray[5], board);
 
@@ -127,34 +129,36 @@ public abstract class AMaze3DGenerator implements IMazeGenerator3D{
 
         ArrayList<int[]> nb = new ArrayList<>();
 
-        if (x > 0 && inside(d,x - 1, y, board)) {
+        if (d > 0) {
+            nb.add(new int[]{d-1, x, y});
+        }
+        if (d + 1 < board.length) {
+            nb.add(new int[]{d+1, x, y});
+        }
+
+        if (x > 0) {
             nb.add(new int[]{d, x - 1, y});
         }
-        if (x + 1 < board.length && inside(d,x + 1, y, board)) {
+        if (x + 1 < board[d].length) {
             nb.add(new int[]{d, x + 1, y});
         }
-        if (y > 0 && inside(d, x, y - 1, board)) {
+        if (y > 0) {
             nb.add(new int[]{d, x, y - 1});
         }
-        if (y + 1 < board[x].length && inside(d, x, y + 1, board)) {
+        if (y + 1 < board[d][x].length) {
             nb.add(new int[]{d, x, y + 1});
         }
 
-        if (d > 0 && inside(d-1, x, y, board)) {
-            nb.add(new int[]{d-1, x, y});
-        }
-        if (d + 1 < board[x][y].length && inside(d+1, x, y, board)) {
-            nb.add(new int[]{d+1, x, y});
-        }
+
 
         return nb;
     }
 
     //check validation
-    private boolean inside(int d, int x, int y, int[][][] grid) {
-        if (y >= 0 && x >= 0 && d >= 0 && x < grid.length && y < grid[x].length && d < grid[x][y].length && grid[d][x][y] == 1) {
-            return true;
-        }
-        return false;
-    }
+//    private boolean inside(int d, int x, int y, int[][][] grid) {
+//        if (y >= 0 && x >= 0 && d >= 0 && x < grid.length && y < grid[0].length && d < grid[0][0].length && grid[d][x][y] == 1) {
+//            return true;
+//        }
+//        return false;
+//    }
 }

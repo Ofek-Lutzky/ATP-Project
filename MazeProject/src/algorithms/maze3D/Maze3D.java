@@ -26,13 +26,15 @@ public class Maze3D {
         final String ANSI_GREEN = "\u001B[32m";
         final String ANSI_RED = "\u001B[31m";
 
-        System.out.print("{");
+        System.out.print("{\n");
 
-        for (int i = 0; i < this.board.length; i++){
-            System.out.print("{");
-            for (int j = 0; j < this.board[0].length; j++){
-                for(int d = 0; d<this.board[i][j].length;d++){
-                if (j<this.board.length-1){
+        for(int d = 0; d<this.board.length;d++){
+            System.out.println("{");
+        for (int i = 0; i < this.board[d].length; i++){
+            System.out.print("\t{");
+            for (int j = 0; j < this.board[d][i].length; j++){
+
+                if (j<this.board[d][i].length-1){
                     if (i == this.getStartPosition().getRowIndex() && j == this.getStartPosition().getColumnIndex() && d==this.getStartPosition().getDepthIndex())
                         System.out.print(ANSI_GREEN +"S" + ANSI_RESET + ",");
                     else if(i == this.getGoalPosition().getRowIndex() && j == this.getGoalPosition().getColumnIndex() && d==this.getGoalPosition().getDepthIndex())
@@ -52,9 +54,9 @@ public class Maze3D {
                     }
                 }
 
-
-
-            }}
+            }
+            System.out.println("},");
+        }
             System.out.println("},");
         }
         System.out.print("};\n");
