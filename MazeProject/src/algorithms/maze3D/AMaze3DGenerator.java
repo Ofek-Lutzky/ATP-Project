@@ -92,31 +92,52 @@ public abstract class AMaze3DGenerator implements IMazeGenerator3D{
         ArrayList<int[]> sNb = neighbors3D(startEndArray[0], startEndArray[1], startEndArray[2], board);
         ArrayList<int[]> eNb = neighbors3D(startEndArray[3], startEndArray[4], startEndArray[5], board);
 
+        int rnd1 = new Random().nextInt(sNb.size());
+        while (sNb.get(rnd1)[1] == startEndArray[1] && sNb.get(rnd1)[2] == startEndArray[2] ){
+            rnd1 = new Random().nextInt(sNb.size());
+        }
+        for (int i = 0;i<board.length;i++)
+            board[i][sNb.get(rnd1)[1]][sNb.get(rnd1)[2]] = 0;
+
+
+        int rnd2 = new Random().nextInt(eNb.size());
+        while (eNb.get(rnd2)[1] == startEndArray[4] && eNb.get(rnd2)[2] == startEndArray[5]){
+            rnd2 = new Random().nextInt(sNb.size());
+        }
+        for (int i = 0;i<board.length;i++)
+            board[i][eNb.get(rnd2)[1]][eNb.get(rnd2)[2]] = 0;
+
         // to count if all the neighbors are one's if not doesnt need to do nothing
-        int counter = 0;
-
-        //for the start cell
-        for (int[] ints : sNb) {
-            if (board[ints[0]][ints[1]][ints[2]] == 1) {
-                counter++;
-            }
-        }
-        if (counter == sNb.size()){
-            int rnd = new Random().nextInt(sNb.size());
-            board[sNb.get(rnd)[0]][sNb.get(rnd)[1]][sNb.get(rnd)[2]] = 0;
-
-        }
-        counter = 0;
-        // for the end cell
-        for (int[] ints : eNb) {
-            if (board[ints[0]][ints[1]][ints[2]] == 1) {
-                counter++;
-            }
-        }
-        if (counter == eNb.size()){
-            int rnd = new Random().nextInt(eNb.size());
-            board[eNb.get(rnd)[0]][eNb.get(rnd)[1]][eNb.get(rnd)[2]] = 0;
-        }
+//        int counter = 0;
+//
+//        //for the start cell
+//        for (int[] ints : sNb) {
+//            if (board[ints[0]][ints[1]][ints[2]] == 1) {
+//                counter++;
+//            }
+//        }
+//        if (counter == sNb.size()){
+//            int rnd = new Random().nextInt(sNb.size());
+//            for (int i = 0;i<board.length;i++)
+//                board[i][sNb.get(rnd)[1]][sNb.get(rnd)[2]] = 0;
+////                board[sNb.get(rnd)[0]][sNb.get(rnd)[1]][sNb.get(rnd)[2]] = 0;
+//
+//        }
+//
+//        counter = 0;
+//        // for the end cell
+//        for (int[] ints : eNb) {
+//            if (board[ints[0]][ints[1]][ints[2]] == 1) {
+//                counter++;
+//            }
+//        }
+//        if (counter == eNb.size()){
+//            int rnd = new Random().nextInt(eNb.size());
+//            for (int i = 0;i<board.length;i++)
+//                board[i][eNb.get(rnd)[1]][eNb.get(rnd)[2]] = 0;
+////            board[eNb.get(rnd)[0]][eNb.get(rnd)[1]][eNb.get(rnd)[2]] = 0;
+//
+//        }
 
 
 
@@ -154,11 +175,4 @@ public abstract class AMaze3DGenerator implements IMazeGenerator3D{
         return nb;
     }
 
-    //check validation
-//    private boolean inside(int d, int x, int y, int[][][] grid) {
-//        if (y >= 0 && x >= 0 && d >= 0 && x < grid.length && y < grid[0].length && d < grid[0][0].length && grid[d][x][y] == 1) {
-//            return true;
-//        }
-//        return false;
-//    }
 }

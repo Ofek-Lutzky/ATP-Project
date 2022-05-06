@@ -1,5 +1,7 @@
 package algorithms.mazeGenerators;
 
+import algorithms.search.MazeState;
+
 public class Position {
 
     private int R;
@@ -22,6 +24,16 @@ public class Position {
     public String toString(){
         return String.format("{%d,%d}", this.getRowIndex(), this.getColumnIndex());
 //        return "{" + String.valueOf(this.getRowIndex()) + "," + String.valueOf(this.getColumnIndex()) + "}";
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (!(o instanceof Position)){
+            return false;
+        }
+
+        Position other = (Position) o;
+        return this.getRowIndex() == other.getRowIndex() && this.getColumnIndex() == other.getColumnIndex();
     }
 
 }

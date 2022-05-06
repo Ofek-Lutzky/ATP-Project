@@ -32,12 +32,12 @@ public class RunMazeGenerator {
 //        System.out.println(maze1.getGoalPosition());
 
         MyMazeGenerator mMaze = new MyMazeGenerator();
-//        float num2 = mMaze.measureAlgorithmTimeMillis(1000,1000);
-//        System.out.println(num2);
-        Maze maze2 = mMaze.generate(30,30);
-        maze2.print();
-        System.out.println(maze2.getStartPosition());
-        System.out.println(maze2.getGoalPosition());
+        float num2 = mMaze.measureAlgorithmTimeMillis(1000,1000);
+        System.out.println(num2);
+//        Maze maze2 = mMaze.generate(30,30);
+//        maze2.print();
+//        System.out.println(maze2.getStartPosition());
+//        System.out.println(maze2.getGoalPosition());
 
 
     }

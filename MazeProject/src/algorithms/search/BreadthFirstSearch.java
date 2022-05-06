@@ -43,6 +43,7 @@ public class BreadthFirstSearch extends ASearchingAlgorithm{
         }
 
         Solution sol = new Solution();
+
         while (rtnNode.getCameFrom() != null){
             sol.addToSolution(rtnNode);
             rtnNode = rtnNode.getCameFrom();

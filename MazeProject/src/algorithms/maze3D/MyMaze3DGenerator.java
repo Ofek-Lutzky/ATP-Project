@@ -41,6 +41,7 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
         }
 
         int[] startEndArray = this.startEndFunc3D(depth, rows, columns);
+        //todo i think i need to do a bigger pass maybe accordin to the depth
         board = this.makeAPassToStartEnd3D(startEndArray, board);
 
         //return maze object
@@ -118,6 +119,7 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
             board[d-1][x][y] = 1;
             board[d-2][x][y] = 1; //the same as board[nx][y] = 1
         }
+
          else if (x < nx) {
             board[d][x][y] = 1;
             board[d][x + 1][y] = 1;
