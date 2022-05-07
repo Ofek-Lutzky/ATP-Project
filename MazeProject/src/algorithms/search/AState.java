@@ -12,6 +12,9 @@ public abstract class AState{
         return this.cost;
     }
 
+    //this method will give each kind of problem decide if she want other cost for steps
+    public double getCostByPriority(){return this.cost;}
+
     //public void setCost(double cost){this.cost = cost; }
 
     public AState getCameFrom(){

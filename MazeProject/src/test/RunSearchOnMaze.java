@@ -13,7 +13,7 @@ public class RunSearchOnMaze {
 //        maze.print();
         SearchableMaze searchableMaze = new SearchableMaze(maze);
 //        solveProblem(searchableMaze, new BreadthFirstSearch(),maze);
-        solveProblem(searchableMaze, new DepthFirstSearch(), maze);
+       // solveProblem(searchableMaze, new DepthFirstSearch(), maze);
         solveProblem(searchableMaze, new BestFirstSearch(),maze);
         solveProblem(searchableMaze, new BreadthFirstSearch(),maze);
     }

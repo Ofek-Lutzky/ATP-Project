@@ -84,8 +84,9 @@ public abstract class AMaze3DGenerator implements IMazeGenerator3D{
     //check S and the E are ok, doing fix to check that there will be a pass
     //break one wall if there isn't
     public int[][][] makeAPassToStartEnd3D(int[] startEndArray, int[][][] board){
-        board[startEndArray[0]][startEndArray[1]][startEndArray[2]] = 0;
-        board[startEndArray[3]][startEndArray[4]][startEndArray[5]] = 0;
+        for (int i = 0;i<board.length;i++){
+            board[i][startEndArray[1]][startEndArray[2]] = 0;
+            board[i][startEndArray[4]][startEndArray[5]] = 0;}
 
 
         //todo falling not giving nighbors
