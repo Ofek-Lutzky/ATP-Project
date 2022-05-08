@@ -7,7 +7,7 @@ public class BestFirstSearch extends BreadthFirstSearch{
 
     public BestFirstSearch() {
         this.setName("BestFirstSearch");
-        this.openList = new PriorityQueue<AState>(Comparator.comparing(AState::getCostByPriority));
+        this.openList = new PriorityQueue<AState>(Comparator.comparing(AState::getCost));
 
         //todo maybe we can make a new comperator class but not shore in what way do so
         //todo check how to remove the getCost from Astate

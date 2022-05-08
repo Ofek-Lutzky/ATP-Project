@@ -1,6 +1,4 @@
 package test;
-import algorithms.maze3D.Maze3D;
-import algorithms.maze3D.MyMaze3DGenerator;
 import algorithms.mazeGenerators.*;
 
 public class RunMazeGenerator {
@@ -34,8 +32,8 @@ public class RunMazeGenerator {
         MyMazeGenerator mMaze = new MyMazeGenerator();
         float num2 = mMaze.measureAlgorithmTimeMillis(1000,1000);
         System.out.println(num2);
-//        Maze maze2 = mMaze.generate(30,30);
-//        maze2.print();
+        Maze maze2 = mMaze.generate(30,30);
+        maze2.print();
 //        System.out.println(maze2.getStartPosition());
 //        System.out.println(maze2.getGoalPosition());
 

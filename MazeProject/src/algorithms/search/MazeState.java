@@ -20,7 +20,7 @@ public class MazeState extends AState {
     }
 
     @Override
-    public double getCostByPriority() {
+    public double getCost() {
         if (this.getCameFrom() == null){
             return 0;
         }
