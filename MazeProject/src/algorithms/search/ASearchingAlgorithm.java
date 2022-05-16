@@ -19,6 +19,8 @@ public abstract class ASearchingAlgorithm implements ISearchingAlgorithm{
 
     public void addOneToVisited(){this.visitedNodes++;}
 
+    public void addOne1ToVisited(){this.visitedNodes++;}
+
     @Override
     public String getName() {
         return this.name;
