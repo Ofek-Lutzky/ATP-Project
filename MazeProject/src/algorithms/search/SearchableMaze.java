@@ -17,7 +17,6 @@ public class SearchableMaze implements ISearchable{
         this.start = new MazeState(p1);
         Position p2 = this.maze.getGoalPosition();
         this.end = new MazeState(p2);
-
     }
 
     @Override

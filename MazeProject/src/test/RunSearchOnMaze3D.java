@@ -15,13 +15,13 @@ import java.util.ArrayList;
 public class RunSearchOnMaze3D {
     public static void main(String[] args) {
         IMazeGenerator3D mg = new MyMaze3DGenerator();
-        Maze3D maze = mg.generate(5, 5, 5);
-        maze.print();
+        Maze3D maze = mg.generate(300, 300, 300);
+        //maze.print();
         SearchableMaze3D searchableMaze = new SearchableMaze3D(maze);
        // solveProblem(searchableMaze, new BreadthFirstSearch(),maze);
         solveProblem(searchableMaze, new DepthFirstSearch(), maze);
         solveProblem(searchableMaze, new BestFirstSearch(),maze);
-//        solveProblem(searchableMaze, new BreadthFirstSearch(),maze);
+        solveProblem(searchableMaze, new BreadthFirstSearch(),maze);
     }
     private static void solveProblem(ISearchable domain, ISearchingAlgorithm searcher, Maze3D maze) {//todo don't forget to remove the maze from signeture
         //Solve a searching problem with a searcher
@@ -31,9 +31,9 @@ public class RunSearchOnMaze3D {
         System.out.println("Solution path:");
         ArrayList<AState> solutionPath = solution.getSolutionPath();
 //        solution.print(maze);
-        for (int i = 0; i < solutionPath.size(); i++) {
-            System.out.println(String.format("%s. %s",i,solutionPath.get(i)));
-        }
+//        for (int i = 0; i < solutionPath.size(); i++) {
+//            System.out.println(String.format("%s. %s",i,solutionPath.get(i)));
+//        }
     }
 
 }

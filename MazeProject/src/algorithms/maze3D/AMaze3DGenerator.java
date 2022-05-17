@@ -89,9 +89,9 @@ public abstract class AMaze3DGenerator implements IMazeGenerator3D{
             board[i][startEndArray[4]][startEndArray[5]] = 0;}
 
 
-        //todo falling not giving nighbors
-        ArrayList<int[]> sNb = neighbors3D(startEndArray[0], startEndArray[1], startEndArray[2], board);
-        ArrayList<int[]> eNb = neighbors3D(startEndArray[3], startEndArray[4], startEndArray[5], board);
+        //get the neighbors that not on the depths for choose random from them and break all the wall in the depth of it to sure pass
+        ArrayList<int[]> sNb = neighborsForSure3DPass(startEndArray[0], startEndArray[1], startEndArray[2], board);
+        ArrayList<int[]> eNb = neighborsForSure3DPass(startEndArray[3], startEndArray[4], startEndArray[5], board);
 
         int rnd1 = new Random().nextInt(sNb.size());
         while (sNb.get(rnd1)[1] == startEndArray[1] && sNb.get(rnd1)[2] == startEndArray[2] ){
@@ -108,55 +108,43 @@ public abstract class AMaze3DGenerator implements IMazeGenerator3D{
         for (int i = 0;i<board.length;i++)
             board[i][eNb.get(rnd2)[1]][eNb.get(rnd2)[2]] = 0;
 
-        // to count if all the neighbors are one's if not doesnt need to do nothing
-//        int counter = 0;
-//
-//        //for the start cell
-//        for (int[] ints : sNb) {
-//            if (board[ints[0]][ints[1]][ints[2]] == 1) {
-//                counter++;
-//            }
-//        }
-//        if (counter == sNb.size()){
-//            int rnd = new Random().nextInt(sNb.size());
-//            for (int i = 0;i<board.length;i++)
-//                board[i][sNb.get(rnd)[1]][sNb.get(rnd)[2]] = 0;
-////                board[sNb.get(rnd)[0]][sNb.get(rnd)[1]][sNb.get(rnd)[2]] = 0;
-//
-//        }
-//
-//        counter = 0;
-//        // for the end cell
-//        for (int[] ints : eNb) {
-//            if (board[ints[0]][ints[1]][ints[2]] == 1) {
-//                counter++;
-//            }
-//        }
-//        if (counter == eNb.size()){
-//            int rnd = new Random().nextInt(eNb.size());
-//            for (int i = 0;i<board.length;i++)
-//                board[i][eNb.get(rnd)[1]][eNb.get(rnd)[2]] = 0;
-////            board[eNb.get(rnd)[0]][eNb.get(rnd)[1]][eNb.get(rnd)[2]] = 0;
-//
-//        }
-
-
-
         return board;
     }
 
     //add the neighbors
     //add the neighbors
-    private ArrayList<int[]> neighbors3D(int d, int x, int y, int[][][] board) {
+//    private ArrayList<int[]> neighbors3D(int d, int x, int y, int[][][] board) {
+//
+//        ArrayList<int[]> nb = new ArrayList<>();
+//
+//        if (d > 0) {
+//            nb.add(new int[]{d-1, x, y});
+//        }
+//        if (d + 1 < board.length) {
+//            nb.add(new int[]{d+1, x, y});
+//        }
+//
+//        if (x > 0) {
+//            nb.add(new int[]{d, x - 1, y});
+//        }
+//        if (x + 1 < board[d].length) {
+//            nb.add(new int[]{d, x + 1, y});
+//        }
+//        if (y > 0) {
+//            nb.add(new int[]{d, x, y - 1});
+//        }
+//        if (y + 1 < board[d][x].length) {
+//            nb.add(new int[]{d, x, y + 1});
+//        }
+//
+//
+//
+//        return nb;
+//    }
+
+    private ArrayList<int[]> neighborsForSure3DPass(int d, int x, int y, int[][][] board) {
 
         ArrayList<int[]> nb = new ArrayList<>();
-
-        if (d > 0) {
-            nb.add(new int[]{d-1, x, y});
-        }
-        if (d + 1 < board.length) {
-            nb.add(new int[]{d+1, x, y});
-        }
 
         if (x > 0) {
             nb.add(new int[]{d, x - 1, y});
