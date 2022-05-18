@@ -9,13 +9,13 @@ import java.util.ArrayList;
 public class RunSearchOnMaze {
     public static void main(String[] args) {
         IMazeGenerator mg = new MyMazeGenerator();
-        Maze maze = mg.generate(30, 30);
+        Maze maze = mg.generate(20, 20);
 //        maze.print();
         SearchableMaze searchableMaze = new SearchableMaze(maze);
 //        solveProblem(searchableMaze, new BreadthFirstSearch(),maze);
         solveProblem(searchableMaze, new BestFirstSearch(),maze);
-        solveProblem(searchableMaze, new BreadthFirstSearch(),maze);
-        solveProblem(searchableMaze, new DepthFirstSearch(), maze);
+//        solveProblem(searchableMaze, new BreadthFirstSearch(),maze);
+//        solveProblem(searchableMaze, new DepthFirstSearch(), maze);
 
     }
     private static void solveProblem(ISearchable domain, ISearchingAlgorithm searcher, Maze maze) {//todo don't forget to remove the maze from signeture

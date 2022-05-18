@@ -24,7 +24,7 @@ public class MazeState extends AState {
         if (this.getCameFrom() == null){
             return 0;
         }
-        if (isSlant()){
+        else if (isSlant()){
             return 15;
         }
         else{

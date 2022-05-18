@@ -3,7 +3,7 @@ package algorithms.search;
 public abstract class AState{
     //todo check if i need cost and state?
     private String state;
-    private double cost = 10;
+    private double cost = Double.POSITIVE_INFINITY;;
     private AState cameFrom = null;
 
     public AState() { }
