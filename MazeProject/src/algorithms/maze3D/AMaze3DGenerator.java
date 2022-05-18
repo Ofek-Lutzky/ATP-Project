@@ -155,7 +155,7 @@ public abstract class AMaze3DGenerator implements IMazeGenerator3D{
         if (y > 0) {
             nb.add(new int[]{d, x, y - 1});
         }
-        if (y + 1 < board[d][x].length) {
+        if (y + 1 < board[d][x].length) {//bla
             nb.add(new int[]{d, x, y + 1});
         }
 
