@@ -7,11 +7,14 @@ import java.util.Stack;
 
 public class BreadthFirstSearch extends ASearchingAlgorithm{
     public BreadthFirstSearch() {
-        this.setName("BreadthFirstSearch");
         this.openList = new LinkedList<AState>();
     }
 
-
+    /**
+     *
+     * @param s
+     * @return Solution to maze by BFS called: sol
+     */
     @Override
     public Solution solve(ISearchable s) {
         //the Hash is to store the Astates we all ready reached
@@ -31,8 +34,8 @@ public class BreadthFirstSearch extends ASearchingAlgorithm{
             for (int i = 0; i < nb.size(); i++){
                 if (!visited.contains(nb.get(i).toString())){
                     visited.add(nb.get(i).toString());
-                    this.openList.add(nb.get(i));
                     nb.get(i).setCameFrom(currentState);
+                    this.openList.add(nb.get(i));
                 }
             }
 
@@ -48,6 +51,11 @@ public class BreadthFirstSearch extends ASearchingAlgorithm{
         }
 
         return sol;
+    }
+
+    @Override
+    public String getName() {
+        return "BreadthFirstSearch";
     }
 
 }
