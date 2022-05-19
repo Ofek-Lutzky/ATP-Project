@@ -20,7 +20,9 @@ public class Maze3D {
     public Position3D getStartPosition(){return this.startPosition;}
     public Position3D getGoalPosition(){return this.goalPosition;}
 
-    //todo for US
+    /**
+     * return the print of the maze in the order asked for
+     */
     public void print(){
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_GREEN = "\u001B[32m";

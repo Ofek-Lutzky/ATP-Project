@@ -98,6 +98,7 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
      * @param board
      * @return board just to be sure it is updated in the original
      * make sure that will have a pass
+     * we did it in a smart way so there will be last change that the start and the end will fall near eachother
      */
     //check S and the E are ok, doing fix to check that there will be a pass
     //break one wall if there isn't
