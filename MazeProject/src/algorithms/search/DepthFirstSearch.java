@@ -75,15 +75,18 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
 
         //put the start in the stack
         stack.push(s.getStartState());
+        visited.add(s.getStartState().toString());//added
 
         //While there is node to be handl in the stack
         while(!stack.empty()){
 
             this.addOneToVisited();
 
+            // take the cell on the top and check for its unvisited neighbors
             AState currentState = stack.pop();
-            visited.add(currentState.toString());// todo if need it here or in the loop
+//            visited.add(currentState.toString()); //removed
 
+            // stop, if the goal is reached
             if (currentState.equals(s.getGoalState())){
                 rtnNode = currentState;
                 break;
@@ -92,8 +95,10 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
             ArrayList<AState> nb = s.getAllPossibleStates(currentState);
             for (int i = 0; i < nb.size(); i++){
                 if (!visited.contains(nb.get(i).toString())){
+                    visited.add(nb.get(i).toString()); // added
+                    nb.get(i).setCameFrom(currentState); // changed place with line under
                     stack.push(nb.get(i));
-                    nb.get(i).setCameFrom(currentState);
+
                 }
             }
         }
