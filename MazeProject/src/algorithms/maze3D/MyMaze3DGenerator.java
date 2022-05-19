@@ -55,7 +55,17 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
     }
 
 
-
+    /**
+     *
+     * @param d
+     * @param x
+     * @param y
+     * @param nd
+     * @param nx
+     * @param ny
+     * @param board
+     *  the function fill the pass in the board. (braking the walls near that chosen)
+     */
     //connect the boards new neighbor selected
     public void fillPath(int d,int x, int y,int nd, int nx, int ny, int[][][] board) {
         if (d > nd) {
@@ -99,16 +109,6 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
 
                 fillPath(d,i,j,z,x,y,board);
 
-                //fill the chosen pass from the random
-//                if (j > y) {
-//                    board[i][j] = 0;
-//                    board[i][j - 1] = 0;
-//                    board[i][j - 2] = 0; //the same as board[x][ny] = 1
-//                } else if (i > x) {
-//                    board[i][j] = 0;
-//                    board[i - 1][j] = 0;
-//                    board[i - 2][j] = 0; //the same as board[nx][y] = 1
-//                }
             }
         }
         }

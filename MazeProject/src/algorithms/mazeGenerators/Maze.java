@@ -12,6 +12,7 @@ public class Maze {
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_RED = "\u001B[31m";
 
+
     private Position startPosition;
     private Position goalPosition;
     private int[][] board;
@@ -19,7 +20,6 @@ public class Maze {
 //    1 = Wall
 //    S = start also 0
 //    E = End also 0
-
 
     public Maze(Position startPosition, Position goalPosition, int[][] board) {
         this.startPosition = startPosition;
@@ -35,6 +35,9 @@ public class Maze {
         return this.goalPosition;
     }
 
+    /**
+     * return the print of the maze in the order asked for
+     */
     public void print(){
 
         //A nice presentation for us

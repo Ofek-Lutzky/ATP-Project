@@ -7,6 +7,15 @@ public class SimpleMazeGenerator extends AMazeGenerator{
 
     public SimpleMazeGenerator() {}
 
+    /**
+     *
+     * @param rows
+     * @param columns
+     * @return Maze object
+     * the funtion is throwing random walls on the board.
+     * after choose the start, end randomly on it frame
+     * after braek the wall on one way to sure that will have pass
+     */
     @Override
     public Maze generate(int rows, int columns) {
         int[][] simpleBoard = new int[rows][columns];
