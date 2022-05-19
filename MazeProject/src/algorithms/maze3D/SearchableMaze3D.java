@@ -37,6 +37,11 @@ public class SearchableMaze3D implements ISearchable {
         return this.maze;
     }
 
+    /**
+     *
+     * @param state
+     * @return ArrayList<AState> nb all the possible state
+     */
     //the function a state that it already know it of mazeState kind
     // so we are doing casting and add the neighbors with zero what is mean that they are the possible state to move to
     // from out side the search algo woun't need to know how the function get the possible states

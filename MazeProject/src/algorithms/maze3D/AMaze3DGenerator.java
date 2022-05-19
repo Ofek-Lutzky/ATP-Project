@@ -4,9 +4,24 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class AMaze3DGenerator implements IMazeGenerator3D{
+
+    /**
+     *
+     * @param depth
+     * @param row
+     * @param column
+     * @return Maze object
+     */
     @Override
     public abstract Maze3D generate(int depth, int row, int column);
 
+    /**
+     *
+     * @param depth
+     * @param row
+     * @param column
+     * @return long timeAfter-timeBefore
+     */
     @Override
     public long measureAlgorithmTimeMillis(int depth, int row, int column) {
         long timeBefore = System.currentTimeMillis();
@@ -16,6 +31,14 @@ public abstract class AMaze3DGenerator implements IMazeGenerator3D{
         return timeAfter-timeBefore;
     }
 
+    /**
+     *
+     * @param depth
+     * @param rows
+     * @param columns
+     * @return int[] rand that contain the indexes of the Start,End
+     * we did it in a smart way so there will be last change that the start and the end will fall near eachother
+     */
     public int[] startEndFunc3D(int depth, int rows, int columns){
 
         int[] rand = new int[6];
@@ -81,6 +104,14 @@ public abstract class AMaze3DGenerator implements IMazeGenerator3D{
         return rand;
     }
 
+    /**
+     *
+     * @param startEndArray
+     * @param board
+     * @return board just to be sure it is updated in the original
+     * make sure that will have a pass
+     * we did it in a smart way so there will be last change that the start and the end will fall near eachother
+     */
     //check S and the E are ok, doing fix to check that there will be a pass
     //break one wall if there isn't
     public int[][][] makeAPassToStartEnd3D(int[] startEndArray, int[][][] board){
@@ -111,37 +142,15 @@ public abstract class AMaze3DGenerator implements IMazeGenerator3D{
         return board;
     }
 
+    /**
+     *
+     * @param d
+     * @param x
+     * @param y
+     * @param board
+     * @return ArrayList<int[]> nb that present the neighbors
+     */
     //add the neighbors
-    //add the neighbors
-//    private ArrayList<int[]> neighbors3D(int d, int x, int y, int[][][] board) {
-//
-//        ArrayList<int[]> nb = new ArrayList<>();
-//
-//        if (d > 0) {
-//            nb.add(new int[]{d-1, x, y});
-//        }
-//        if (d + 1 < board.length) {
-//            nb.add(new int[]{d+1, x, y});
-//        }
-//
-//        if (x > 0) {
-//            nb.add(new int[]{d, x - 1, y});
-//        }
-//        if (x + 1 < board[d].length) {
-//            nb.add(new int[]{d, x + 1, y});
-//        }
-//        if (y > 0) {
-//            nb.add(new int[]{d, x, y - 1});
-//        }
-//        if (y + 1 < board[d][x].length) {
-//            nb.add(new int[]{d, x, y + 1});
-//        }
-//
-//
-//
-//        return nb;
-//    }
-
     private ArrayList<int[]> neighborsForSure3DPass(int d, int x, int y, int[][][] board) {
 
         ArrayList<int[]> nb = new ArrayList<>();

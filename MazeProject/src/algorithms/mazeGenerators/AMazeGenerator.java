@@ -4,9 +4,22 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class  AMazeGenerator implements IMazeGenerator{
+
+    /**
+     *
+     * @param rows
+     * @param columns
+     * @return Maze object
+     */
     @Override
     public abstract Maze generate(int rows, int columns); //we will leave it abstract for the childrens to implement
 
+    /**
+     *
+     * @param rows
+     * @param columns
+     * @return long timeAfter-timeBefore
+     */
     @Override
     public long measureAlgorithmTimeMillis(int rows, int columns) {
 
@@ -18,6 +31,12 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
     }
 
 
+    /**
+     *
+     * @param rows
+     * @param columns
+     * @return int[] rand that contain the indexes of the Start,End
+     */
     //the function will return array of four integers that sighn the place of the start and the end
     //[sr,sc,er,ec] this whay
     //random just from the walls - Frame
@@ -73,6 +92,14 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
         return rand;
     }
 
+    /**
+     *
+     * @param startEndArray
+     * @param board
+     * @return board just to be sure it is updated in the original
+     * make sure that will have a pass
+     * we did it in a smart way so there will be last change that the start and the end will fall near eachother
+     */
     //check S and the E are ok, doing fix to check that there will be a pass
     //break one wall if there isn't
     public int[][] makeAPassToStartEnd(int[] startEndArray, int[][] board){
@@ -111,7 +138,15 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
         return board;
     }
 
+    /**
+     *
+     * @param x
+     * @param y
+     * @param board
+     * @return ArrayList<int[]> nb that present the neighbors
+     */
     //add the neighbors
+    //todo change it like the others
     private ArrayList<int[]> neighbors(int x, int y, int[][] board) {
 
         ArrayList<int[]> nb = new ArrayList<>();
@@ -132,6 +167,13 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
         return nb;
     }
 
+    /**
+     *
+     * @param x
+     * @param y
+     * @param grid
+     * @return bool check if the step is inside the board
+     */
     //check validation
     private boolean insideBoard(int x, int y, int[][] grid) {
         if (y >= 0 && x >= 0 && x < grid.length && y < grid[x].length) {

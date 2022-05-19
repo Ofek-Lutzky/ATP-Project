@@ -10,6 +10,14 @@ import java.util.Random;
 public class MyMaze3DGenerator extends AMaze3DGenerator{
 
     public MyMaze3DGenerator() {}
+
+    /**
+     *
+     * @param depth
+     * @param rows
+     * @param columns
+     * @return Maze object that his board done with Binary tree
+     */
     @Override
     // the method generate the maze
     public Maze3D generate(int depth, int rows, int columns) {
@@ -34,6 +42,14 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
         return new Maze3D(new Position3D(startEndArray[0], startEndArray[1], startEndArray[2]), new Position3D(startEndArray[3], startEndArray[4], startEndArray[5]), board);
     }
 
+    /**
+     *
+     * @param d
+     * @param x
+     * @param y
+     * @param board
+     * @return ArrayList<int[]> nb neighbors form up/left
+     */
     //add the neighbors just from up and left as the binary tree algo need
     private ArrayList<int[]> neighbors(int d,int x, int y, int[][][] board) {
 
@@ -55,7 +71,17 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
     }
 
 
-
+    /**
+     *
+     * @param d
+     * @param x
+     * @param y
+     * @param nd
+     * @param nx
+     * @param ny
+     * @param board
+     *  the function fill the pass in the board. (braking the walls near that chosen)
+     */
     //connect the boards new neighbor selected
     public void fillPath(int d,int x, int y,int nd, int nx, int ny, int[][][] board) {
         if (d > nd) {
@@ -76,7 +102,11 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
 
     }
 
-
+    /**
+     *
+     * @param board
+     * will update the board and break the walls in the way of Binary Tree
+     */
     private void BinaryTree(int[][][] board){
         //simple as this
         //go threw all the cell and decide if connect them up or left randomly
@@ -99,16 +129,6 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
 
                 fillPath(d,i,j,z,x,y,board);
 
-                //fill the chosen pass from the random
-//                if (j > y) {
-//                    board[i][j] = 0;
-//                    board[i][j - 1] = 0;
-//                    board[i][j - 2] = 0; //the same as board[x][ny] = 1
-//                } else if (i > x) {
-//                    board[i][j] = 0;
-//                    board[i - 1][j] = 0;
-//                    board[i - 2][j] = 0; //the same as board[nx][y] = 1
-//                }
             }
         }
         }

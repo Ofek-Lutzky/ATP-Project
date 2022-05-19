@@ -21,11 +21,19 @@ public class Position {
         return this.C;
     }
 
+    /**
+     *
+     * @return "{ROW,COLUMN}"
+     */
     public String toString(){
         return String.format("{%d,%d}", this.getRowIndex(), this.getColumnIndex());
-//        return "{" + String.valueOf(this.getRowIndex()) + "," + String.valueOf(this.getColumnIndex()) + "}";
     }
 
+    /**
+     *
+     * @param o
+     * @return boolean if the row and the column are the same. what is mean that it is the same cell on board
+     */
     @Override
     public boolean equals(Object o){
         if (!(o instanceof Position)){
