@@ -19,6 +19,10 @@ public class MazeState extends AState {
         return this.position.getColumnIndex();
     }
 
+    /**
+     *
+     * @return double of the cost of the cell move in considre it father place
+     */
     @Override
     public double getCost() {
         if (this.getCameFrom() == null){
@@ -32,6 +36,10 @@ public class MazeState extends AState {
         }
     }
 
+    /**
+     *
+     * @return check if according to his father it a slent
+     */
     private boolean isSlant(){
         int fatherRow = ((MazeState)this.getCameFrom()).getRow();
         int fatherColumn = ((MazeState)this.getCameFrom()).getColumn();
@@ -45,6 +53,11 @@ public class MazeState extends AState {
         return false;
     }
 
+    /**
+     *
+     * @param o
+     * @return bool sign if the cell are same
+     */
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof MazeState)){
@@ -55,6 +68,10 @@ public class MazeState extends AState {
         return this.getRow() == other.getRow() && this.getColumn() == other.getColumn();
     }
 
+    /**
+     *
+     * @return string {ROW,COL}
+     */
     @Override
     public String toString() {
         return "{" + this.getRow() + "," + this.getColumn() + "}";

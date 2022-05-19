@@ -9,12 +9,12 @@ import java.util.ArrayList;
 public class RunSearchOnMaze {
     public static void main(String[] args) {
         IMazeGenerator mg = new MyMazeGenerator();
-        Maze maze = mg.generate(1000, 1000);
+        Maze maze = mg.generate(40, 40);
 //        maze.print();
         SearchableMaze searchableMaze = new SearchableMaze(maze);
 //        solveProblem(searchableMaze, new BreadthFirstSearch(),maze);
-//        solveProblem(searchableMaze, new BestFirstSearch(),maze);
-//        solveProblem(searchableMaze, new BreadthFirstSearch(),maze);
+        solveProblem(searchableMaze, new BestFirstSearch(),maze);
+        solveProblem(searchableMaze, new BreadthFirstSearch(),maze);
         solveProblem(searchableMaze, new DepthFirstSearch(), maze);
 
     }
