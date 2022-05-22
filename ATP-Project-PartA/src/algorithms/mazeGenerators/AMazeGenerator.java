@@ -7,8 +7,8 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
 
     /**
      *
-     * @param rows
-     * @param columns
+     * @param rows the index of the row
+     * @param columns  the index of col
      * @return Maze object
      */
     @Override
