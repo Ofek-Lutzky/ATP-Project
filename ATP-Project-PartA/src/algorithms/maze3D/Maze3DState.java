@@ -1,7 +1,6 @@
 package algorithms.maze3D;
 
 import algorithms.search.AState;
-import algorithms.search.MazeState;
 
 public class Maze3DState extends AState {
     Position3D position;
@@ -20,6 +19,11 @@ public class Maze3DState extends AState {
         return this.position.getColumnIndex();
     }
 
+    /**
+     *
+     * @param o equal between 2 objects (Maze3DState) by there depths, rows and columns
+     * @return True if there equals, False else
+     */
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Maze3DState)){

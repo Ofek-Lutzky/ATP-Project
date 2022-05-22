@@ -7,8 +7,8 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
 
     /**
      *
-     * @param rows - the index of the row
-     * @param columns - the index of the column
+     * @param rows
+     * @param columns
      * @return Maze object
      */
     @Override
@@ -16,8 +16,8 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
 
     /**
      *
-     *@param rows - the index of the row
-     * @param columns - the index of the column
+     * @param rows
+     * @param columns
      * @return long timeAfter-timeBefore
      */
     @Override
@@ -33,8 +33,8 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
 
     /**
      *
-     *@param rows - the index of the row
-     * @param columns - the index of the column
+     * @param rows
+     * @param columns
      * @return int[] rand that contain the indexes of the Start,End
      */
     //the function will return array of four integers that sighn the place of the start and the end
@@ -94,8 +94,8 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
 
     /**
      *
-     * @param startEndArray -  an array of four integers that represent the indexes of the start and the end
-     * @param board - board
+     * @param startEndArray
+     * @param board
      * @return board just to be sure it is updated in the original
      * make sure that will have a pass
      * we did it in a smart way so there will be last change that the start and the end will fall near eachother
@@ -140,9 +140,9 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
 
     /**
      *
-     * @param x - the index of the row of the current
-     * @param y - the index of the column of the current
-     * @param board - board
+     * @param x
+     * @param y
+     * @param board
      * @return ArrayList<int[]> nb that present the neighbors
      */
     //add the neighbors
@@ -168,9 +168,9 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
 
     /**
      *
-     * @param x - the index of the row of the current
-     * @param y - the index of the column of the current
-     * @param grid - board
+     * @param x
+     * @param y
+     * @param grid
      * @return bool check if the step is inside the board
      */
     //check validation
