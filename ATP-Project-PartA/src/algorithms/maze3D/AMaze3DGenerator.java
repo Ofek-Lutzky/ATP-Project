@@ -7,9 +7,9 @@ public abstract class AMaze3DGenerator implements IMazeGenerator3D{
 
     /**
      *
-     * @param depth
-     * @param row
-     * @param column
+     * @param depth the index of depth
+     * @param row the index of row
+     * @param column the index of column
      * @return Maze object
      */
     @Override
@@ -17,9 +17,9 @@ public abstract class AMaze3DGenerator implements IMazeGenerator3D{
 
     /**
      *
-     * @param depth
-     * @param row
-     * @param column
+     * @param depth the index of depth
+     * @param row the index of row
+     * @param column the index of column
      * @return long timeAfter-timeBefore
      */
     @Override
@@ -33,9 +33,9 @@ public abstract class AMaze3DGenerator implements IMazeGenerator3D{
 
     /**
      *
-     * @param depth
-     * @param rows
-     * @param columns
+     * @param depth the index of depth
+     * @param rows the index of row
+     * @param columns the index of column
      * @return int[] rand that contain the indexes of the Start,End
      * we did it in a smart way so there will be last change that the start and the end will fall near eachother
      */
@@ -106,8 +106,8 @@ public abstract class AMaze3DGenerator implements IMazeGenerator3D{
 
     /**
      *
-     * @param startEndArray
-     * @param board
+     * @param startEndArray an array of four integers that represent the indexes of the start and the end
+     * @param board board
      * @return board just to be sure it is updated in the original
      * make sure that will have a pass
      * we did it in a smart way so there will be last change that the start and the end will fall near eachother
@@ -144,10 +144,10 @@ public abstract class AMaze3DGenerator implements IMazeGenerator3D{
 
     /**
      *
-     * @param d
-     * @param x
-     * @param y
-     * @param board
+     * @param d the index of depth
+     * @param x the index of row
+     * @param y the index of column
+     * @param board board
      * @return ArrayList<int[]> nb that present the neighbors
      */
     //add the neighbors
@@ -167,9 +167,6 @@ public abstract class AMaze3DGenerator implements IMazeGenerator3D{
         if (y + 1 < board[d][x].length) {
             nb.add(new int[]{d, x, y + 1});
         }
-
-
-
         return nb;
     }
 
