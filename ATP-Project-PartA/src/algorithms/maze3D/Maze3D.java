@@ -1,9 +1,5 @@
 package algorithms.maze3D;
 
-import algorithms.mazeGenerators.Position;
-
-import java.util.Arrays;
-
 public class Maze3D {
 
     private Position3D startPosition;
@@ -55,7 +51,6 @@ public class Maze3D {
                         System.out.print(String.valueOf(this.board[d][i][j]));
                     }
                 }
-
             }
             System.out.println("},");
         }

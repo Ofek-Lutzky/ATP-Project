@@ -33,9 +33,9 @@ public abstract class AMaze3DGenerator implements IMazeGenerator3D{
 
     /**
      *
-     * @param depth the index of depth
-     * @param rows the index of row
-     * @param columns the index of column
+     * @param depth the nums of depth
+     * @param rows the nums of rows
+     * @param columns the nums of columns
      * @return int[] rand that contain the indexes of the Start,End
      * we did it in a smart way so there will be last change that the start and the end will fall near eachother
      */
@@ -111,9 +111,10 @@ public abstract class AMaze3DGenerator implements IMazeGenerator3D{
      * @return board just to be sure it is updated in the original
      * make sure that will have a pass
      * we did it in a smart way so there will be last change that the start and the end will fall near eachother
+     * check S and the E are ok, doing fix to check that there will be a pass
+     * break one wall if there isn't
      */
-    //check S and the E are ok, doing fix to check that there will be a pass
-    //break one wall if there isn't
+
     public int[][][] makeAPassToStartEnd3D(int[] startEndArray, int[][][] board){
         for (int i = 0;i<board.length;i++){
             board[i][startEndArray[1]][startEndArray[2]] = 0;

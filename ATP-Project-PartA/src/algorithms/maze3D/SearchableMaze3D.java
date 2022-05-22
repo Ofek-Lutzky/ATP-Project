@@ -1,10 +1,7 @@
 package algorithms.maze3D;
 
-import algorithms.mazeGenerators.Maze;
-import algorithms.mazeGenerators.Position;
 import algorithms.search.AState;
 import algorithms.search.ISearchable;
-import algorithms.search.MazeState;
 
 import java.util.ArrayList;
 
@@ -39,13 +36,14 @@ public class SearchableMaze3D implements ISearchable {
 
     /**
      *
-     * @param state
+     * @param state the state we want there possible states movers
      * @return ArrayList<AState> nb all the possible state
+     * the function a state that it already know it of mazeState kind
+     * so we are doing casting and add the neighbors with zero what is mean that they are the possible state to move to
+     * from out side the search algo woun't need to know how the function get the possible states
+     * this is why the function adapt the maze that generated to be Ishearchable
      */
-    //the function a state that it already know it of mazeState kind
-    // so we are doing casting and add the neighbors with zero what is mean that they are the possible state to move to
-    // from out side the search algo woun't need to know how the function get the possible states
-    //this is why the function adapt the maze that generated to be Ishearchable
+
     @Override
     public ArrayList<AState> getAllPossibleStates(AState state) {
         ArrayList<AState> nb = new ArrayList<>();
