@@ -5,8 +5,8 @@ import java.util.*;
 public class MyMazeGenerator extends AMazeGenerator {
 
     /**
-     *@param rows - the index of the row
-     * @param columns - the index of the column
+     * @param rows - the num of rows
+     * @param columns the num of column
      * @return Maze object that his board done with Binary tree
      */
     @Override
@@ -60,7 +60,7 @@ public class MyMazeGenerator extends AMazeGenerator {
 
     /**
      *
-     * @param board
+     * @param board - board
      * will update the board and break the walls in the way of Binary Tree
      */
     private void BinaryTree(int[][] board) {

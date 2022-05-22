@@ -12,7 +12,7 @@ public class BreadthFirstSearch extends ASearchingAlgorithm{
 
     /**
      *
-     * @param s
+     * @param s  - ISearchable, the problem we try to solve
      * @return Solution to maze by BFS called: sol
      */
     @Override

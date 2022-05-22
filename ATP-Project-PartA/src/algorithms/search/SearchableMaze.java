@@ -36,14 +36,14 @@ public class SearchableMaze implements ISearchable{
 
     /**
      *
-     * @param state
+     * @param state - the state we want to get it all possible states movers.
      * @return ArrayList<AState> nb -> represent possible states to move. according to clock move
-     *  //up -> slant right up-> right -> slant right down -> down -> slant left down -> left -> slant left up
+     *  up -> slant right up-> right -> slant right down -> down -> slant left down -> left -> slant left up
+     * the function a state that it already know it of mazeState kind
+     * so we are doing casting and add the neighbors with zero what is mean that they are the possible state to move to
+     * from out side the search algo woun't need to know how the function get the possible states
+     * this is why the function adapt the maze that generated to be Ishearchable
      */
-    //the function a state that it already know it of mazeState kind
-    // so we are doing casting and add the neighbors with zero what is mean that they are the possible state to move to
-    // from out side the search algo woun't need to know how the function get the possible states
-    //this is why the function adapt the maze that generated to be Ishearchable
     @Override
     public ArrayList<AState> getAllPossibleStates(AState state) {
         ArrayList<AState> nb = new ArrayList<>();

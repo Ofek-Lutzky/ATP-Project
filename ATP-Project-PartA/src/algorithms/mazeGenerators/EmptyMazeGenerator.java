@@ -6,8 +6,8 @@ public class EmptyMazeGenerator extends AMazeGenerator{
 
     /**
      *
-     *@param rows - the index of the row
-     * @param columns - the index of the column
+     * @param rows - the num of rows
+     * @param columns the num of column
      * @return new empty Maze with random start,end
      */
     @Override

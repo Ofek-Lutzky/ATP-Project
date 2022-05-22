@@ -7,8 +7,8 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
 
     /**
      *
-     * @param rows
-     * @param columns
+     * @param rows - the num of rows
+     * @param columns the num of column
      * @return Maze object
      */
     @Override
@@ -16,8 +16,8 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
 
     /**
      *
-     * @param rows
-     * @param columns
+     * @param rows the index of row
+     * @param columns the index of column
      * @return long timeAfter-timeBefore
      */
     @Override
@@ -33,8 +33,8 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
 
     /**
      *
-     * @param rows
-     * @param columns
+     * @param rows - the num of rows
+     * @param columns the num of column
      * @return int[] rand that contain the indexes of the Start,End
      */
     //the function will return array of four integers that sighn the place of the start and the end
@@ -94,14 +94,15 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
 
     /**
      *
-     * @param startEndArray
-     * @param board
+     * @param startEndArray - an array of four integers that represent the indexes of the start and the end
+     * @param board - board
      * @return board just to be sure it is updated in the original
      * make sure that will have a pass
      * we did it in a smart way so there will be last change that the start and the end will fall near eachother
+     * check S and the E are ok, doing fix to check that there will be a pass
+     * break one wall if there isn't
      */
-    //check S and the E are ok, doing fix to check that there will be a pass
-    //break one wall if there isn't
+
     public int[][] makeAPassToStartEnd(int[] startEndArray, int[][] board){
         board[startEndArray[0]][startEndArray[1]] = 0;
         board[startEndArray[2]][startEndArray[3]] = 0;
@@ -140,10 +141,11 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
 
     /**
      *
-     * @param x
-     * @param y
-     * @param board
+     * @param x - the index row of the current cell
+     * @param y  - the index column of the current cell
+     * @param board - board
      * @return ArrayList<int[]> nb that present the neighbors
+     * add the neighbors
      */
     //add the neighbors
     private ArrayList<int[]> neighbors(int x, int y, int[][] board) {
@@ -168,10 +170,11 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
 
     /**
      *
-     * @param x
-     * @param y
-     * @param grid
+     * @param x - the index row of the current cell
+     * @param y  - the index column of the current cell
+     * @param grid - board
      * @return bool check if the step is inside the board
+     * check validation
      */
     //check validation
     private boolean insideBoard(int x, int y, int[][] grid) {

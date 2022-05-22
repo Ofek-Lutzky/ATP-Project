@@ -9,8 +9,8 @@ public class SimpleMazeGenerator extends AMazeGenerator{
 
     /**
      *
-     *@param rows - the index of the row
-     * @param columns - the index of the column
+     * @param rows - the num of rows
+     * @param columns the num of column
      * @return Maze object
      * the funtion is throwing random walls on the board.
      * after choose the start, end randomly on it frame

@@ -1,13 +1,10 @@
 package algorithms.search;
-import java.util.PriorityQueue;
 import java.util.Queue;
 
 public abstract class ASearchingAlgorithm implements ISearchingAlgorithm{
 
     Queue<AState> openList;
     private int visitedNodes;
-    private String name;
-
 
     public ASearchingAlgorithm() {
         this.visitedNodes = 0;
@@ -15,7 +12,7 @@ public abstract class ASearchingAlgorithm implements ISearchingAlgorithm{
 
     /**
      *
-     * @param s
+     * @param s - ISearchable, the problem we try to solve
      * @return Solution
      */
     @Override
@@ -38,20 +35,5 @@ public abstract class ASearchingAlgorithm implements ISearchingAlgorithm{
      */
     public int getNumberOfNodesEvaluated(){return this.visitedNodes;}
 
-//    public void setName(String s){
-//        this.name = s;
-//    }
-
-//    public void addOpenList(AState s){
-//        this.openList.add(s);
-//    }
-//
-//    public PriorityQueue<AState> getOpenList(){
-//        return this.openList;
-//    }
-
-//    public AState dequeFromQueue(){
-//        return this.openList.poll();
-//    }
 
 }
