@@ -1,13 +1,10 @@
 package algorithms.maze3D;
 
-import algorithms.mazeGenerators.Position;
-
 public class Position3D {
 
     private int D;
     private int R;
     private int C;
-
 
     public Position3D(int d,int r, int c) {
         this.D = d;
@@ -35,7 +32,7 @@ public class Position3D {
 
     /**
      *
-     * @param o
+     * @param o equal between 2 objects (Position3D) by there depths, rows and columns
      * @return boolean if the depth, row and the column are the same. what is mean that it is the same cell on board
      */
     @Override
@@ -43,7 +40,6 @@ public class Position3D {
         if (!(o instanceof Position3D)){
             return false;
         }
-
         Position3D other = (Position3D) o;
         return this.getDepthIndex() == other.getDepthIndex() && this.getRowIndex() == other.getRowIndex() && this.getColumnIndex() == other.getColumnIndex();
     }

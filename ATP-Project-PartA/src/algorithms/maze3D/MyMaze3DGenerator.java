@@ -1,8 +1,5 @@
 package algorithms.maze3D;
 
-import algorithms.mazeGenerators.Maze;
-import algorithms.mazeGenerators.Position;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -13,9 +10,9 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
 
     /**
      *
-     * @param depth
-     * @param rows
-     * @param columns
+     * @param depth the num of depth
+     * @param rows the nums of rows
+     * @param columns the nums of columns
      * @return Maze object that his board done with Binary tree
      */
     @Override
@@ -44,13 +41,13 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
 
     /**
      *
-     * @param d
-     * @param x
-     * @param y
-     * @param board
+     * @param d the index of depth
+     * @param x the index of row
+     * @param y the index of col
+     * @param board board
      * @return ArrayList<int[]> nb neighbors form up/left
+     * add the neighbors just from up and left as the binary tree algo need
      */
-    //add the neighbors just from up and left as the binary tree algo need
     private ArrayList<int[]> neighbors(int d,int x, int y, int[][][] board) {
 
         ArrayList<int[]> nb = new ArrayList<>();
@@ -65,21 +62,19 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
         if (y > 1 && board[d][x][y-2] == 0) {
             nb.add(new int[]{d,x,y-2});
         }
-
-
         return nb;
     }
 
 
     /**
      *
-     * @param d
-     * @param x
-     * @param y
-     * @param nd
-     * @param nx
-     * @param ny
-     * @param board
+     * @param d the index of the depth
+     * @param x the index of the row
+     * @param y the index of the col
+     * @param nd the index of the neighbor depth
+     * @param nx the index of the neighbor row
+     * @param ny the index of the neighbor col
+     * @param board board
      *  the function fill the pass in the board. (braking the walls near that chosen)
      */
     //connect the boards new neighbor selected
@@ -106,12 +101,12 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
      *
      * @param board
      * will update the board and break the walls in the way of Binary Tree
+     * simple as this
+     * go threw all the cell and decide if connect them up or left randomly
+     * if they have neighbors to connect to
+     * finally we will have a pass
      */
     private void BinaryTree(int[][][] board){
-        //simple as this
-        //go threw all the cell and decide if connect them up or left randomly
-        //if they have neighbors to connect to
-        //finally we will have a pass
         Random random = new Random();
         for (int d = 0;d< board.length;d++){
         for (int i = 0; i < board[d].length; i = i+2) {
