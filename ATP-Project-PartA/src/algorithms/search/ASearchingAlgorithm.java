@@ -4,7 +4,6 @@ import java.util.Queue;
 
 public abstract class ASearchingAlgorithm implements ISearchingAlgorithm{
 
-    //todo if need this here or as field of the subClasses
     Queue<AState> openList;
     private int visitedNodes;
     private String name;

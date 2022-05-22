@@ -20,7 +20,6 @@ public class Solution {
         this.solution.add(state);
     }
 
-    //todo delete func and imports related before seding -- print solver
     public void print(Maze maze) {
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_GREEN = "\u001B[32m";

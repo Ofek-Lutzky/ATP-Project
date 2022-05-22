@@ -23,7 +23,7 @@ public class RunSearchOnMaze3D {
         solveProblem(searchableMaze, new BestFirstSearch(),maze);
         solveProblem(searchableMaze, new BreadthFirstSearch(),maze);
     }
-    private static void solveProblem(ISearchable domain, ISearchingAlgorithm searcher, Maze3D maze) {//todo don't forget to remove the maze from signeture
+    private static void solveProblem(ISearchable domain, ISearchingAlgorithm searcher, Maze3D maze) {
         //Solve a searching problem with a searcher
         Solution solution = searcher.solve(domain);
         System.out.println(String.format("'%s' algorithm - nodes evaluated: %s", searcher.getName(), searcher.getNumberOfNodesEvaluated()));

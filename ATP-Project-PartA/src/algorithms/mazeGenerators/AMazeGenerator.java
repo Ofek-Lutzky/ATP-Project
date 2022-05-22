@@ -146,7 +146,6 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
      * @return ArrayList<int[]> nb that present the neighbors
      */
     //add the neighbors
-    //todo change it like the others
     private ArrayList<int[]> neighbors(int x, int y, int[][] board) {
 
         ArrayList<int[]> nb = new ArrayList<>();
