@@ -5,8 +5,8 @@ import java.util.*;
 public class MyMazeGenerator extends AMazeGenerator {
 
     /**
-     * @param rows
-     * @param columns
+     *@param rows - the index of the row
+     * @param columns - the index of the column
      * @return Maze object that his board done with Binary tree
      */
     @Override
@@ -36,9 +36,9 @@ public class MyMazeGenerator extends AMazeGenerator {
 
     /**
      *
-     * @param x
-     * @param y
-     * @param board
+     * @param x - the index of the row
+     * @param y  - the index of the column
+     * @param board - board
      * @return ArrayList<int[]> nb neighbors form up/left
      */
 

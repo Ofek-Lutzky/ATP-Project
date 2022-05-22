@@ -31,8 +31,9 @@ public class Position {
 
     /**
      *
-     * @param o
+     * @param o - object of Position, that we compare to.
      * @return boolean if the row and the column are the same. what is mean that it is the same cell on board
+     * equal between two objects of position
      */
     @Override
     public boolean equals(Object o){
