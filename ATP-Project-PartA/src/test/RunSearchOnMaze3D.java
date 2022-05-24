@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class RunSearchOnMaze3D {
     public static void main(String[] args) {
         IMazeGenerator3D mg = new MyMaze3DGenerator();
-        Maze3D maze = mg.generate(300, 300, 300);
-        //maze.print();
+        Maze3D maze = mg.generate(1, 4, 4);
+        maze.print();
         SearchableMaze3D searchableMaze = new SearchableMaze3D(maze);
        // solveProblem(searchableMaze, new BreadthFirstSearch(),maze);
         solveProblem(searchableMaze, new DepthFirstSearch(), maze);
@@ -28,12 +28,8 @@ public class RunSearchOnMaze3D {
         Solution solution = searcher.solve(domain);
         System.out.println(String.format("'%s' algorithm - nodes evaluated: %s", searcher.getName(), searcher.getNumberOfNodesEvaluated()));
         //Printing Solution Path
-        System.out.println("Solution path:");
-        ArrayList<AState> solutionPath = solution.getSolutionPath();
-//        solution.print(maze);
-//        for (int i = 0; i < solutionPath.size(); i++) {
-//            System.out.println(String.format("%s. %s",i,solutionPath.get(i)));
-//        }
+//        System.out.println("Solution path:");
+//        ArrayList<AState> solutionPath = solution.getSolutionPath();
     }
 
 }
