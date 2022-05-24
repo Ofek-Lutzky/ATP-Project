@@ -23,6 +23,12 @@ public abstract class  AMazeGenerator implements IMazeGenerator{
     @Override
     public long measureAlgorithmTimeMillis(int rows, int columns) {
 
+        // if the parametrs are not correct we will made difult maze size 10*10
+        if (rows < 2 || columns < 2){
+            rows = 10;
+            columns = 10;
+        }
+
         long timeBefore = System.currentTimeMillis();
         generate(rows,columns);
         long timeAfter = System.currentTimeMillis();

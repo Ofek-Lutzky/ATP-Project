@@ -12,6 +12,12 @@ public class MyMazeGenerator extends AMazeGenerator {
     @Override
     // the method generate the maze
     public Maze generate(int rows, int columns) {
+        // if the parametrs are not correct we will made difult maze size 10*10
+        if (rows < 2 || columns < 2){
+            rows = 10;
+            columns = 10;
+        }
+
         // first making an empty board
         int[][] board = new int[rows][columns];
 

@@ -18,6 +18,12 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
     @Override
     // the method generate the maze
     public Maze3D generate(int depth, int rows, int columns) {
+        // if the parametrs are not correct we will made difult maze size 10*10*10
+        if (depth<2 || rows < 2 || columns < 2){
+            depth = 10;
+            rows = 10;
+            columns = 10;
+        }
         // first making an empty board
         int[][][] board = new int[depth][rows][columns];
 

@@ -18,6 +18,12 @@ public class SimpleMazeGenerator extends AMazeGenerator{
      */
     @Override
     public Maze generate(int rows, int columns) {
+        // if the parametrs are not correct we will made difult maze size 10*10
+        if (rows < 2 || columns < 2){
+            rows = 10;
+            columns = 10;
+        }
+
         int[][] simpleBoard = new int[rows][columns];
         for (int i = 0; i < simpleBoard.length; i++){
             for (int j = 0; j < simpleBoard[0].length; j++){

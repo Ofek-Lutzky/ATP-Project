@@ -105,13 +105,24 @@ public class Maze {
         for (int i = 0; i < this.board.length; i++){
             System.out.print("\t{");
             for (int j = 0; j < this.board[0].length; j++){
-                if (j<this.board.length-1){
-                        System.out.print(String.valueOf(this.board[i][j])+",");
+                if (j<this.board.length-1) {
+                    if (i == this.getStartPosition().getRowIndex() && j == this.getStartPosition().getColumnIndex())
+                        System.out.print(ANSI_GREEN + "S" + ANSI_RESET + ",");
+                    else if (i == this.getGoalPosition().getRowIndex() && j == this.getGoalPosition().getColumnIndex())
+                        System.out.print(ANSI_RED + "E" + ANSI_RESET + ",");
+                    else {
+                        System.out.print(String.valueOf(this.board[i][j]) + ",");
                     }
-
+                }
 
                 else{
+                    if (i == this.getStartPosition().getRowIndex() && j == this.getStartPosition().getColumnIndex())
+                        System.out.print(ANSI_GREEN +"S" + ANSI_RESET );
+                    else if(i == this.getGoalPosition().getRowIndex() && j == this.getGoalPosition().getColumnIndex())
+                        System.out.print(ANSI_RED + "E" + ANSI_RESET );
+                    else{
                         System.out.print(String.valueOf(this.board[i][j]));
+                    }
                     }
                 }
 
