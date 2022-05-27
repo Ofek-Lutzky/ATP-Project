@@ -3,7 +3,7 @@ package algorithms.maze3D;
 import java.util.ArrayList;
 import java.util.Random;
 
-public abstract class AMaze3DGenerator implements IMazeGenerator3D{
+public abstract class AMaze3DGenerator implements IMaze3DGenerator {
 
     /**
      *
