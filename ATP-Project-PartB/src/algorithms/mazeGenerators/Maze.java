@@ -45,33 +45,33 @@ public class Maze {
      */
     public void print(){
 //
-//        //A nice presentation for us
+        //A nice presentation for us
+
+        String[][] toPrint = new String[board.length][board[0].length];
+        for (int i = 0; i < this.board.length; i++){
+            for (int j = 0; j < this.board[0].length; j++){
+                if (i == this.getStartPosition().getRowIndex() && j == this.getStartPosition().getColumnIndex())
+                    toPrint[i][j] = ANSI_GREEN +"S" + ANSI_RESET;
+                else if(i == this.getGoalPosition().getRowIndex() && j == this.getGoalPosition().getColumnIndex())
+                    toPrint[i][j] = ANSI_RED + "E" + ANSI_RESET;
+                else{
+                    if (this.board[i][j] == 1){
+
+                        toPrint[i][j] = "▓";
+                    }
+                    else {
+                        toPrint[i][j] = " ";
+                    }
+
+//                    toPrint[i][j] = String.valueOf(this.board[i][j]);
+                }
+
+            }
+        }
 //
-//        String[][] toPrint = new String[board.length][board[0].length];
-//        for (int i = 0; i < this.board.length; i++){
-//            for (int j = 0; j < this.board[0].length; j++){
-//                if (i == this.getStartPosition().getRowIndex() && j == this.getStartPosition().getColumnIndex())
-//                    toPrint[i][j] = ANSI_GREEN +"S" + ANSI_RESET;
-//                else if(i == this.getGoalPosition().getRowIndex() && j == this.getGoalPosition().getColumnIndex())
-//                    toPrint[i][j] = ANSI_RED + "E" + ANSI_RESET;
-//                else{
-//                    if (this.board[i][j] == 1){
-//
-//                        toPrint[i][j] = "▓";
-//                    }
-//                    else {
-//                        toPrint[i][j] = " ";
-//                    }
-//
-////                    toPrint[i][j] = String.valueOf(this.board[i][j]);
-//                }
-//
-//            }
-//        }
-////
-//        for (int i = 0; i < this.board.length; i++){
-//            System.out.println(Arrays.toString(toPrint[i]));
-//        }
+        for (int i = 0; i < this.board.length; i++){
+            System.out.println(Arrays.toString(toPrint[i]));
+        }
 
 
 
@@ -107,35 +107,35 @@ public class Maze {
 //        System.out.print("};\n");
 
 
-        System.out.print("{\n");
-        for (int i = 0; i < this.board.length; i++){
-            System.out.print("\t{");
-            for (int j = 0; j < this.board[0].length; j++){
-                if (j<this.board.length-1){
-                    if (i == this.getStartPosition().getRowIndex() && j == this.getStartPosition().getColumnIndex())
-                        System.out.print(ANSI_GREEN +"S" + ANSI_RESET + ",");
-                    else if(i == this.getGoalPosition().getRowIndex() && j == this.getGoalPosition().getColumnIndex())
-                        System.out.print(ANSI_RED + "E" + ANSI_RESET + ",");
-                    else{
-                        System.out.print(String.valueOf(this.board[i][j])+",");
-                    }}
-
-
-                else{
-                    if (i == this.getStartPosition().getRowIndex() && j == this.getStartPosition().getColumnIndex())
-                        System.out.print(ANSI_GREEN +"S" + ANSI_RESET );
-                    else if(i == this.getGoalPosition().getRowIndex() && j == this.getGoalPosition().getColumnIndex())
-                        System.out.print(ANSI_RED + "E" + ANSI_RESET );
-                    else{
-                        System.out.print(String.valueOf(this.board[i][j]));
-                    }
-                }}
-
-
-
-            System.out.println("},");
-        }
-        System.out.print("};\n");
+//        System.out.print("{\n");
+//        for (int i = 0; i < this.board.length; i++){
+//            System.out.print("\t{");
+//            for (int j = 0; j < this.board[0].length; j++){
+//                if (j<this.board.length-1){
+//                    if (i == this.getStartPosition().getRowIndex() && j == this.getStartPosition().getColumnIndex())
+//                        System.out.print(ANSI_GREEN +"S" + ANSI_RESET + ",");
+//                    else if(i == this.getGoalPosition().getRowIndex() && j == this.getGoalPosition().getColumnIndex())
+//                        System.out.print(ANSI_RED + "E" + ANSI_RESET + ",");
+//                    else{
+//                        System.out.print(String.valueOf(this.board[i][j])+",");
+//                    }}
+//
+//
+//                else{
+//                    if (i == this.getStartPosition().getRowIndex() && j == this.getStartPosition().getColumnIndex())
+//                        System.out.print(ANSI_GREEN +"S" + ANSI_RESET );
+//                    else if(i == this.getGoalPosition().getRowIndex() && j == this.getGoalPosition().getColumnIndex())
+//                        System.out.print(ANSI_RED + "E" + ANSI_RESET );
+//                    else{
+//                        System.out.print(String.valueOf(this.board[i][j]));
+//                    }
+//                }}
+//
+//
+//
+//            System.out.println("},");
+//        }
+//        System.out.print("};\n");
     }
 
 
