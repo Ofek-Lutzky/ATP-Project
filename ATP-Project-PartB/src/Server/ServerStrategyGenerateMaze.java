@@ -15,13 +15,14 @@ public class ServerStrategyGenerateMaze implements IServerStrategy{
             ObjectInputStream fromClient = new ObjectInputStream(inFromClient);
             ObjectOutputStream toClient = new ObjectOutputStream(outToClient);
 
-            int[] sizeRC = (int[])fromClient.readObject();
+            int[] sizeMazeRC = (int[])fromClient.readObject();
 
-            int rows = sizeRC[0];
-            int cols = sizeRC[1];
+            int rows = sizeMazeRC[0];
+            int cols = sizeMazeRC[1];
+
             IMazeGenerator mazeGenerator;
 
-            String algorithmName = Configurations.getConf().getGeneratingAlgo();
+            String algorithmName = Configurations.getConf().getGeneratingAlgo();//todo
 
             if(algorithmName.equals("MyMazeGenerator"))
             {
@@ -36,12 +37,15 @@ public class ServerStrategyGenerateMaze implements IServerStrategy{
                 mazeGenerator = new EmptyMazeGenerator();
             }
             Maze maze = mazeGenerator.generate(rows,cols);
-            byte[] mazeConverToBytes = maze.toByteArray();
+            byte[] mazeConvertToBytes = maze.toByteArray();
             ByteArrayOutputStream bufferByteArrayOut = new ByteArrayOutputStream();
+            //todo check how the MyCompressorOutputStream now what is the size of the buffer
             MyCompressorOutputStream out = new MyCompressorOutputStream(bufferByteArrayOut);
-            out.write(mazeConverToBytes);
+            //todo check why need to write to out and to object
+            out.write(mazeConvertToBytes);
             out.flush();
             toClient.writeObject(bufferByteArrayOut.toByteArray());
+
             fromClient.close();
             toClient.close();
 
