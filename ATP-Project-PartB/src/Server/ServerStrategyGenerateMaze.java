@@ -28,18 +28,24 @@ public class ServerStrategyGenerateMaze implements IServerStrategy{
 
             String algorithmName = Configurations.getInstance().getGenerateAlgo();//the getConf is a singelton that giving us the object that hold the data
 
-            if(algorithmName.equals("MyMazeGenerator"))
-            {
-                generateMaze = new MyMazeGenerator();
-            }
-            else if(algorithmName.equals("SimpleMazeGenerator"))
-            {
-                generateMaze = new SimpleMazeGenerator();
-            }
-            else if (algorithmName.equals("EmptyMazeGenerator"))
-            {
-                generateMaze = new EmptyMazeGenerator();
-            }
+//            if(algorithmName.equals("MyMazeGenerator"))
+//            {
+//                generateMaze = new MyMazeGenerator();
+//            }
+//            else if(algorithmName.equals("SimpleMazeGenerator"))
+//            {
+//                generateMaze = new SimpleMazeGenerator();
+//            }
+//            else if (algorithmName.equals("EmptyMazeGenerator"))
+//            {
+//                generateMaze = new EmptyMazeGenerator();
+//            }
+//            else{
+//                generateMaze = new MyMazeGenerator();
+//            }
+            //todo check why algorithm get null and remove the line below
+            generateMaze = new MyMazeGenerator();
+
             Maze maze = generateMaze.generate(rows,cols);
             byte[] mazeConvertToBytes = maze.toByteArray();
             ByteArrayOutputStream bufferByteArrayOut = new ByteArrayOutputStream();

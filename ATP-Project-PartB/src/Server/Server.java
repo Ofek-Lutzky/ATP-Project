@@ -22,6 +22,7 @@ public class Server {
         this.strategy = strategy;
 
         // the number of the threads in the threads pool will determine by the configuration
+        Configurations.getInstance().setThreadPoolSize("2");
         this.threadPool = Executors.newFixedThreadPool(Integer.parseInt(Configurations.getInstance().getThreadPoolSize()));
     }
 
@@ -41,9 +42,7 @@ public class Server {
 //                    LOG.info("Client accepted: " + clientSocket.toString());
 
                     // Insert the new task into the thread pool:
-                    threadPool.submit(() -> {
-                        handleClient(clientSocket);
-                    });
+                    threadPool.submit(() ->  handleClient(clientSocket));
 
                     // This thread will handle the new Client
 //                    new Thread(() -> {
@@ -52,6 +51,7 @@ public class Server {
 
                 } catch (SocketTimeoutException e){
 //                    LOG.debug("Socket timeout");
+                    System.out.println(e.getMessage());
                 }
             }
             serverSocket.close();
@@ -75,6 +75,7 @@ public class Server {
             clientSocket.close();
         } catch (IOException e){
 //            LOG.error("IOException", e);
+            System.out.println(e.getMessage());
         }
     }
 }
