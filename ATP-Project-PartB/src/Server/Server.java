@@ -22,12 +22,12 @@ public class Server {
         this.strategy = strategy;
 
         // the number of the threads in the threads pool will determine by the configuration
-        this.threadPool = Executors.newFixedThreadPool(Integer.parseInt(Configurations.getConf().getNumOfThreads()));
+        this.threadPool = Executors.newFixedThreadPool(Integer.parseInt(Configurations.getInstance().getThreadPoolSize()));
     }
 
     public void start(){
         // we push it to a new thread so each server will be under thread of its own
-        new Thread(() -> {this.runServer();}).start();
+        new Thread(this::runServer).start();
     }
 
     public void runServer(){

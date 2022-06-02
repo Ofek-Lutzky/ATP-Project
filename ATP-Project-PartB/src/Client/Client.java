@@ -11,7 +11,7 @@ public class Client {
     private InetAddress serverIpAddress;
     private IClientStrategy strategy;
 
-    public Client(int serverPortNumber, InetAddress serverIpAddress, IClientStrategy strategy) {
+    public Client(InetAddress serverIpAddress, int serverPortNumber , IClientStrategy strategy) {
         this.serverPortNumber = serverPortNumber;
         this.serverIpAddress = serverIpAddress;
         this.strategy = strategy;

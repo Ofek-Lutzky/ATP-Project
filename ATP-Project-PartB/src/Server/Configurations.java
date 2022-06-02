@@ -2,27 +2,35 @@ package Server;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Properties;
 
 public class Configurations {
     private static Configurations configuration = null;
-    private Properties properties;
+    private final Properties P;
+//    private OutputStream outPutS;
+//    private InputStream inputPutS;
+    private final String pathOfFile = "config.properties";
 
     private Configurations(){
-        properties = new Properties();
-        try (InputStream inputStream = Configurations.class.getClassLoader().getResourceAsStream("config.properties")) {
+
+        this.P = new Properties();
+        try {
+            InputStream inputStream = Configurations.class.getClassLoader().getResourceAsStream(pathOfFile);
             if (inputStream != null) {
-                properties.load(inputStream);
+                this.P.load(inputStream);
             }
             else {
-                System.out.println("file not found");
+                System.out.println("File Not Exist");
             }
         }
         catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public static Configurations getConf()
+
+
+    public static Configurations getInstance()
     {
         if(configuration==null)
         {
@@ -30,25 +38,32 @@ public class Configurations {
         }
         return configuration;
     }
-    public String getNumOfThreads(){
-        return properties.getProperty("threadPoolSize");
-    }
-    public void setNumOfThreads(String n)
+
+    public void setGeneratingAlgo(String algoName)
     {
-        properties.setProperty("threadPoolSize",n);
+        P.setProperty("mazeGeneratingAlgorithm", algoName);
     }
-    public String getGeneratingAlgo(){
-        return properties.getProperty("mazeGeneratingAlgorithm");
-    }
-    public void setGeneratingAlgo(String algo)
+
+    public void setSearchingAlgo(String algoName)
     {
-        properties.setProperty("mazeGeneratingAlgorithm",algo);
+        P.setProperty("mazeSearchingAlgorithm",algoName);
     }
-    public String getSearchingAlgo(){
-        return properties.getProperty("mazeSearchingAlgorithm");
-    }
-    public void setSearchingAlgo(String algo)
+
+    public void setThreadPoolSize(String n)
     {
-        properties.setProperty("mazeSearchingAlgorithm",algo);
+            P.setProperty("threadPoolSize",n);
     }
+
+    public String getThreadPoolSize(){
+        return P.getProperty("threadPoolSize");
+    }
+
+    public String getGenerateAlgo(){
+        return P.getProperty("mazeGeneratingAlgorithm");
+    }
+
+    public String getSearcheAlgo(){
+        return P.getProperty("mazeSearchingAlgorithm");
+    }
+
 }

@@ -8,7 +8,11 @@ import java.util.ArrayList;
 
 public class ServerStrategyGenerateMaze implements IServerStrategy{
 
-
+    /**
+     *
+     * @param inFromClient - the input stream that we get form the client  read the data
+     * @param outToClient - the output stream that we get form the client return answer direct to the stream
+     */
     @Override
     public void serverStrategy(InputStream inFromClient, OutputStream outToClient) {
         try {
@@ -20,32 +24,35 @@ public class ServerStrategyGenerateMaze implements IServerStrategy{
             int rows = sizeMazeRC[0];
             int cols = sizeMazeRC[1];
 
-            IMazeGenerator mazeGenerator;
+            IMazeGenerator generateMaze = null;
 
-            String algorithmName = Configurations.getConf().getGeneratingAlgo();//todo
+            String algorithmName = Configurations.getInstance().getGenerateAlgo();//the getConf is a singelton that giving us the object that hold the data
 
             if(algorithmName.equals("MyMazeGenerator"))
             {
-                mazeGenerator = new MyMazeGenerator();
+                generateMaze = new MyMazeGenerator();
             }
             else if(algorithmName.equals("SimpleMazeGenerator"))
             {
-                mazeGenerator = new SimpleMazeGenerator();
+                generateMaze = new SimpleMazeGenerator();
             }
-            else
+            else if (algorithmName.equals("EmptyMazeGenerator"))
             {
-                mazeGenerator = new EmptyMazeGenerator();
+                generateMaze = new EmptyMazeGenerator();
             }
-            Maze maze = mazeGenerator.generate(rows,cols);
+            Maze maze = generateMaze.generate(rows,cols);
             byte[] mazeConvertToBytes = maze.toByteArray();
             ByteArrayOutputStream bufferByteArrayOut = new ByteArrayOutputStream();
-            //todo check how the MyCompressorOutputStream now what is the size of the buffer
+            // the buffer will change it size occurding to the need it is dynamic allocate
             MyCompressorOutputStream out = new MyCompressorOutputStream(bufferByteArrayOut);
-            //todo check why need to write to out and to object
+            //out to the buffer bufferByteArrayOut the maze by bytes
             out.write(mazeConvertToBytes);
+            //empty the buffer that we wrote to
             out.flush();
+            // out to the stream, what we wrote on the buffer
             toClient.writeObject(bufferByteArrayOut.toByteArray());
 
+            //close the connection
             fromClient.close();
             toClient.close();
 
