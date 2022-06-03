@@ -235,7 +235,6 @@ public class Maze implements Serializable {
 
         if (array[indexInArrayBytes] == 0)
         {
-            //todo not sure about the first convert
             indexInArrayBytes+=2; // if you so 0 its mean we need to pass to the next value to convert so +2 becuase two zeros
             return 0;
         }

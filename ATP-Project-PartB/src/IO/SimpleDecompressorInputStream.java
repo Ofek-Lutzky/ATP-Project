@@ -17,7 +17,6 @@ public class SimpleDecompressorInputStream extends InputStream {
     }
 
 
-    //todo check if really need the parameter get int the read method
     @Override
     public int read(byte[] b){
         try {
@@ -35,7 +34,7 @@ public class SimpleDecompressorInputStream extends InputStream {
                 indexArray = inBoardReadBytes(b,compressedBytes[index],current,indexArray);
                 index++;
                 if (current == 0){
-                    current = 1; //todo check maybe need to add write here for the case the board start with 1 and need to add 0 counter for the 0
+                    current = 1;
                 }
                 else{
                     current = 0;

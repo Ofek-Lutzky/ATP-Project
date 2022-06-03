@@ -43,8 +43,6 @@ public class ServerStrategyGenerateMaze implements IServerStrategy{
             else{
                 generateMaze = new MyMazeGenerator();
             }
-//            todo check why algorithm get null and remove the line below
-//            generateMaze = new MyMazeGenerator();
 
             Maze maze = generateMaze.generate(rows,cols);
             byte[] mazeConvertToBytes = maze.toByteArray();

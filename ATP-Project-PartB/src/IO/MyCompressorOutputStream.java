@@ -86,7 +86,7 @@ public class MyCompressorOutputStream extends OutputStream {
                     indexA++;
                 }
                 //got to zero what mean it is the end of this number so we will return the index of the start of the next bytes we want to write
-                this.out.write(b[indexA]);//todo check if  i need the write of zero to the file
+                this.out.write(b[indexA]);
                 indexA++;
             }
 

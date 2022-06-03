@@ -25,7 +25,7 @@ public class ServerStrategySolverSearchProblem implements IServerStrategy{
 
             Maze maze = (Maze) fromClient.readObject();
             byte[] mazeInBytes = maze.toByteArray();
-            String fileNameString = Arrays.toString(mazeInBytes); //todo maybe just to string withour the arrays
+            String fileNameString = Arrays.toString(mazeInBytes);
             // we will give each file the name by it hashcode that represent the specific maze we have
             // when we will get a requast from client to maze we already have solve
             // we will return the same solve like we retrun to the other client we solve for him in the first time

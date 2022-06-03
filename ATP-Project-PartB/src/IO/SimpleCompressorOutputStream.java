@@ -36,10 +36,10 @@ public class SimpleCompressorOutputStream extends OutputStream {
             }
             //here is the part of the byte array that all the data of the board it self is find
             // do now we will start the compress by the method inn way of the instractor says
-            while(indexArray < b.length -1){ // todo check if neeed the -1
+            while(indexArray < b.length -1){
                 if (current != b[indexArray]){
                     if (current == 0){
-                        current = 1; //todo check maybe need to add write here for the case the board start with 1 and need to add 0 counter for the 0
+                        current = 1;
                     }
                     else{
                         current = 0;
@@ -81,7 +81,7 @@ public class SimpleCompressorOutputStream extends OutputStream {
                     indexA++;
                 }
                 //got to zero what mean it is the end of this number so we will return the index of the start of the next bytes we want to write
-                this.out.write(b[indexA]);//todo check if  i need the write of zero to the file
+                this.out.write(b[indexA]);
                 indexA++;
             }
 

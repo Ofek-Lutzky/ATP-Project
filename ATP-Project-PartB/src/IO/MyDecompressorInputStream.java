@@ -14,7 +14,6 @@ public class MyDecompressorInputStream extends InputStream {
         return 0;
     }
 
-    //todo check if really need the parameter get int the read method
     @Override
     public int read(byte[] b){
         try {
