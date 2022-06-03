@@ -2,10 +2,11 @@ package algorithms.search;
 
 import algorithms.mazeGenerators.Maze;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Solution {
+public class Solution implements Serializable {
     private ArrayList<AState> solution;
 
     public Solution() {

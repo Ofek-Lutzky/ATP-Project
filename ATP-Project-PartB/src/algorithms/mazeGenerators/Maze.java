@@ -2,12 +2,13 @@ package algorithms.mazeGenerators;
 
 import algorithms.search.AState;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Maze {
+public class Maze implements Serializable {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -217,7 +218,11 @@ public class Maze {
         {
             for (int k = 0 ; k < numOfCol ; k++)
             {
-                board[j][k]= (int)array[indexInArrayBytes];
+                int num = indexInArrayBytes;
+                if (num >= array.length){
+                    break;
+                }
+                board[j][k]= (int)array[num];
                 indexInArrayBytes++;
             }
         }

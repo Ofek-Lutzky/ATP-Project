@@ -22,7 +22,7 @@ public class Server {
         this.strategy = strategy;
 
         // the number of the threads in the threads pool will determine by the configuration
-        Configurations.getInstance().setThreadPoolSize("2");
+//        Configurations.getInstance().setThreadPoolSize("2");
         this.threadPool = Executors.newFixedThreadPool(Integer.parseInt(Configurations.getInstance().getThreadPoolSize()));
     }
 

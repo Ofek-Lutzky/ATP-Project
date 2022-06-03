@@ -2,7 +2,9 @@ package algorithms.mazeGenerators;
 
 import algorithms.search.MazeState;
 
-public class Position {
+import java.io.Serializable;
+
+public class Position implements Serializable {
 
     private int R;
     private int C;

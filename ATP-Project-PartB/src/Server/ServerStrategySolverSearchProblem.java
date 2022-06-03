@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.Arrays;
 
 public class ServerStrategySolverSearchProblem implements IServerStrategy{
-    private String directoryName;
+    private String directoryName = "java.io.tmpdir";
 
     private final Object lockThreads = new Object();
 
@@ -18,6 +18,7 @@ public class ServerStrategySolverSearchProblem implements IServerStrategy{
         try{
             ObjectInputStream fromClient = new ObjectInputStream(inFromClient);
             ObjectOutputStream toClient = new ObjectOutputStream(outToClient);
+            toClient.flush();
 
             // may be not available by directory security preference throw exception
             String tempDirectoryPath = System.getProperty(directoryName);
@@ -51,10 +52,13 @@ public class ServerStrategySolverSearchProblem implements IServerStrategy{
 
                 if (algorithm.equals("DFS"))
                     searcher = new DepthFirstSearch();
-                else if (algorithm.equals("BREADTH"))
-                    searcher = new BestFirstSearch();
                 else if (algorithm.equals("BEST"))
+                    searcher = new BestFirstSearch();
+                else if (algorithm.equals("BREADTH"))
                     searcher = new BreadthFirstSearch();
+                else{
+                    searcher = new BestFirstSearch();
+                }
 
                 solution = searcher.solve(searchableMaze);
 
@@ -65,6 +69,7 @@ public class ServerStrategySolverSearchProblem implements IServerStrategy{
                     objectOut.writeObject(solution);
                     objectOut.close();
                 }
+                solution.print(maze);
             }
 
             toClient.writeObject(solution);

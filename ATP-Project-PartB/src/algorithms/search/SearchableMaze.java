@@ -3,9 +3,10 @@ package algorithms.search;
 import algorithms.mazeGenerators.Position;
 import algorithms.mazeGenerators.Maze;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SearchableMaze implements ISearchable{
+public class SearchableMaze implements ISearchable, Serializable {
 
     private Maze maze;
     private AState start;

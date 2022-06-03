@@ -1,7 +1,8 @@
 package algorithms.search;
+import java.io.Serializable;
 import java.util.Queue;
 
-public abstract class ASearchingAlgorithm implements ISearchingAlgorithm{
+public abstract class ASearchingAlgorithm implements ISearchingAlgorithm, Serializable {
 
     Queue<AState> openList;
     private int visitedNodes;
