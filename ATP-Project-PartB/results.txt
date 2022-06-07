@@ -1,0 +1,26 @@
+Running
+[AVG: 26306.5]
+Done
+Running
+[AVG: 26306.666666666668]
+Running
+[AVG: 26308.0]
+Running
+[AVG: 26306.666666666668]
+Done
+Running
+[AVG: 26306.833333333332]
+Done
+Running
+[AVG: 26307.833333333332]
+Running
+[AVG: 26306.5]
+Running
+[AVG: 26306.666666666668]
+Running
+[AVG: 26306.5]
+Running
+[AVG: 26306.833333333332]
+Done
+Running
+[AVG: 26306.833333333332]

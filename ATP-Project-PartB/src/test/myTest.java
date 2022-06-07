@@ -10,7 +10,7 @@ import algorithms.mazeGenerators.Maze;
 import algorithms.mazeGenerators.MyMazeGenerator;
 import algorithms.search.AState;
 import algorithms.search.Solution;
-
+import Server.ServerStrategySolverSearchProblem;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -182,7 +182,7 @@ public class myTest {
             Port_ServerSearchProblemSolver = getRandomNumber(6001, 7000);
             try {
                 Server mazeGeneratingServer = new Server(Port_ServerMazeGenerating, 1000, new ServerStrategyGenerateMaze());
-                Server solveSearchProblemServer = new Server(Port_ServerSearchProblemSolver, 1000, new ServerStrategySolveSearchProblem());
+                Server solveSearchProblemServer = new Server(Port_ServerSearchProblemSolver, 1000, new ServerStrategySolverSearchProblem());// todo check on the name ServerStrategySolveSearchProblem
 
                 //Starting  servers
                 solveSearchProblemServer.start();
