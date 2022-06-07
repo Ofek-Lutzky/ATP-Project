@@ -29,7 +29,11 @@ public class Configurations {
         }
     }
 
-
+    /**
+     *
+     * @return instance of  Configurations
+     * Singelton
+     */
     public static Configurations getInstance()
     {
         if(configuration==null)

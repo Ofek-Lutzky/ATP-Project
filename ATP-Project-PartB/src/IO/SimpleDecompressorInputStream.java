@@ -16,7 +16,12 @@ public class SimpleDecompressorInputStream extends InputStream {
         return 0;
     }
 
-
+    /**
+     *
+     * @param b byte[]
+     * @return  indexArray
+     * decompress the simple
+     */
     @Override
     public int read(byte[] b){
         try {
@@ -61,9 +66,16 @@ public class SimpleDecompressorInputStream extends InputStream {
         return indexArray;
     }
 
+    /**
+     *
+     * @param compressedBytes byte[]
+     * @param b  byte[]
+     * @param indexArray int
+     * @return
+     *  //know this method help us to convert the byte from the compress method to decompress
+     *     // we will do just like the compress but upsite down each
+     */
 
-    //know this method help us to convert the byte from the compress method to decompress
-    // we will do just like the compress but upsite down each
     private int inReadBytes(byte[] compressedBytes, byte[] b, int indexArray) {
         try{
             if (compressedBytes[indexArray] == 0){

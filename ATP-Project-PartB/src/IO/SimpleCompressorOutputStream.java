@@ -15,6 +15,12 @@ public class SimpleCompressorOutputStream extends OutputStream {
 
     }
 
+    /**
+     *
+     * @param b byte[]
+     * @throws IOException IO
+     * write inside the function all the ways it implements
+     */
     @Override
     public void write(byte[] b) throws IOException {
         try{
@@ -64,6 +70,13 @@ public class SimpleCompressorOutputStream extends OutputStream {
     }
 
 
+    /**
+     *
+     * @param b byte[]
+     * @param indexA int
+     * @return indexA
+     *     // will convert and write the byte as int in the OutputStream
+     */
     // will convert and write the byte as int in the OutputStream
     private int outWriteBytes(byte[] b, int indexA){
         try{
@@ -93,11 +106,19 @@ public class SimpleCompressorOutputStream extends OutputStream {
         return indexA;// maybe dont need becuase it is in the scope of the func
     }
 
-    // will convert and write the board bytes as counter of each in the OutputStream
-    //the algo get check if we are on the same number on the board .
-    // if yes: we will count the appearances of the number.
-    // if the appearances > 255 we will add the 255,0, the countinue count left
-    // return the index so the function called us will now were are we in the array
+    /**
+     *
+     * @param b byte[]
+     * @param current int
+     * @param indexA int
+     * @return
+     * // will convert and write the board bytes as counter of each in the OutputStream
+     *     //the algo get check if we are on the same number on the board .
+     *     // if yes: we will count the appearances of the number.
+     *     // if the appearances > 255 we will add the 255,0, the countinue count left
+     *     // return the index so the function called us will now were are we in the array
+     */
+
     private int outWriteBoardBytes(byte[] b,int current, int indexA){
         try{
             int counter = 0;

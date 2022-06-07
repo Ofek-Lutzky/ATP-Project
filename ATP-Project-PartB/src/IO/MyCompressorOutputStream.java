@@ -16,8 +16,14 @@ public class MyCompressorOutputStream extends OutputStream {
 
     }
 
-    // after thought i deciede to convert the number that represent the maze from binary to integers and then pass it -> 101 = 5
-    // but the max is 256 so the maxx digits in the binary is 8 -> 11111111 = 255
+    /**
+     *
+     * @param b byte[]
+     * @throws IOException
+     * after thought i deciede to convert the number that represent the maze from binary to integers and then pass it -> 101 = 5
+     * but the max is 256 so the maxx digits in the binary is 8 -> 11111111 = 255
+     */
+
     @Override
     public void write(byte[] b) throws IOException {
         try{
@@ -35,7 +41,6 @@ public class MyCompressorOutputStream extends OutputStream {
 //            this.out.write(0);
 //        }
 
-        //todo maybe need b.length-1
         while (indexArray < b.length){
 
             String binaryToInt = "";
@@ -70,7 +75,13 @@ public class MyCompressorOutputStream extends OutputStream {
 
     }
 
-
+    /**
+     *
+     * @param b byte[]
+     * @param indexA int
+     * @return indexA
+     * will convert and write the byte as int in the OutputStream
+     */
     // will convert and write the byte as int in the OutputStream
     private int outWriteBytes(byte[] b, int indexA){
         try{

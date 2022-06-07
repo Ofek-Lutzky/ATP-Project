@@ -14,6 +14,15 @@ public class MyDecompressorInputStream extends InputStream {
         return 0;
     }
 
+    /**
+     *
+     * @param b the buffer array to fill
+     * @return b.length
+     * convert from the input compress maze to decompress
+     * by:
+     * padding for numbers that the value of them iis less then 8 digits (byte)
+     * beside the last one that can have less then 8 digits in it's binary represent && indexArray != compressedBytes.length -1
+     */
     @Override
     public int read(byte[] b){
         try {
@@ -70,9 +79,16 @@ public class MyDecompressorInputStream extends InputStream {
         return b.length;
     }
 
+    /**
+     *
+     * @param compressedBytes array
+     * @param b array
+     * @param indexArray index
+     * @return indexArray
+     * know this method help us to convert the byte from the compress method to decompress
+     * we will do just like the compress but upsite down each
+     */
 
-    //know this method help us to convert the byte from the compress method to decompress
-    // we will do just like the compress but upsite down each
     private int inReadBytes(byte[] compressedBytes, byte[] b, int indexArray) {
         try{
             if (compressedBytes[indexArray] == 0){

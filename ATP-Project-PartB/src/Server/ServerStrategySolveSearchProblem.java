@@ -6,11 +6,16 @@ import algorithms.search.*;
 import java.io.*;
 import java.util.Arrays;
 
-public class ServerStrategySolverSearchProblem implements IServerStrategy{
+public class ServerStrategySolveSearchProblem implements IServerStrategy{
     private String directoryName = "java.io.tmpdir";
 
     private final Object lockThreads = new Object();
 
+    /**
+     *
+     * @param inFromClient - the input stream that we get form the client  read the data
+     * @param outToClient - the output stream that we get form the client return answer direct to the stream
+     */
     @Override
     public void serverStrategy(InputStream inFromClient, OutputStream outToClient) {
 

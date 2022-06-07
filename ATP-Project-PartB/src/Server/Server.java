@@ -26,11 +26,17 @@ public class Server {
         this.threadPool = Executors.newFixedThreadPool(Integer.parseInt(Configurations.getInstance().getThreadPoolSize()));
     }
 
+    /**
+     * start function for the server that wrraper each server in thread of it's own
+     */
     public void start(){
         // we push it to a new thread so each server will be under thread of its own
         new Thread(this::runServer).start();
     }
 
+    /**
+     * the function that lessoning to the client and send him to handle in threadpool
+     */
     public void runServer(){
         try{
             ServerSocket serverSocket = new ServerSocket(port);
@@ -68,6 +74,11 @@ public class Server {
         stop = true;
     }
 
+    /**
+     *
+     * @param clientSocket Socket of the client
+     *
+     */
     private void handleClient(Socket clientSocket) {
         try {
             strategy.serverStrategy(clientSocket.getInputStream(), clientSocket.getOutputStream());
