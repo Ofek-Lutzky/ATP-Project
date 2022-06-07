@@ -29,10 +29,12 @@ public class MyCompressorOutputStream extends OutputStream {
             indexArray = outWriteBytes(b,indexArray); // will write the out put of the byte to the OutputStream
             indexFirstBytes++;
         }
+
         //special case
 //        if (b[indexArray] == 0){
 //            this.out.write(0);
 //        }
+
         //todo maybe need b.length-1
         while (indexArray < b.length){
 
