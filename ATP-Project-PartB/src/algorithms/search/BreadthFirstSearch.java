@@ -42,15 +42,15 @@ public class BreadthFirstSearch extends ASearchingAlgorithm{
             currentState = this.openList.poll();
         }
 
-        Solution sol = new Solution();
+//        Solution sol = new Solution();
 
-        while (currentState.getCameFrom() != null){
-            sol.addToSolution(currentState);
+//        while (currentState.getCameFrom() != null){
+//            sol.addToSolution(currentState);
+//
+//            currentState = currentState.getCameFrom();
+//        }
 
-            currentState = currentState.getCameFrom();
-        }
-
-        return sol;
+        return new Solution(currentState);
     }
 
     @Override

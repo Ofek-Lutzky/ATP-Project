@@ -9,8 +9,20 @@ import java.util.Arrays;
 public class Solution implements Serializable {
     private ArrayList<AState> solution;
 
-    public Solution() {
+    public Solution(AState aState) {
         solution = new ArrayList<>();
+
+        ArrayList<AState> rtn = new ArrayList<>();
+        while (aState.getCameFrom() != null){
+            rtn.add(aState);
+
+            aState = aState.getCameFrom();
+        }
+
+        for (int i = rtn.size()-1; i>-1; i--){
+            this.addToSolution(rtn.get(i));
+        }
+
     }
 
     public ArrayList<AState> getSolutionPath() {

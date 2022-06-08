@@ -53,13 +53,13 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
         }
 
 
-        Solution sol = new Solution();
-        while (rtnNode.getCameFrom() != null){
-            sol.addToSolution(rtnNode);
-            rtnNode = rtnNode.getCameFrom();
-        }
+//        Solution sol = new Solution();
+//        while (rtnNode.getCameFrom() != null){
+//            sol.addToSolution(rtnNode);
+//            rtnNode = rtnNode.getCameFrom();
+//        }
 
-        return sol;
+        return new Solution(rtnNode);
     }
 
     @Override
