@@ -90,3 +90,40 @@ Running
 Running
 [AVG: 26306.833333333332]
 Done
+Running
+Running
+[AVG: 26306.666666666668]
+[CG_E]
+Running
+[AVG: 26306.5]
+Running
+[AVG: 26306.666666666668]
+Running
+[AVG: 192980.16666666666]
+Done
+Running
+[AVG: 192978.0]
+Running
+[AVG: 192978.16666666666]
+Running
+[AVG: 192980.0]
+Running
+[AVG: 192981.5]
+Running
+[AVG: 192981.0]
+Running
+[AVG: 26307.5]
+Running
+[AVG: 26307.166666666668]
+Done
+Running
+[AVG: 26307.0]
+Running
+[AVG: 192978.83333333334]
+Done
+Running
+[AVG: 192978.83333333334]
+Running
+[AVG: 192977.83333333334]
+Running
+[AVG: 192977.33333333334]
