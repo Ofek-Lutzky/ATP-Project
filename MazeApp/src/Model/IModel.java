@@ -2,6 +2,8 @@ package Model;
 import algorithms.mazeGenerators.Maze;
 import algorithms.search.Solution;
 
+import java.util.Observer;
+
 public interface IModel {
     void generateMaze(int rows, int cols);
     Maze getMaze();
@@ -16,7 +18,7 @@ public interface IModel {
     void stopServers();
     boolean saveFile();
     boolean loadFile(String name);
-    void removeSolution();
+    void solutionRestart();
     void setShowSolution(boolean b);
 //
 //    void saveProperties(String selectedSearch, String selectedGenerate);

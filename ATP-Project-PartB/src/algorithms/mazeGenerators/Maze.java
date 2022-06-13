@@ -252,5 +252,9 @@ public class Maze implements Serializable {
 
     }
 
+    public void setStartPosition(Position p){
+        this.startPosition = p;
+    }
+
 
 }
