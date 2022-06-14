@@ -1,21 +1,32 @@
 package View;
 
-
-
+import Model.IModel;
+import Model.MyModel;
+import ViewModel.MyViewModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import View.MyViewController;
+
+import javax.swing.text.View;
+import java.util.Observer;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../View/MyView.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/MyView.fxml"));
+        Parent root = fxmlLoader.load();
+        primaryStage.setTitle("Maze App");
+        primaryStage.setScene(new Scene(root, 800, 800));
         primaryStage.show();
+
+        IModel model = new MyModel();
+        MyViewModel myViewModel = new MyViewModel(model);
+        MyViewController view = fxmlLoader.getController();
+        view.setViewModel(myViewModel);
     }
 
 

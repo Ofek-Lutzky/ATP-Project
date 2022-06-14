@@ -18,8 +18,8 @@ import java.util.Observer;
 public class MyModel extends Observable implements IModel{
     private Maze maze;
     private Solution sol;
-    private int playerRow;
-    private int playerCol;
+    private int characterRow;
+    private int characterCol;
     private Server serverMazeGenerator;
     private Server serverSolveMaze;
     private boolean finishGame = false;
@@ -27,16 +27,75 @@ public class MyModel extends Observable implements IModel{
 
 
     public MyModel() {
+       // maze = null;
+        //rowChar =0;
+        //colChar =0; todo think about it
         serverMazeGenerator = new Server(5400,1000, new ServerStrategyGenerateMaze());
         serverMazeGenerator.start();
         serverSolveMaze = new Server(5401,1000, new ServerStrategyGenerateMaze());
         serverSolveMaze.start();
     }
 
+
+    @Override
+    public void updateCharacterLocation(MovementDirection direction) {
+        /*
+            direction = 8 -> Up
+            direction = 2 -> Down
+            direction = 4 -> Left
+            direction = 6 -> Right
+
+            direction = 9 -> Up Right -> UR
+            direction = 7 -> Up Left -> UL
+            direction = 3 -> Down Right -> DR
+            direction = 1 -> Down Left -> DL
+         */
+
+        switch(direction)
+        {
+            case UP: // todo maybe need מקרי קצה
+                characterRow--;
+                break;
+            case DOWN:
+                characterRow++;
+                break;
+            case LEFT:
+                characterCol--;
+                break;
+            case RIGHT:
+                characterCol++;
+                break;
+
+            //Slants
+            case UR:
+                characterRow--;
+                characterCol++;
+                break;
+            case UL:
+                characterRow--;
+                characterCol--;
+                break;
+            case DR:
+                characterRow++;
+                characterCol++;
+                break;
+            case DL:
+                characterRow++;
+                characterCol--;
+                break;
+
+        }
+        setChanged();
+        notifyObservers();
+    }
+
     @Override
     public void generateMaze(int rows, int cols) {
         solutionRestart();
         CommunicateWithServer_MazeGenerating(rows,cols);
+
+        setChanged();
+        notifyObservers("mazeGenerated");
     }
 
     @Override
@@ -44,31 +103,31 @@ public class MyModel extends Observable implements IModel{
         return this.maze;
     }
 
-    @Override
-    public void updatePlayerLocation(MovementDirection direction) {
 
+
+    @Override
+    public int getCharacterRow() {
+        return this.characterRow;
     }
 
     @Override
-    public int getPlayerRow() {
-        return this.playerRow;
-    }
-
-    @Override
-    public int getPlayerCol() {
-        return this.playerCol;
+    public int getCharacterCol() {
+        return this.characterRow;
     }
 
     @Override
     public void assignObserver(Observer o) {
-
+        this.addObserver(o);
     }
 
     @Override
     public void solveMaze() {
-        Position playerPosition = new Position(playerRow,playerCol);
-        maze.setStartPosition(playerPosition);
+        Position characterPosition = new Position(characterRow,characterCol);
+        maze.setStartPosition(characterPosition);
         CommunicateWithServer_SolveSearchProblem(maze);
+
+        setChanged();
+        notifyObservers("mazeSolved");
     }
 
     @Override
@@ -83,7 +142,8 @@ public class MyModel extends Observable implements IModel{
 
     @Override
     public void setGameOver(boolean gameOver) {
-
+        //todo check
+        gameOver = true;
     }
 
     @Override
@@ -112,41 +172,39 @@ public class MyModel extends Observable implements IModel{
     public void setShowSolution(boolean b) {
 
     }
-    /**
-     * f- server communication
-     * f- algo use (generate, solve)
-     * f- save the maze the user is playing
-     * f- save the current place of the character
-     */
 
 
-    private static void CommunicateWithServer_MazeGenerating(int rowsCount,int colsCount) {
+    private void CommunicateWithServer_MazeGenerating(int rows,int cols) {
         try {
             Client client = new Client(InetAddress.getLocalHost(), 5400, new IClientStrategy() {
-                @Override
                 public void clientStrategy(InputStream inFromServer, OutputStream outToServer) {
                     try {
                         ObjectOutputStream toServer = new ObjectOutputStream(outToServer);
                         ObjectInputStream fromServer = new ObjectInputStream(inFromServer);
                         toServer.flush();
-                        int[] mazeDimensions = new int[]{rowsCount, colsCount};
-                        toServer.writeObject(mazeDimensions); //send maze dimensions to server
+                        int[] mazeDimensions = new int[]{rows, cols};
+                        toServer.writeObject(mazeDimensions);
                         toServer.flush();
-                        byte[] compressedMaze = (byte[]) fromServer.readObject(); //read generated maze (compressed with MyCompressor) from server
+                        byte[] compressedMaze = (byte[])fromServer.readObject();
                         InputStream is = new MyDecompressorInputStream(new ByteArrayInputStream(compressedMaze));
-                        byte[] decompressedMaze = new byte[2500 /*CHANGE SIZE ACCORDING TO YOU MAZE SIZE*/]; //allocating byte[] for the decompressed maze -
-                        is.read(decompressedMaze); //Fill decompressedMaze with bytes
-                        Maze maze = new Maze(decompressedMaze); maze.print();
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                        byte[] decompressedMaze = new byte[rows*cols];
+                        is.read(decompressedMaze);
+                        maze = new Maze(decompressedMaze);
+//                        logger.info("generated maze in size " + maze.getMaze().length +"*" + maze.getMaze()[0].length);
+                    }
+                    catch (Exception var10)
+                    {
+//                        logger.fatal("failed to generate maze");
                     }
                 }
             });
             client.communicateWithServer();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
+        } catch (UnknownHostException var1)
+        {
+//            logger.fatal("failed to connect with server to generate maze");
         }
     }
+
 
     private static void CommunicateWithServer_SolveSearchProblem(Maze maze) {
         try {

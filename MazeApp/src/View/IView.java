@@ -1,8 +1,8 @@
 package View;
 
 public interface IView {
-    void mazeGenerated();
-    void mazeSolved();
-    void mazeLoaded();
+    void mazeGenerate();
+    void mazeSolve();
+    void mazeLoad();
     void playerMoved();
 }
