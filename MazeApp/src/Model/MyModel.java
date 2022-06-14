@@ -22,6 +22,9 @@ public class MyModel extends Observable implements IModel{
     private int characterCol;
     private Server serverMazeGenerator;
     private Server serverSolveMaze;
+
+
+
     private boolean finishGame = false;
     private boolean solutionShow = false;
 
@@ -36,6 +39,9 @@ public class MyModel extends Observable implements IModel{
         serverSolveMaze.start();
     }
 
+    public void setFinishGame(boolean finishGame) {
+        this.finishGame = finishGame;
+    }
 
     @Override
     public void updateCharacterLocation(MovementDirection direction) {
@@ -53,41 +59,57 @@ public class MyModel extends Observable implements IModel{
 
         switch(direction)
         {
-            case UP: // todo maybe need מקרי קצה
-                characterRow--;
+            case UP: // todo maybe need מקרי קצה לא חושב שצריך את המינוס אחד במקרה הקיצוני של כולם
+                if (characterRow > 0 && checkIfNotWall(characterRow - 1, characterCol))
+                    moveCharacter(characterRow - 1, characterCol);
                 break;
             case DOWN:
-                characterRow++;
+                if (characterRow < maze.getMap().length-1 && checkIfNotWall(characterRow + 1, characterCol))
+                    moveCharacter(characterRow + 1, characterCol);
                 break;
             case LEFT:
-                characterCol--;
+                if (characterCol > 0 && checkIfNotWall(characterRow , characterCol-1))
+                    moveCharacter(characterRow, characterCol-1);
                 break;
             case RIGHT:
-                characterCol++;
+                if (characterCol < maze.getMap()[0].length-1 && checkIfNotWall(characterRow , characterCol+1))
+                    moveCharacter(characterRow, characterCol+1);
                 break;
 
-            //Slants
+            //Slants need to also check that the move free in the two steps to the slant
             case UR:
-                characterRow--;
-                characterCol++;
+                if (characterRow - 1 >= 0 && characterCol + 1 < maze.getMap()[0].length && maze.getMap()[characterRow - 1][characterCol + 1] == 0 && (maze.getMap()[characterRow - 1][characterCol] == 0 || maze.getMap()[characterRow][characterCol + 1] == 0)) {
+                    moveCharacter(characterRow-1,characterCol+1);
+                }
                 break;
             case UL:
-                characterRow--;
-                characterCol--;
+                if (characterRow - 1 >= 0 && characterCol - 1 >= 0 && maze.getMap()[characterRow - 1][characterCol - 1] == 0 && (maze.getMap()[characterRow - 1][characterCol] == 0 || maze.getMap()[characterRow][characterCol - 1] == 0)) {
+                    moveCharacter(characterRow-1,characterCol-1);
+                }
                 break;
             case DR:
-                characterRow++;
-                characterCol++;
+                if (characterRow + 1 < maze.getMap().length && characterCol + 1 < maze.getMap()[0].length && maze.getMap()[characterRow + 1][characterCol + 1] == 0 && (maze.getMap()[characterRow + 1][characterCol] == 0 || maze.getMap()[characterRow][characterCol + 1] == 0)) {
+                    moveCharacter(characterRow+1,characterCol+1);
+                }
                 break;
             case DL:
-                characterRow++;
-                characterCol--;
+                if (characterRow + 1 < maze.getMap().length && characterCol - 1 >= 0 && maze.getMap()[characterRow + 1][characterCol - 1] == 0 && (maze.getMap()[characterRow + 1][characterCol] == 0 || maze.getMap()[characterRow][characterCol - 1] == 0)) {
+                    moveCharacter(characterRow+1,characterCol-1);
+                }
                 break;
 
         }
-        setChanged();
-        notifyObservers();
+//        setChanged(); the move Character doing this
+//        notifyObservers();
     }
+
+    private boolean checkIfNotWall(int row,int col){
+        if (maze.getMap()[characterRow-1][characterCol]!=1){
+            return true;
+        }
+        return false;
+    }
+
 
     @Override
     public void generateMaze(int rows, int cols) {
@@ -96,7 +118,33 @@ public class MyModel extends Observable implements IModel{
 
         setChanged();
         notifyObservers("mazeGenerated");
+        moveCharacter(maze.getStartPosition().getRowIndex(), maze.getStartPosition().getColumnIndex());
     }
+
+    private void moveCharacter(int rowIndex, int columnIndex) {
+        if (rowIndex == maze.getGoalPosition().getRowIndex() && columnIndex == maze.getGoalPosition().getColumnIndex())
+        {
+            this.finishGame=true;
+        }
+
+        this.characterRow = rowIndex;
+        this.characterCol = columnIndex;
+
+        if(this.sol != null && this.solutionShow){
+            solveCurrentStateMaze(); // call to it becuase not include the notify to observers
+        }
+        setChanged();
+        notifyObservers("playerMoved");
+
+    }
+
+    //solve the maze from the current state
+    public void solveCurrentStateMaze() {
+        Position characterPos = new Position(characterRow,characterCol);
+        maze.setStartPosition(characterPos);
+
+        CommunicateWithServer_SolveSearchProblem(this.maze); }
+
 
     @Override
     public Maze getMaze() {
@@ -140,6 +188,7 @@ public class MyModel extends Observable implements IModel{
         return false;
     }
 
+
     @Override
     public void setGameOver(boolean gameOver) {
         //todo check
@@ -154,24 +203,28 @@ public class MyModel extends Observable implements IModel{
 
     @Override
     public boolean saveFile() {
-        return false;
+        return false; // todo
     }
 
     @Override
     public boolean loadFile(String name) {
-        return false;
+        return false; // todo
+    }
+
+    @Override
+    public void setShowSolution(boolean toShow) {
+        solutionShow = toShow;
+
     }
 
     @Override
     public void solutionRestart() {
         this.sol = null;
-
+        setChanged();
+        notifyObservers("removeSolution");
     }
 
-    @Override
-    public void setShowSolution(boolean b) {
 
-    }
 
 
     private void CommunicateWithServer_MazeGenerating(int rows,int cols) {
@@ -206,36 +259,27 @@ public class MyModel extends Observable implements IModel{
     }
 
 
-    private static void CommunicateWithServer_SolveSearchProblem(Maze maze) {
+    private void CommunicateWithServer_SolveSearchProblem(Maze maze) {
         try {
-            Client client = new Client(InetAddress.getLocalHost(), 5401, new
-                    IClientStrategy() {
-                        @Override
-                        public void clientStrategy(InputStream inFromServer, OutputStream outToServer) {
-                            try {
-                                ObjectOutputStream toServer = new ObjectOutputStream(outToServer);
-                                ObjectInputStream fromServer = new ObjectInputStream(inFromServer);
-                                toServer.flush();
-                                MyMazeGenerator mg = new MyMazeGenerator();
-                                //Maze maze = mg.generate(50, 50);
-                                maze.print();
-                                toServer.writeObject(maze); //send maze to server
-                                toServer.flush();
-                                Solution mazeSolution = (Solution) fromServer.readObject(); //read generated maze (compressed with MyCompressor) from server
-                                //Print Maze Solution retrieved from the server
-                                System.out.println(String.format("Solution steps: %s", mazeSolution));
-                                ArrayList<AState> mazeSolutionSteps = mazeSolution.getSolutionPath();
-                                for (int i = 0; i < mazeSolutionSteps.size(); i++) {
-                                    System.out.println(String.format("%s. %s", i, mazeSolutionSteps.get(i).toString()));
-                                }
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
+            Client client = new Client(InetAddress.getLocalHost(), 5401, new IClientStrategy() {
+                public void clientStrategy(InputStream inFromServer, OutputStream outToServer) {
+                    try {
+                        ObjectOutputStream toServer = new ObjectOutputStream(outToServer);
+                        ObjectInputStream fromServer = new ObjectInputStream(inFromServer);
+                        toServer.flush();
+                        toServer.writeObject(maze);
+                        toServer.flush();
+                        sol = (Solution)fromServer.readObject();
+//                        logger.info("maze solved with algorithem :" + Configurations.getConf().getSearchingAlgo());
+
+                    } catch (Exception var10) {
+//                        logger.error("failed to solve maze");
+                    }
+                }
+            });
             client.communicateWithServer();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
+        } catch (UnknownHostException var1) {
+//            logger.fatal("failed to connect server");
         }
     }
 }

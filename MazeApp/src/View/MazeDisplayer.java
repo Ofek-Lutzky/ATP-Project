@@ -1,6 +1,7 @@
 package View;
 
 import algorithms.mazeGenerators.Maze;
+import algorithms.search.Solution;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.canvas.GraphicsContext;
@@ -15,6 +16,17 @@ public class MazeDisplayer extends Canvas {
     private int characterRow;
     private int characterCol;
 
+
+    private boolean solutionShow = false;
+    private Solution sol;
+
+    public MazeDisplayer()
+    {
+//        widthProperty().addListener(evt -> draw());
+//        heightProperty().addListener(evt -> draw());
+    }
+
+
     public int getCharacterRow() {
         return characterRow;
     }
@@ -24,24 +36,24 @@ public class MazeDisplayer extends Canvas {
     }
 
 
-    StringProperty imageFileNameWall = new SimpleStringProperty();
-    StringProperty imageFileNamePlayer = new SimpleStringProperty();
-
-    public String getImageFileNameWall() {
-        return imageFileNameWall.get();
-    }
-
-    public void setImageFileNameWall(String imageFileNameWall) {
-        this.imageFileNameWall.set(imageFileNameWall);
-    }
-
-    public String getImageFileNamePlayer() {
-        return imageFileNamePlayer.get();
-    }
-
-    public void setImageFileNamePlayer(String imageFileNamePlayer) {
-        this.imageFileNamePlayer.set(imageFileNamePlayer);
-    }
+//    StringProperty imageFileNameWall = new SimpleStringProperty();
+//    StringProperty imageFileNamePlayer = new SimpleStringProperty();
+//
+//    public String getImageFileNameWall() {
+//        return imageFileNameWall.get();
+//    }
+//
+//    public void setImageFileNameWall(String imageFileNameWall) {
+//        this.imageFileNameWall.set(imageFileNameWall);
+//    }
+//
+//    public String getImageFileNamePlayer() {
+//        return imageFileNamePlayer.get();
+//    }
+//
+//    public void setImageFileNamePlayer(String imageFileNamePlayer) {
+//        this.imageFileNamePlayer.set(imageFileNamePlayer);
+//    }
 
 
 
@@ -101,5 +113,20 @@ public class MazeDisplayer extends Canvas {
 //            graphicsContext.drawImage(playerImage,(int)w_player,(int)h_player,cellWidth,cellHeight);
 
         }
+    }
+
+    public void setPlayerPosition(int row, int col) {
+        this.characterRow = row;
+        this.characterCol = col;
+        draw();
+    }
+    public void setSolution(Solution solution) {
+        this.sol = solution;
+        solutionShow = true;
+        draw();
+    }
+    public void setShowSolution(boolean b) {
+        solutionShow = b;
+        draw();
     }
 }

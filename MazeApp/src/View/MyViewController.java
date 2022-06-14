@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -19,7 +20,7 @@ import java.util.Observer;
 import java.util.ResourceBundle;
 
 //this will be the class controller of the main open scene
-public class MyViewController implements IView, Initializable, Observer {
+public class MyViewController implements IView, Observer {
 
     // needed for the scene switiching
     public Stage stage;
@@ -27,6 +28,7 @@ public class MyViewController implements IView, Initializable, Observer {
     public Parent root;
 
     public MyViewModel viewModel;
+    boolean solutionShow = false;
 
     //private Maze maze;
 
@@ -40,10 +42,10 @@ public class MyViewController implements IView, Initializable, Observer {
 
 
     // the initialize can get to the fxml design in running while regular constructor not
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
+//    @Override
+//    public void initialize(URL url, ResourceBundle resourceBundle) {
+//
+//    }
 
 
     public void setViewModel(MyViewModel viewModel) {
@@ -55,54 +57,63 @@ public class MyViewController implements IView, Initializable, Observer {
     @Override
     public void mazeGenerate() { // todo input check
         try {
-            int rows = Integer.parseInt(rowText.getText());
-            int cols = Integer.parseInt(colText.getText());
-//        if (rows <= 1 || cols <= 1 || rows > 1000 || cols > 1000) {
-//            Alert alertGenerate = new Alert(Alert.AlertType.WARNING);
-//            alertGenerate.setContentText("Invalid Input");
-//            alertGenerate.show();
-//        }
-            viewModel.generateMaze(rows,cols);
+            int rows = Integer.valueOf(rowText.getText());
+            int cols = Integer.valueOf(colText.getText());
+
+            if (rows <= 1 ||rows > 1000||  cols <= 1 || cols > 1000) {
+                Alert alertGenerate = new Alert(Alert.AlertType.WARNING);
+                alertGenerate.setContentText("Input Out Of Range!");
+                alertGenerate.show();
+            }
+            else{
+            viewModel.generateMaze(rows,cols);}
         }
         catch (Exception e)
         {
-//            Alert alertGenerate = new Alert(Alert.AlertType.WARNING);
-//            alertGenerate.setContentText("Invalid Input");
-//            alertGenerate.show();
+            Alert alertGenerate = new Alert(Alert.AlertType.WARNING);
+
+            alertGenerate.setContentText("Invalid Input");
+
+            alertGenerate.show();
         }
 
     }
 
     @Override
     public void mazeSolve() {
-//        if(!showSolution)
-//        {
-//            try {
-//                viewModel.solveMaze();
+        if(!solutionShow)
+        {
+            try {
+                viewModel.solveMaze();
 //                solutionButton.setText("Hide Solution");
 //                showSolution = true;
-//                viewModel.setShowSolution(true);
-//
-//            }
-//            catch (Exception e)
-//            {
-//                Alert alertSolve = new Alert(Alert.AlertType.WARNING);
-//                alertSolve.setContentText("You need to generate a maze first");
-//                alertSolve.show();
-//            }
-//        }
-//        else {
-//            this.viewModel.removeSolution();
+                viewModel.setShowSolution(true);
+
+            }
+            catch (Exception e)
+            {
+                Alert alertSolve = new Alert(Alert.AlertType.WARNING);
+                alertSolve.setContentText("You need to generate a maze first");
+                alertSolve.show();
+            }
+        }
+        else {
+            this.viewModel.removeSolution();
 //            solutionButton.setText("Show Solution");
 //            showSolution = false;
-//            viewModel.setShowSolution(false);
-//
-//        }
+            viewModel.setShowSolution(false);
+
+        }
     }
 
     public void mazeGenerated()
     {
         mazeDisplayer.drawMaze(viewModel.getMaze());
+    }
+
+    public void mazeSolved()
+    {
+        mazeDisplayer.setSolution(viewModel.getSolution());
     }
 
     @Override
@@ -119,14 +130,13 @@ public class MyViewController implements IView, Initializable, Observer {
     @Override
     public void update(Observable o, Object arg) {
         String action = (String) arg;
-        String change = (String) arg;
-        switch (change){
+        switch (action){
             case "mazeGenerated" -> mazeGenerated();
-            //case "player moved" -> playerMoved();
-            //case "mazeSolved" -> mazeSolved();
-            //case "maze loaded" -> mazeLoaded();
-            //case "hide solution" -> hideSolution();
-            default -> System.out.println("Not implemented change: " + change);
+            case "playerMoved" -> playerMoved();
+            case "mazeSolved" -> mazeSolved();
+//            case "mazeLoaded" -> mazeLoaded();
+//            case "hide solution" -> hideSolution();
+            default -> System.out.println("Not implemented change: " + action);
         }
 //        if (viewModel.gameOver()) {
 //            try {
@@ -165,7 +175,7 @@ public class MyViewController implements IView, Initializable, Observer {
     public void startGame(ActionEvent actionEvent) throws IOException {
         this.switchToGameScene(actionEvent);
         this.mazeGenerate();
-        mazeDisplayer.drawMaze(viewModel.getMaze());
+        //mazeDisplayer.drawMaze(viewModel.getMaze());
 
     }
 

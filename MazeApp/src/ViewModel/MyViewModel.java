@@ -1,6 +1,7 @@
 package ViewModel;
 
 import Model.IModel;
+import Model.MovementDirection;
 import algorithms.mazeGenerators.Maze;
 import algorithms.search.Solution;
 import javafx.scene.input.KeyCode;
@@ -13,14 +14,13 @@ public class MyViewModel extends Observable implements Observer {
     private IModel model;
 
    // private Maze maze;
-
-    private int charRow;
-    private int charCol;
+//    private int charRow;
+//    private int charCol;
 
     public MyViewModel(IModel model) {
         this.model = model;
         //this.maze = null;
-        this.model.assignObserver(this);//Observe the Model for it's changes
+        this.model.assignObserver(this);//listen the Model for it's changes so we can update the view and notify it too.
     }
 
     public Maze getMaze() {
@@ -40,10 +40,9 @@ public class MyViewModel extends Observable implements Observer {
         return model.getSolution();
     }
 
+    //just update the view for the changes or that he got what it needed from the model
     @Override
     public void update(Observable o, Object arg) {
-        //todo getting the argument
-        // in reference to the arg we will do the update
         setChanged();
         notifyObservers(arg);
     }
@@ -53,10 +52,14 @@ public class MyViewModel extends Observable implements Observer {
         this.model.generateMaze(row,col);
     }
 
-
+    /**
+     *
+     * @param keyCode - key board code
+     * the function will convert the key clicked to the model cahnge movement of the player
+     */
     public void moveCharacter(KeyCode keyCode)
     {
-        int direction = -1;
+        MovementDirection direction;
 
         /////////////
         /*
@@ -71,46 +74,75 @@ public class MyViewModel extends Observable implements Observer {
             direction = 1 -> Down Left -> DL
          */
 
-//        switch(keyCode)
-//        {
-//            case UP: // todo maybe need מקרי קצה
-//                direction = 8;
-//                break;
-//            case DOWN:
-//                direction = 2;
-//                break;
-//            case LEFT:
-//                direction = 4;
-//                break;
-//            case RIGHT:
-//                direction = 6;
-//                break;
-//
-//            //Slants
-//            case UR:
-//                direction = 9;
-//                break;
-//            case UL:
-//                direction = 7;
-//                break;
-//            case DR:
-//                direction = 3;
-//                break;
-//            case DL:
-//                direction = 1;
-//                break;
-//
-//        }
-//
-//        model.updateCharacterLocation(direction);
+        switch(keyCode)
+        {
+            case DIGIT8:
+                direction = MovementDirection.UP;
+                break;
+            case DIGIT2:
+                direction = MovementDirection.DOWN;
+                break;
+            case DIGIT6:
+                direction = MovementDirection.RIGHT;
+                break;
+            case DIGIT4:
+                direction = MovementDirection.LEFT;
+                break;
+
+            //Slants
+            case DIGIT9:
+                direction = MovementDirection.UR;
+                break;
+            case DIGIT7:
+                direction = MovementDirection.UL;
+                break;
+            case DIGIT3:
+                direction = MovementDirection.DR;
+                break;
+            case DIGIT1:
+                direction = MovementDirection.DL;
+                break;
+            // no move
+            default:
+                return;
+
+        }
+
+        model.updateCharacterLocation(direction);
     }
 
 
     public void solveMaze()
     {
-        //todo update the model that i will have the maze inside.
-        //so when we will need to have the sol we will ask from the model
         model.solveMaze();
+    }
+
+    public boolean gameOver(){
+        return model.gameOver();
+    }
+    public void setGameOver(boolean finishGame)
+    {
+        model.setGameOver(finishGame);
+    }
+
+    public void stopServers() {
+        model.stopServers();
+    }
+
+    public boolean saveFile() {
+        return model.saveFile();
+    }
+
+    public boolean loadFile(String name) {
+        return model.loadFile(name);
+    }
+
+    public void removeSolution() {
+        model.solutionRestart();
+    }
+
+    public void setShowSolution(boolean showSol) {
+        model.setShowSolution(showSol);
     }
 
 
