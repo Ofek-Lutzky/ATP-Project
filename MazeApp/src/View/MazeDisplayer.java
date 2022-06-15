@@ -1,11 +1,11 @@
 package View;
 
+
 import algorithms.mazeGenerators.Maze;
 import algorithms.search.Solution;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.canvas.GraphicsContext;
-
 import java.awt.*;
 
 import javafx.scene.canvas.Canvas;

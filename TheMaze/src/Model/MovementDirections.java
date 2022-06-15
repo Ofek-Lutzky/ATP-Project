@@ -1,0 +1,5 @@
+package Model;
+
+public enum MovementDirections {
+    UP, DOWN, LEFT, RIGHT, UR,UL,DR,DL,DIGIT8,DIGIT2,DIGIT6,DIGIT4,DIGIT9,DIGIT3,DIGIT1,DIGIT7
+}

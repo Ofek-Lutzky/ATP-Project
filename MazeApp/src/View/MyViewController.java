@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -181,4 +182,5 @@ public class MyViewController implements IView, Observer {
 
     public void showRanking(ActionEvent actionEvent) {
     }
+
 }
