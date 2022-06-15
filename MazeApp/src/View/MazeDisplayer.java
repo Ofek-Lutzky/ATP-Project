@@ -7,8 +7,9 @@ import javafx.beans.property.StringProperty;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+
+import javafx.scene.canvas.Canvas;
+import javafx.scene.paint.Color;
 
 public class MazeDisplayer extends Canvas {
 
@@ -65,52 +66,81 @@ public class MazeDisplayer extends Canvas {
 
     public void draw()
     {
+//        if( maze!=null)
+//        {
+//            int canvasHeight = getHeight();
+//            int canvasWidth = getWidth();
+//            int row = maze.getMap().length;
+//            int col = maze.getMap()[0].length;
+//            int cellHeight = canvasHeight/row;
+//            int cellWidth = canvasWidth/col;
+//            Graphics graphicsContext = getGraphics();
+//            graphicsContext.clearRect(0,0,canvasWidth,canvasHeight);
+//            graphicsContext.setColor(Color.RED);
+//            int w,h;
+//            //Draw Maze
+//            Image wallImage = null;
+////            try {
+////                //wallImage = new Image(new FileInputStream(getImageFileNameWall()));
+////            } catch (FileNotFoundException e) {
+////                System.out.println("There is no file....");
+////            }
+//            for(int i=0;i<row;i++)
+//            {
+//                for(int j=0;j<col;j++)
+//                {
+//                    if(this.maze.getMap()[i][j] == 1) // Wall
+//                    {
+//                        h = i * cellHeight;
+//                        w = j * cellWidth;
+////                        if (wallImage == null){
+//                            graphicsContext.fillRect((int) w,(int)h,(int)cellWidth,(int)cellHeight);
+////                        }else{
+////                            graphicsContext.drawImage((int)w,(int)h,(int)cellWidth,(int)cellHeight);
+////                        }
+//                    }
+//
+//                }
+//            }
+//
+//            int h_player = getCharacterRow() * cellHeight;
+//            int w_player = getCharacterCol() * cellWidth;
+//            Image playerImage = null;
+////            try {
+////                playerImage = new Image(new FileInputStream(getImageFileNamePlayer()));
+////            } catch (FileNotFoundException e) {
+////                System.out.println("There is no Image player....");
+////            }
+////            graphicsContext.drawImage(playerImage,(int)w_player,(int)h_player,cellWidth,cellHeight);
+//
+//        }
+
         if( maze!=null)
         {
-            int canvasHeight = getHeight();
-            int canvasWidth = getWidth();
+            double canvasHeight = getHeight();
+            double canvasWidth = getWidth();
             int row = maze.getMap().length;
             int col = maze.getMap()[0].length;
-            int cellHeight = canvasHeight/row;
-            int cellWidth = canvasWidth/col;
-            Graphics graphicsContext = getGraphics();
+            double cellHeight = canvasHeight/row;
+            double cellWidth = canvasWidth/col;
+            GraphicsContext graphicsContext = getGraphicsContext2D();
             graphicsContext.clearRect(0,0,canvasWidth,canvasHeight);
-            graphicsContext.setColor(Color.RED);
-            int w,h;
+            graphicsContext.setFill(Color.RED);
+            double x,y;
             //Draw Maze
-            Image wallImage = null;
-//            try {
-//                //wallImage = new Image(new FileInputStream(getImageFileNameWall()));
-//            } catch (FileNotFoundException e) {
-//                System.out.println("There is no file....");
-//            }
             for(int i=0;i<row;i++)
             {
                 for(int j=0;j<col;j++)
                 {
-                    if(this.maze.getMap()[i][j] == 1) // Wall
+                    if(maze.getMap()[i][j] == 1) // Wall
                     {
-                        h = i * cellHeight;
-                        w = j * cellWidth;
-//                        if (wallImage == null){
-                            graphicsContext.fillRect((int) w,(int)h,(int)cellWidth,(int)cellHeight);
-//                        }else{
-//                            graphicsContext.drawImage((int)w,(int)h,(int)cellWidth,(int)cellHeight);
-//                        }
+                        x = i *cellHeight;
+                        y = j *  cellWidth;
+                        graphicsContext.fillRect(x,y,cellHeight,cellWidth);
                     }
 
                 }
             }
-
-            int h_player = getCharacterRow() * cellHeight;
-            int w_player = getCharacterCol() * cellWidth;
-            Image playerImage = null;
-//            try {
-//                playerImage = new Image(new FileInputStream(getImageFileNamePlayer()));
-//            } catch (FileNotFoundException e) {
-//                System.out.println("There is no Image player....");
-//            }
-//            graphicsContext.drawImage(playerImage,(int)w_player,(int)h_player,cellWidth,cellHeight);
 
         }
     }

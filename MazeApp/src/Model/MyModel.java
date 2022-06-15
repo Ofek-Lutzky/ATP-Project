@@ -248,6 +248,7 @@ public class MyModel extends Observable implements IModel{
                     catch (Exception var10)
                     {
 //                        logger.fatal("failed to generate maze");
+                        System.out.println(var10.getMessage());
                     }
                 }
             });

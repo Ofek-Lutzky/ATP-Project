@@ -32,4 +32,8 @@ public class GameSceneController {
         stage.show();
 
     }
+
+    public void rtnHome(ActionEvent event) throws IOException{
+        this.switchToOpenScene(event);
+    }
 }
