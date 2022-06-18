@@ -4,14 +4,17 @@ import ViewModel.MyViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
@@ -20,9 +23,9 @@ import java.util.Observer;
 public class MyViewController implements IView, Observer {
 
     // needed for the scene switiching
-    public Stage stage;
-    public Scene scene;
-    public Parent root;
+//    public Stage stage;
+//    public Scene scene;
+//    public Parent root;
 
     public MyViewModel viewModel;
     boolean solutionShow = false;
@@ -36,10 +39,13 @@ public class MyViewController implements IView, Observer {
 
     @FXML
     public MazeDisplayer mazeDisplayer;
+    @FXML
+    public Button playBtn;
+
+//    playBtn.setGraphic(new ImageView("playBtn.png"));
 
 
-
-    // the initialize can get to the fxml design in running while regular constructor not
+     //the initialize can get to the fxml design in running while regular constructor not
 //    @Override
 //    public void initialize(URL url, ResourceBundle resourceBundle) {
 //
@@ -83,7 +89,7 @@ public class MyViewController implements IView, Observer {
         {
             try {
                 viewModel.solveMaze();
-//                solutionButton.setText("Hide Solution");
+//                solutionButton.setText("hideSolution");
 //                showSolution = true;
                 viewModel.setShowSolution(true);
 
@@ -120,10 +126,6 @@ public class MyViewController implements IView, Observer {
 
     }
 
-    @Override
-    public void playerMoved() {
-
-    }
 
     @Override
     public void update(Observable o, Object arg) {
@@ -153,26 +155,44 @@ public class MyViewController implements IView, Observer {
 
 
 
-    /**
-     *
-     * @param event -ActionEvent
-     * @throws IOException - exception
-     * the function take the root of the FXML loader and change it to the scene specified inside the load function
-     * this func is for the game scene (scene 2)
-     */
-    public void switchToGameScene(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../View/GameScene.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+//    /**
+//     *
+//     * @param event -ActionEvent
+//     * @throws IOException - exception
+//     * the function take the root of the FXML loader and change it to the scene specified inside the load function
+//     * this func is for the game scene (scene 2)
+//     * and pass data object view model, so, in the sc2 it can draw it
+//     *
+//     * 1.save the loader to the next scene
+//     * 2.save his controller
+//     * 3. call the method of the initData with the viewModel .so, it can draw the maze ot it side
+//     */
+//    public void switchToGameSceneAndPassData(ActionEvent event) throws IOException {
+//        FXMLLoader loader = new FXMLLoader();
+//        loader.setLocation(getClass().getResource("../View/GameScene.fxml"));
+//        Parent viewParent = loader.load();
+//
+//        Scene viewScene = new Scene(viewParent);
+//
+//        //access controller and call method
+//        GameSceneController controller = loader.getController();
+//        controller.initData(viewModel);
+//
+//
+//
+//        //get stage info
+//        //root = FXMLLoader.load(getClass().getResource("../View/GameScene.fxml"));
+//        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+////        scene = new Scene(root);
+//        window.setScene(viewScene);
+//        window.show();
+//    }
 
 
     // the Btns functions of the start Scean
     public void startGame(ActionEvent actionEvent) throws IOException {
-        //this.switchToGameScene(actionEvent);
         this.mazeGenerate();
+        //this.switchToGameSceneAndPassData(actionEvent);
         mazeDisplayer.drawMaze(viewModel.getMaze());
 
     }
@@ -183,4 +203,26 @@ public class MyViewController implements IView, Observer {
     public void showRanking(ActionEvent actionEvent) {
     }
 
+
+
+    @Override
+    public void playerMoved() {
+        System.out.println("ViewController playerMoved: " + viewModel.getCharacterRow() +" "+ viewModel.getCharacterCol());
+
+        mazeDisplayer.setPlayerPosition(viewModel.getCharacterRow(), viewModel.getCharacterCol());
+        mazeDisplayer.setSolution(viewModel.getSolution());
+
+
+    }
+
+    public void mouseClicked(MouseEvent mouseEvent)
+    {
+        mazeDisplayer.requestFocus();
+    }
+
+    public void keyPressed(javafx.scene.input.KeyEvent keyEvent) {
+        System.out.println("Key Code: " + keyEvent.getCode().toString());
+        viewModel.moveCharacter(keyEvent.getCode());
+        keyEvent.consume();
+    }
 }

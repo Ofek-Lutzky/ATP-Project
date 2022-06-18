@@ -57,6 +57,8 @@ public class MyModel extends Observable implements IModel{
             direction = 1 -> Down Left -> DL
          */
 
+        System.out.println("MyModel updateCharacterLocation " + direction);
+
         switch(direction)
         {
             case UP: // todo maybe need מקרי קצה לא חושב שצריך את המינוס אחד במקרה הקיצוני של כולם
@@ -101,10 +103,11 @@ public class MyModel extends Observable implements IModel{
         }
 //        setChanged(); the move Character doing this
 //        notifyObservers();
+
     }
 
     private boolean checkIfNotWall(int row,int col){
-        if (maze.getMap()[characterRow-1][characterCol]!=1){
+        if (maze.getMap()[row][col]!=1){
             return true;
         }
         return false;
@@ -118,10 +121,15 @@ public class MyModel extends Observable implements IModel{
 
         setChanged();
         notifyObservers("mazeGenerated");
+
+        System.out.println("MyModel generateMaze" + maze.getStartPosition().getRowIndex() +" "+ maze.getStartPosition().getColumnIndex());
         moveCharacter(maze.getStartPosition().getRowIndex(), maze.getStartPosition().getColumnIndex());
     }
 
     private void moveCharacter(int rowIndex, int columnIndex) {
+
+        System.out.println("MyModel moveCharacter" + rowIndex +" "+ columnIndex);
+
         if (rowIndex == maze.getGoalPosition().getRowIndex() && columnIndex == maze.getGoalPosition().getColumnIndex())
         {
             this.finishGame=true;
@@ -160,7 +168,7 @@ public class MyModel extends Observable implements IModel{
 
     @Override
     public int getCharacterCol() {
-        return this.characterRow;
+        return this.characterCol;
     }
 
     @Override

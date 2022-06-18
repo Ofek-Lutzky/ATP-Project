@@ -28,10 +28,12 @@ public class MyViewModel extends Observable implements Observer {
     }
 
     public int getCharacterRow() {
+        System.out.println("MyviewModel  getCharacterRow: "+ model.getCharacterRow());
         return model.getCharacterRow();
     }
 
     public int getCharacterCol() {
+        System.out.println("MyviewModel  getCharacterCol: "+ model.getCharacterCol());
         return model.getCharacterCol();
     }
 
@@ -76,34 +78,46 @@ public class MyViewModel extends Observable implements Observer {
 
         switch(keyCode)
         {
+//            case 8:
+            case UP:
             case DIGIT8:
                 direction = MovementDirection.UP;
                 break;
+//            case 2:
+            case DOWN:
             case DIGIT2:
                 direction = MovementDirection.DOWN;
                 break;
+//            case 6:
+            case RIGHT:
             case DIGIT6:
                 direction = MovementDirection.RIGHT;
                 break;
+//            case 4:
+            case LEFT:
             case DIGIT4:
                 direction = MovementDirection.LEFT;
                 break;
 
             //Slants
+//            case 9:
             case DIGIT9:
                 direction = MovementDirection.UR;
                 break;
+//            case 7:
             case DIGIT7:
                 direction = MovementDirection.UL;
                 break;
+//            case 3:
             case DIGIT3:
                 direction = MovementDirection.DR;
                 break;
             case DIGIT1:
+           // case 1:
                 direction = MovementDirection.DL;
                 break;
-            // no move
             default:
+                // no move
                 return;
 
         }

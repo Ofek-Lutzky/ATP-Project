@@ -1,5 +1,5 @@
 .root{
-    -fx-background-color: Black;
+    -fx-background-color: bisque;
 }
 
 Button {
@@ -19,4 +19,3 @@ Button:hover{
     -fx-alignment: CENTER;
     -fx-content-display: LEFT;
 }
-
