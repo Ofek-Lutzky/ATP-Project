@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <?import View.MazeDisplayer?>
 
-<?import javafx.geometry.Insets?>
-<BorderPane fx:id="borderPane" onMouseClicked="#mouseClicked" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" stylesheets="@MainStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#mouseClicked" prefHeight="700.0" prefWidth="700.0" stylesheets="@MainStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
    <bottom>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -21,17 +21,17 @@
         </rowConstraints>
          <children>
             <Button fx:id="playBtn" mnemonicParsing="false" onAction="#startGame" text="play" GridPane.columnIndex="1" />
-            <Button fx:id="instructionsBtn" mnemonicParsing="false" onAction="#showInstrucion" text="Instructions" GridPane.columnIndex="2" />
+            <Button fx:id="solveMazeBtn" mnemonicParsing="false" onAction="#mazeSolve" text="Solve Maze" GridPane.columnIndex="2" />
             <Button fx:id="rankBtn" mnemonicParsing="false" onAction="#showRanking" text="Ranking" />
             <TextField fx:id="rowText" text="10" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="colText" text="10" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Rows:" GridPane.rowIndex="1" />
-            <Label text="Columns:" GridPane.rowIndex="2" />
+            <Label text="Rows:" textFill="WHITE" GridPane.rowIndex="1" />
+            <Label text="Columns:" textFill="WHITE" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </bottom>
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
+      <MenuBar fx:id="toolBar" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -43,7 +43,7 @@
               <MenuItem mnemonicParsing="false" text="Delete" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu fx:id="helpBtn" mnemonicParsing="false" onAction="#showInstrucion" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" text="About" />
             </items>
@@ -52,13 +52,38 @@
       </MenuBar>
    </top>
    <center>
-      <AnchorPane fx:id="boardPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="700.0">
+      <AnchorPane fx:id="boardPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="524.0" prefWidth="700.0">
           <children>
-              <MazeDisplayer fx:id="mazeDisplayer" height="550.0" width="700.0" onKeyPressed="#keyPressed" imageFileNamePlayer="./src/Resources/Images/ash.png" imageFileNameWall="./src/Resources/Images/tree.png"/>
+              <MazeDisplayer fx:id="mazeDisplayer" height="550.0" imageFileNamePlayer="./src/Resources/Images/ash.png" imageFileNameWall="./src/Resources/Images/tree.png" onKeyPressed="#keyPressed" width="700.0" />
           </children>
           <padding>
               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
           </padding>
+         <children>
+            <HBox layoutX="163.0" layoutY="-28.0" prefHeight="24.0" prefWidth="382.0">
+               <children>
+                  <Label text="Row: " textFill="WHITE">
+                     <padding>
+                        <Insets left="90.0" />
+                     </padding></Label>
+                  <Label fx:id="lbl_player_row" text="number" textFill="WHITE">
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+                  <Label contentDisplay="CENTER" text="Column:" textAlignment="CENTER" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="lbl_player_column" text="numberCol" textFill="WHITE">
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
       </AnchorPane>
    </center>
 </BorderPane>

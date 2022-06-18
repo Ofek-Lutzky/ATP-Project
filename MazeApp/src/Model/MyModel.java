@@ -35,7 +35,7 @@ public class MyModel extends Observable implements IModel{
         //colChar =0; todo think about it
         serverMazeGenerator = new Server(5400,1000, new ServerStrategyGenerateMaze());
         serverMazeGenerator.start();
-        serverSolveMaze = new Server(5401,1000, new ServerStrategyGenerateMaze());
+        serverSolveMaze = new Server(5401,1000, new ServerStrategySolveSearchProblem());
         serverSolveMaze.start();
     }
 

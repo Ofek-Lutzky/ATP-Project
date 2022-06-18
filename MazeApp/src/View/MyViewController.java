@@ -1,6 +1,8 @@
 package View;
 
 import ViewModel.MyViewModel;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,17 +12,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.net.URL;
+import java.util.Objects;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.ResourceBundle;
 
 //this will be the class controller of the main open scene
-public class MyViewController implements IView, Observer {
+public class MyViewController implements IView ,Observer,Initializable {
 
     // needed for the scene switiching
 //    public Stage stage;
@@ -42,14 +50,22 @@ public class MyViewController implements IView, Observer {
     @FXML
     public Button playBtn;
 
-//    playBtn.setGraphic(new ImageView("playBtn.png"));
+    @FXML
+    public javafx.scene.control.Label lbl_player_row;
+    @FXML
+    public javafx.scene.control.Label lbl_player_column;
+    StringProperty update_player_position_row = new SimpleStringProperty();
+    StringProperty update_player_position_col = new SimpleStringProperty();
 
+//
 
      //the initialize can get to the fxml design in running while regular constructor not
-//    @Override
-//    public void initialize(URL url, ResourceBundle resourceBundle) {
-//
-//    }
+     @Override
+     public void initialize(URL url, ResourceBundle resourceBundle) {
+         lbl_player_row.textProperty().bind(update_player_position_row);
+         lbl_player_column.textProperty().bind(update_player_position_col);
+     }
+
 
 
     public void setViewModel(MyViewModel viewModel) {
@@ -57,6 +73,24 @@ public class MyViewController implements IView, Observer {
         this.viewModel.addObserver(this);
 
     }
+
+    public String get_update_player_position_row() {
+        return update_player_position_row.get();
+    }
+
+    public void set_update_player_position_row(String update_player_position_row) {
+        this.update_player_position_row.set(update_player_position_row + "");
+    }
+
+    public String get_update_player_position_col() {
+        return update_player_position_col.get();
+    }
+
+    public void set_update_player_position_col(String update_player_position_col) {
+        this.update_player_position_col.set(update_player_position_col + "");
+    }
+
+
 
     @Override
     public void mazeGenerate() { // todo input check
@@ -152,9 +186,6 @@ public class MyViewController implements IView, Observer {
 
 
 
-
-
-
 //    /**
 //     *
 //     * @param event -ActionEvent
@@ -197,8 +228,10 @@ public class MyViewController implements IView, Observer {
 
     }
 
-    public void showInstrucion(ActionEvent actionEvent) {
+    public void drawMaze(){
+        mazeDisplayer.drawMaze(viewModel.getMaze());
     }
+
 
     public void showRanking(ActionEvent actionEvent) {
     }
@@ -210,7 +243,11 @@ public class MyViewController implements IView, Observer {
         System.out.println("ViewController playerMoved: " + viewModel.getCharacterRow() +" "+ viewModel.getCharacterCol());
 
         mazeDisplayer.setPlayerPosition(viewModel.getCharacterRow(), viewModel.getCharacterCol());
+        set_update_player_position_row(viewModel.getCharacterRow() + "");
+        set_update_player_position_col(viewModel.getCharacterCol() + "");
         mazeDisplayer.setSolution(viewModel.getSolution());
+
+
 
 
     }
@@ -225,4 +262,12 @@ public class MyViewController implements IView, Observer {
         viewModel.moveCharacter(keyEvent.getCode());
         keyEvent.consume();
     }
+
+    public void solveMazeFromPlayerPlace(ActionEvent event) {
+    }
+
+    public void showInstrucion(ActionEvent actionEvent) {
+
+    }
+
 }
