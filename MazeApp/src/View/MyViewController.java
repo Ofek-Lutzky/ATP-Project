@@ -7,15 +7,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.transform.Scale;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.scene.media.Media;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -56,12 +60,19 @@ public class MyViewController implements IView ,Observer,Initializable {
     @FXML
     public javafx.scene.control.Label lbl_player_column;
 
+    @FXML
+    public AnchorPane boardPane;
+    @FXML
+    public ScrollPane scrollPane;
 
-    String gameMusic = new File("./resources/music/Background.mp3").toURI().toString();
-    MediaPlayer gameMusicPlayer = new MediaPlayer(new Media(gameMusic));
 
-    String winMusic = new File("./resources/music/FeelSoClose.mp3").toURI().toString();
-    MediaPlayer endMusicPlayer = new MediaPlayer(new Media(winMusic));
+//    String gameMusic = new File("GameMusic.mp3").toURI().toString();
+//    //URL resource = getClass().getResource("GameMusic.mp3");
+////
+//    MediaPlayer gameMusicPlayer = new MediaPlayer(new Media(gameMusic));
+//
+//    String winMusic = new File("/src/resources/Music/WinMusic.mp3").toURI().toString();
+//    MediaPlayer endMusicPlayer = new MediaPlayer(new Media(winMusic));
 
     StringProperty update_player_position_row = new SimpleStringProperty();
     StringProperty update_player_position_col = new SimpleStringProperty();
@@ -198,13 +209,13 @@ public class MyViewController implements IView ,Observer,Initializable {
     private void startMusic() {
 
         viewModel.setGameOver(false);
-        endMusicPlayer.stop();
-        gameMusicPlayer.play();
+//        endMusicPlayer.stop();
+//        gameMusicPlayer.play();
     }
 
     private void winMusic() {
-        gameMusicPlayer.stop();
-        endMusicPlayer.play();
+//        gameMusicPlayer.stop();
+//        endMusicPlayer.play();
     }
 
 
@@ -334,5 +345,40 @@ public class MyViewController implements IView ,Observer,Initializable {
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
+    }
+
+
+
+    private double zoomFuctor = 1;
+
+    public void zoomIn(ScrollEvent scrollEvent) {
+        if (scrollEvent.isControlDown()) {
+            double deltaY = scrollEvent.getDeltaY();
+            if (deltaY > 0)
+                zoomFuctor += 0.1;
+            else if (deltaY < 0)
+                zoomFuctor -= 0.1;
+            zoomFuctor = Math.max(zoomFuctor, 1);
+            zoomFuctor = Math.min(zoomFuctor, 5);
+
+            boardPane.setScaleX(zoomFuctor);
+            boardPane.setScaleY(zoomFuctor);
+            if (zoomFuctor == 1) {
+                this.scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+                this.scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+            }
+            else {
+                this.scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+                this.scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+            }
+            Group contentGroup = new Group();
+            Group zoomGroup = new Group();
+            contentGroup.getChildren().add(zoomGroup);
+            zoomGroup.getChildren().add(boardPane);
+            scrollPane.setContent(contentGroup);
+            Scale scaleTransform = new Scale(zoomFuctor, zoomFuctor, 0, 0);
+            zoomGroup.getTransforms().add(scaleTransform);
+        }
+        scrollEvent.consume();
     }
 }

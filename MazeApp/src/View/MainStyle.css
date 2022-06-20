@@ -19,8 +19,3 @@ Button:hover{
     -fx-alignment: CENTER;
     -fx-content-display: LEFT;
 }
-
-#playBtn {
-    -fx-graphic: url('../src/View/resourceBtn/playBtn.png');
-}
-
