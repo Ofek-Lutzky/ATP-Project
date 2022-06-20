@@ -25,8 +25,14 @@
             <Button fx:id="rankBtn" mnemonicParsing="false" onAction="#showRanking" text="Ranking" />
             <TextField fx:id="rowText" text="10" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="colText" text="10" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Rows:" textFill="WHITE" GridPane.rowIndex="1" />
-            <Label text="Columns:" textFill="WHITE" GridPane.rowIndex="2" />
+            <Label text="Rows:" textFill="WHITE" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="180.0" />
+               </GridPane.margin></Label>
+            <Label text="Columns:" textFill="WHITE" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="180.0" />
+               </GridPane.margin></Label>
          </children>
       </GridPane>
    </bottom>
@@ -45,16 +51,21 @@
           </Menu>
           <Menu fx:id="helpBtn" mnemonicParsing="false" onAction="#showInstrucion" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" text="Help" />
             </items>
           </Menu>
+            <Menu fx:id="aboutBtn" mnemonicParsing="false" onAction="#showAbout" text="About">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>
    <center>
       <AnchorPane fx:id="boardPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="524.0" prefWidth="700.0">
           <children>
-              <MazeDisplayer fx:id="mazeDisplayer" height="550.0" imageFileNamePlayer="./src/Resources/Images/ash.png" imageFileNameWall="./src/Resources/Images/tree.png" onKeyPressed="#keyPressed" width="700.0" />
+              <MazeDisplayer fx:id="mazeDisplayer" height="550.0" imageFileNameEnd="./src/resources/Images/endPoint.png" imageFileNamePlayer="./src/Resources/Images/ash.png" imageFileNameSol="./src/resources/Images/pocadur.png" imageFileNameStart="./src/resources/Images/startPoint.png" imageFileNameWall="./src/Resources/Images/tree.png" onKeyPressed="#keyPressed" width="700.0" />
           </children>
           <padding>
               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

@@ -101,6 +101,8 @@ public class MyModel extends Observable implements IModel{
                 break;
 
         }
+
+
 //        setChanged(); the move Character doing this
 //        notifyObservers();
 
@@ -132,6 +134,7 @@ public class MyModel extends Observable implements IModel{
 
         if (rowIndex == maze.getGoalPosition().getRowIndex() && columnIndex == maze.getGoalPosition().getColumnIndex())
         {
+            System.out.println("Mymodel" +"got to the end point");
             this.finishGame=true;
         }
 
@@ -193,14 +196,13 @@ public class MyModel extends Observable implements IModel{
 
     @Override
     public boolean gameOver() {
-        return false;
+        return finishGame;
     }
 
 
     @Override
     public void setGameOver(boolean gameOver) {
-        //todo check
-        gameOver = true;
+        finishGame = gameOver;
     }
 
     @Override

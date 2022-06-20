@@ -7,22 +7,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.scene.media.Media;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
@@ -49,11 +48,21 @@ public class MyViewController implements IView ,Observer,Initializable {
     public MazeDisplayer mazeDisplayer;
     @FXML
     public Button playBtn;
+    @FXML
+    public Button solveMazeBtn;
 
     @FXML
     public javafx.scene.control.Label lbl_player_row;
     @FXML
     public javafx.scene.control.Label lbl_player_column;
+
+
+    String gameMusic = new File("./resources/music/Background.mp3").toURI().toString();
+    MediaPlayer gameMusicPlayer = new MediaPlayer(new Media(gameMusic));
+
+    String winMusic = new File("./resources/music/FeelSoClose.mp3").toURI().toString();
+    MediaPlayer endMusicPlayer = new MediaPlayer(new Media(winMusic));
+
     StringProperty update_player_position_row = new SimpleStringProperty();
     StringProperty update_player_position_col = new SimpleStringProperty();
 
@@ -123,9 +132,9 @@ public class MyViewController implements IView ,Observer,Initializable {
         {
             try {
                 viewModel.solveMaze();
-//                solutionButton.setText("hideSolution");
-//                showSolution = true;
+                solutionShow = true;
                 viewModel.setShowSolution(true);
+                solveMazeBtn.setText("Hide Solution");
 
             }
             catch (Exception e)
@@ -137,9 +146,9 @@ public class MyViewController implements IView ,Observer,Initializable {
         }
         else {
             this.viewModel.removeSolution();
-//            solutionButton.setText("Show Solution");
-//            showSolution = false;
+            solutionShow = false;
             viewModel.setShowSolution(false);
+            solveMazeBtn.setText("Solve Maze");
 
         }
     }
@@ -160,6 +169,13 @@ public class MyViewController implements IView ,Observer,Initializable {
 
     }
 
+    private void removeSolution()
+    {
+        viewModel.setShowSolution(false);
+        mazeDisplayer.setShowSolution(false);
+    }
+
+
 
     @Override
     public void update(Observable o, Object arg) {
@@ -169,21 +185,43 @@ public class MyViewController implements IView ,Observer,Initializable {
             case "playerMoved" -> playerMoved();
             case "mazeSolved" -> mazeSolved();
 //            case "mazeLoaded" -> mazeLoaded();
-//            case "hide solution" -> hideSolution();
+            case "removeSolution" -> removeSolution();
             default -> System.out.println("Not implemented change: " + action);
         }
-//        if (viewModel.gameOver()) {
-//            try {
-//                playWinningMusic();
-//                openVideo();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
+        if (viewModel.gameOver()) {
+            winMusic();
+            closeGame();
+        }
+
+    }
+
+    private void startMusic() {
+
+        viewModel.setGameOver(false);
+        endMusicPlayer.stop();
+        gameMusicPlayer.play();
+    }
+
+    private void winMusic() {
+        gameMusicPlayer.stop();
+        endMusicPlayer.play();
+    }
+
+
+    private void closeGame() {
+        viewModel.setGameOver(true);
+        stopServers();
+        System.exit(0); // todo ask the client if he relly want to finish
+
 
     }
 
 
+    public void stopServers() {
+        System.out.println( "ViewConroller "+"stop Server");
+
+        viewModel.stopServers();
+    }
 
 
 //    /**
@@ -222,6 +260,7 @@ public class MyViewController implements IView ,Observer,Initializable {
 
     // the Btns functions of the start Scean
     public void startGame(ActionEvent actionEvent) throws IOException {
+         startMusic();
         this.mazeGenerate();
         //this.switchToGameSceneAndPassData(actionEvent);
         mazeDisplayer.drawMaze(viewModel.getMaze());
@@ -267,7 +306,33 @@ public class MyViewController implements IView ,Observer,Initializable {
     }
 
     public void showInstrucion(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Help.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.DECORATED);
+            stage.setTitle("Instruction");
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
 
     }
 
+    public void showAbout(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("About.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.DECORATED);
+            stage.setTitle("About");
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+    }
 }

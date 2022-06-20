@@ -139,6 +139,14 @@ public class MyViewModel extends Observable implements Observer {
         model.setGameOver(finishGame);
     }
 
+    public void removeSolution() {
+        model.solutionRestart();
+    }
+
+    public void setShowSolution(boolean showSol) {
+        model.setShowSolution(showSol);
+    }
+
     public void stopServers() {
         model.stopServers();
     }
@@ -149,14 +157,6 @@ public class MyViewModel extends Observable implements Observer {
 
     public boolean loadFile(String name) {
         return model.loadFile(name);
-    }
-
-    public void removeSolution() {
-        model.solutionRestart();
-    }
-
-    public void setShowSolution(boolean showSol) {
-        model.setShowSolution(showSol);
     }
 
 

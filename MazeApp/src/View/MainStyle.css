@@ -1,5 +1,5 @@
 .root{
-    -fx-background-color: Black;
+    -fx-background-color: White;
 }
 
 Button {
@@ -20,4 +20,7 @@ Button:hover{
     -fx-content-display: LEFT;
 }
 
+#playBtn {
+    -fx-graphic: url('../src/View/resourceBtn/playBtn.png');
+}
 
