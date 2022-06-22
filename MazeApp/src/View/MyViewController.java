@@ -16,7 +16,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.MediaView;
 import javafx.scene.transform.Scale;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -40,6 +42,7 @@ public class MyViewController implements IView ,Observer,Initializable {
 
     public MyViewModel viewModel;
     boolean solutionShow = false;
+    boolean mouseDrag = false;
 
     //private Maze maze;
 
@@ -65,12 +68,12 @@ public class MyViewController implements IView ,Observer,Initializable {
     @FXML
     public ScrollPane scrollPane;
 
+    @FXML
+    public Button dragMouse;
 
-//    String gameMusic = new File("GameMusic.mp3").toURI().toString();
-//    //URL resource = getClass().getResource("GameMusic.mp3");
-////
+
+//    String gameMusic = new File("/GameMusic.mp3").toURI().toString();
 //    MediaPlayer gameMusicPlayer = new MediaPlayer(new Media(gameMusic));
-//
 //    String winMusic = new File("/src/resources/Music/WinMusic.mp3").toURI().toString();
 //    MediaPlayer endMusicPlayer = new MediaPlayer(new Media(winMusic));
 
@@ -191,11 +194,12 @@ public class MyViewController implements IView ,Observer,Initializable {
     @Override
     public void update(Observable o, Object arg) {
         String action = (String) arg;
+
         switch (action){
             case "mazeGenerated" -> mazeGenerated();
             case "playerMoved" -> playerMoved();
             case "mazeSolved" -> mazeSolved();
-//            case "mazeLoaded" -> mazeLoaded();
+            case "mazeLoaded" -> LoadedMaze();
             case "removeSolution" -> removeSolution();
             default -> System.out.println("Not implemented change: " + action);
         }
@@ -204,6 +208,10 @@ public class MyViewController implements IView ,Observer,Initializable {
             closeGame();
         }
 
+    }
+
+    private void LoadedMaze() {
+         mazeDisplayer.drawMaze(viewModel.getMaze());
     }
 
     private void startMusic() {
@@ -286,6 +294,43 @@ public class MyViewController implements IView ,Observer,Initializable {
     public void showRanking(ActionEvent actionEvent) {
     }
 
+//    public void newMaze(){
+//          mazeGenerate();
+//    }
+
+    public void saveMaze(ActionEvent event){
+         if (!viewModel.saveFile()){
+             Alert alertGenerate = new Alert(Alert.AlertType.INFORMATION);
+             alertGenerate.setContentText("The  save has Failed!");
+             alertGenerate.show();
+         }
+         else{
+             Alert alertGenerate = new Alert(Alert.AlertType.INFORMATION);
+             alertGenerate.setContentText("The maze has Saved!");
+             alertGenerate.show();
+         }
+    }
+
+    public void loadMaze(ActionEvent event){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Filter the files that in the format i search for in the folder the mazes saved", "*.txt" ));
+        File allMazesDirectory = new File("./AllMazes");
+        fileChooser.setInitialDirectory(allMazesDirectory);
+
+    //the if check if it loaded the file according to the absolute path.
+    // if not we will inform our client with information alert
+        if (!viewModel.loadFile(allMazesDirectory.getAbsolutePath() + '\\' +fileChooser.showOpenDialog(null).getName())){
+            Alert alertGenerate = new Alert(Alert.AlertType.INFORMATION);
+            alertGenerate.setContentText("The  load has Failed!");
+            alertGenerate.show();
+        }
+        else{
+            Alert alertGenerate = new Alert(Alert.AlertType.INFORMATION);
+            alertGenerate.setContentText("The maze has Load!");
+            alertGenerate.show();
+        }
+    }
+
 
 
     @Override
@@ -296,8 +341,6 @@ public class MyViewController implements IView ,Observer,Initializable {
         set_update_player_position_row(viewModel.getCharacterRow() + "");
         set_update_player_position_col(viewModel.getCharacterCol() + "");
         mazeDisplayer.setSolution(viewModel.getSolution());
-
-
 
 
     }
@@ -351,18 +394,22 @@ public class MyViewController implements IView ,Observer,Initializable {
 
     private double zoomFuctor = 1;
 
-    public void zoomIn(ScrollEvent scrollEvent) {
+    public void zoomWithScroller(ScrollEvent scrollEvent) {
         if (scrollEvent.isControlDown()) {
+
             double deltaY = scrollEvent.getDeltaY();
+
             if (deltaY > 0)
                 zoomFuctor += 0.1;
             else if (deltaY < 0)
                 zoomFuctor -= 0.1;
+
             zoomFuctor = Math.max(zoomFuctor, 1);
             zoomFuctor = Math.min(zoomFuctor, 5);
-
             boardPane.setScaleX(zoomFuctor);
             boardPane.setScaleY(zoomFuctor);
+
+
             if (zoomFuctor == 1) {
                 this.scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
                 this.scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -371,14 +418,33 @@ public class MyViewController implements IView ,Observer,Initializable {
                 this.scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
                 this.scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
             }
-            Group contentGroup = new Group();
-            Group zoomGroup = new Group();
-            contentGroup.getChildren().add(zoomGroup);
-            zoomGroup.getChildren().add(boardPane);
-            scrollPane.setContent(contentGroup);
+
+
+            Group scrollZoomG = new Group();
+            Group scrollContentG = new Group();
+
+            scrollContentG.getChildren().add(scrollZoomG);
+            scrollZoomG.getChildren().add(boardPane);
+
+            scrollPane.setContent(scrollContentG);
+
             Scale scaleTransform = new Scale(zoomFuctor, zoomFuctor, 0, 0);
-            zoomGroup.getTransforms().add(scaleTransform);
+            scrollZoomG.getTransforms().add(scaleTransform);
         }
         scrollEvent.consume();
+    }
+
+
+    public void mouseDrag(ActionEvent event) {
+        if(dragMouse.getText().equals("Move With Mouse"))
+        {
+            dragMouse.setText("Stop Mouse Drag");
+
+
+        }
+        else {
+            dragMouse.setText("Move With Mouse");
+
+        }
     }
 }

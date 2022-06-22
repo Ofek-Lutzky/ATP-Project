@@ -1,6 +1,7 @@
 package Model;
 
 import Client.*;
+import IO.MyCompressorOutputStream;
 import IO.MyDecompressorInputStream;
 import Server.*;
 import algorithms.mazeGenerators.Maze;
@@ -11,7 +12,11 @@ import algorithms.search.*;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -212,14 +217,63 @@ public class MyModel extends Observable implements IModel{
     }
 
     @Override
-    public boolean saveFile() {
-        return false; // todo
+    public boolean saveFile() // todo change it to be like getting name dialog like the loading
+    {
+        if(maze != null) {
+
+            Path path = Paths.get("AllMazes");
+
+            if (!Files.exists(path)) {
+                new File("AllMazes").mkdir();
+            }
+
+            String savedMazeName = new Date().getTime() + ".txt";
+
+            String mazeFileName = "AllMazes" + '\\' + savedMazeName;
+
+            try {
+                OutputStream out = new MyCompressorOutputStream(new FileOutputStream(mazeFileName));
+                out.write(maze.toByteArray());
+                out.flush();
+                out.close();
+            }
+            catch (Exception e) {
+                System.out.println(e.getMessage());
+                //logger.error("couldn't save maze");
+                return false;
+            }
+            //logger.info("maze saved");
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean loadFile(String name) {
-        return false; // todo
+
+        byte[] savedMazeBytes;
+
+        try {
+            InputStream in = new MyDecompressorInputStream(new FileInputStream(name));
+            savedMazeBytes = new byte[100000];
+            in.read(savedMazeBytes);
+            in.close();
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            //logger.error("couldn't load maze");
+            return false;
+        }
+
+        maze = new Maze(savedMazeBytes);
+        moveCharacter(maze.getStartPosition().getRowIndex(), maze.getStartPosition().getColumnIndex());
+
+        setChanged();
+        notifyObservers("mazeLoaded");
+        //logger.info("maze loaded from file");
+        return true;
     }
+
 
     @Override
     public void setShowSolution(boolean toShow) {
@@ -293,4 +347,7 @@ public class MyModel extends Observable implements IModel{
 //            logger.fatal("failed to connect server");
         }
     }
+
+
+
 }
