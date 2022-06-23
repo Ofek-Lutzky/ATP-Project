@@ -72,10 +72,10 @@ public class MyViewController implements IView ,Observer,Initializable {
     public Button dragMouse;
 
 
-//    String gameMusic = new File("/GameMusic.mp3").toURI().toString();
-//    MediaPlayer gameMusicPlayer = new MediaPlayer(new Media(gameMusic));
-//    String winMusic = new File("/src/resources/Music/WinMusic.mp3").toURI().toString();
-//    MediaPlayer endMusicPlayer = new MediaPlayer(new Media(winMusic));
+    String gameMusic = new File("./src/resources/Music/GameMusic.mp3").toURI().toString();
+    MediaPlayer gameMusicPlayer = new MediaPlayer(new Media(gameMusic));
+    String winMusic = new File("./src/resources/Music/WinMusic.mp3").toURI().toString();
+    MediaPlayer endMusicPlayer = new MediaPlayer(new Media(winMusic));
 
     StringProperty update_player_position_row = new SimpleStringProperty();
     StringProperty update_player_position_col = new SimpleStringProperty();
@@ -204,7 +204,11 @@ public class MyViewController implements IView ,Observer,Initializable {
             default -> System.out.println("Not implemented change: " + action);
         }
         if (viewModel.gameOver()) {
-            winMusic();
+            try {
+                winMusic();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             closeGame();
         }
 
@@ -217,13 +221,14 @@ public class MyViewController implements IView ,Observer,Initializable {
     private void startMusic() {
 
         viewModel.setGameOver(false);
-//        endMusicPlayer.stop();
-//        gameMusicPlayer.play();
+        endMusicPlayer.stop();
+        gameMusicPlayer.play();
     }
 
-    private void winMusic() {
-//        gameMusicPlayer.stop();
-//        endMusicPlayer.play();
+    private void winMusic() throws InterruptedException {
+        gameMusicPlayer.stop();
+        endMusicPlayer.play();
+        Thread.sleep(4000);
     }
 
 
