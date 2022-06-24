@@ -1,9 +1,13 @@
 package View;
 
 import ViewModel.MyViewModel;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,28 +16,30 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaView;
 import javafx.scene.transform.Scale;
-import javafx.stage.FileChooser;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.stage.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
+import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.ResourceBundle;
+import java.util.*;
 
 //this will be the class controller of the main open scene
-public class MyViewController implements IView ,Observer,Initializable {
+public class MyViewController implements IView ,Observer,Initializable, Serializable {
 
     // needed for the scene switiching
 //    public Stage stage;
@@ -43,6 +49,9 @@ public class MyViewController implements IView ,Observer,Initializable {
     public MyViewModel viewModel;
     boolean solutionShow = false;
     boolean mouseDrag = false;
+
+    public static Stage primaryStage;
+
 
     //private Maze maze;
 
@@ -77,6 +86,43 @@ public class MyViewController implements IView ,Observer,Initializable {
     String winMusic = new File("./src/resources/Music/WinMusic.mp3").toURI().toString();
     MediaPlayer endMusicPlayer = new MediaPlayer(new Media(winMusic));
 
+//    String video = new File("./src/resources/Videos/videoplayback.mp4").toURI().toString();
+//    MediaPlayer videoPlayer = new MediaPlayer(new Media(video));
+//    MediaView videoView = new MediaView(videoPlayer);
+
+
+    File videoFileStart = new File("./src/resources/Videos/videoplayback.mp4");
+    Media mediaStart;
+
+    {
+        try {
+            mediaStart = new Media(videoFileStart.toURI().toURL().toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    MediaPlayer videoPlayerStart = new MediaPlayer(mediaStart);
+    MediaView videoViewStart = new MediaView(videoPlayerStart);
+
+
+    File videoFileEnd = new File("./src/resources/Videos/rickRoll.mp4");
+    Media mediaEnd;
+
+    {
+        try {
+            mediaEnd = new Media(videoFileEnd.toURI().toURL().toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    MediaPlayer videoPlayerEnd = new MediaPlayer(mediaEnd);
+
+    MediaView videoViewEnd = new MediaView(videoPlayerEnd);
+
+
+
     StringProperty update_player_position_row = new SimpleStringProperty();
     StringProperty update_player_position_col = new SimpleStringProperty();
 
@@ -85,8 +131,14 @@ public class MyViewController implements IView ,Observer,Initializable {
      //the initialize can get to the fxml design in running while regular constructor not
      @Override
      public void initialize(URL url, ResourceBundle resourceBundle) {
+
          lbl_player_row.textProperty().bind(update_player_position_row);
          lbl_player_column.textProperty().bind(update_player_position_col);
+         try {
+             openVideo("Start");
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
      }
 
 
@@ -111,6 +163,10 @@ public class MyViewController implements IView ,Observer,Initializable {
 
     public void set_update_player_position_col(String update_player_position_col) {
         this.update_player_position_col.set(update_player_position_col + "");
+    }
+    public static void setPrimaryStage(Stage stage)
+    {
+        primaryStage = stage;
     }
 
 
@@ -206,10 +262,11 @@ public class MyViewController implements IView ,Observer,Initializable {
         if (viewModel.gameOver()) {
             try {
                 winMusic();
-            } catch (InterruptedException e) {
+                openVideo("End");
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-            closeGame();
+//            closeGame();
         }
 
     }
@@ -232,6 +289,110 @@ public class MyViewController implements IView ,Observer,Initializable {
     }
 
 
+
+    public void openVideo(String chooseTheVideo) throws IOException, InterruptedException {
+
+        if (chooseTheVideo.equals("Start")){
+            videoViewStart.setMediaPlayer(videoPlayerStart);
+            videoViewStart.setSmooth(true);
+            videoPlayerStart.setAutoPlay(true);
+
+            //Group root = new Group();
+            AnchorPane root = new AnchorPane();
+            root.getChildren().add(videoViewStart);
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(root, 500, 500);
+
+            videoViewStart.fitWidthProperty().bind(root.widthProperty());
+            videoViewStart.fitHeightProperty().bind(root.heightProperty());
+
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+
+            Timeline tm = new Timeline(new KeyFrame(Duration.millis(4000),new KeyValue(videoViewStart.opacityProperty(),  0.0)));
+            tm.setDelay(Duration.millis(4010));
+            tm.play();
+
+            stage.show();
+
+            //stage.close();
+
+            gameMusicPlayer.setMute(false);
+
+
+        }
+        else if(chooseTheVideo.equals("End")){
+
+            // videoPlayer.setAutoPlay(true);
+            videoPlayerEnd.play();
+            gameMusicPlayer.setMute(true);
+            videoPlayerEnd.setOnEndOfMedia(() -> videoPlayerEnd.seek(Duration.ZERO));
+            int w = videoPlayerEnd.getMedia().getWidth();
+            int h = videoPlayerEnd.getMedia().getHeight();
+
+
+
+            //Group root = new Group();
+            StackPane root = new StackPane();
+            root.getChildren().add(videoViewEnd);
+
+            videoViewEnd.fitWidthProperty().bind(root.widthProperty());
+            videoViewEnd.fitHeightProperty().bind(root.heightProperty());
+
+
+            Scene scene = new Scene(root, 1000, 700);
+            //scene.setFill(Color.BLACK);
+
+            Stage stage = new Stage();
+            stage.setTitle("You Won!!!");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.show();
+            primaryStage.hide();
+            SetEndStageCloseEvent(stage);
+
+        }
+
+
+    }
+    private void SetEndStageCloseEvent(Stage stage) {
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent windowEvent) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setContentText("You Won\n" + "what is your ");
+
+                ButtonType newGame = new ButtonType("Start New Game");
+                ButtonType closeGame = new ButtonType("Close Game");
+
+                alert.getButtonTypes().setAll(newGame, closeGame);
+
+                Optional<ButtonType> chose = alert.showAndWait();
+
+                if (chose.get() == newGame)
+                {
+                    primaryStage.show();
+                    videoPlayerEnd.pause();
+                    viewModel.setGameOver(false);
+
+                    try {
+                        startGame(new ActionEvent());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    stage.close();
+
+                }
+                else if (chose.get() == closeGame) {
+                    closeGame();
+                }
+
+            }
+        });
+    }
+
     private void closeGame() {
         viewModel.setGameOver(true);
         stopServers();
@@ -242,7 +403,7 @@ public class MyViewController implements IView ,Observer,Initializable {
 
 
     public void stopServers() {
-        System.out.println( "ViewConroller "+"stop Server");
+        System.out.println( "ViewConroller "+" stop Server");
 
         viewModel.stopServers();
     }
@@ -283,8 +444,8 @@ public class MyViewController implements IView ,Observer,Initializable {
 
 
     // the Btns functions of the start Scean
-    public void startGame(ActionEvent actionEvent) throws IOException {
-         startMusic();
+    public void startGame(ActionEvent actionEvent) throws IOException, InterruptedException {
+        startMusic();
         this.mazeGenerate();
         //this.switchToGameSceneAndPassData(actionEvent);
         mazeDisplayer.drawMaze(viewModel.getMaze());
@@ -443,13 +604,48 @@ public class MyViewController implements IView ,Observer,Initializable {
     public void mouseDrag(ActionEvent event) {
         if(dragMouse.getText().equals("Move With Mouse"))
         {
+            mouseDrag = true;
             dragMouse.setText("Stop Mouse Drag");
 
 
         }
         else {
+            mouseDrag = false;
             dragMouse.setText("Move With Mouse");
 
         }
+    }
+
+    public void onMouseDrag(MouseEvent mouseEvent) {
+        if(mouseDrag && !(viewModel.getMaze() == null)) {
+
+            int maximumSize = Math.max(viewModel.getMaze().getMap()[0].length, viewModel.getMaze().getMap().length);
+
+            double mouseX = helperMouseDragged(maximumSize,mazeDisplayer.getHeight(),
+                    viewModel.getMaze().getMap().length ,mouseEvent.getX(),mazeDisplayer.getWidth() / maximumSize);
+
+            double mouseY = helperMouseDragged(maximumSize,mazeDisplayer.getWidth(),
+                    viewModel.getMaze().getMap()[0].length,mouseEvent.getY(),mazeDisplayer.getHeight() / maximumSize);
+
+            if (mouseY < viewModel.getCharacterRow() &&  mouseX == viewModel.getCharacterCol() )
+                viewModel.moveCharacter(KeyCode.UP);
+
+            else if (mouseY == viewModel.getCharacterRow() && mouseX > viewModel.getCharacterCol() )
+                viewModel.moveCharacter(KeyCode.RIGHT);
+
+            else if ( mouseY == viewModel.getCharacterRow() && mouseX < viewModel.getCharacterCol() )
+                viewModel.moveCharacter(KeyCode.LEFT);
+
+            else if (mouseX == viewModel.getCharacterCol() && mouseY > viewModel.getCharacterRow()  )
+                viewModel.moveCharacter(KeyCode.DOWN);
+
+        }
+    }
+
+    private  double helperMouseDragged(int maxsize, double canvasSize, int mazeSize,double mouseEvent,double temp){
+        double cellSize=canvasSize/maxsize;
+        double start = (canvasSize / 2 - (cellSize * mazeSize / 2)) / cellSize;
+        double mouse = (int) ((mouseEvent) / (temp) - start);
+        return mouse;
     }
 }

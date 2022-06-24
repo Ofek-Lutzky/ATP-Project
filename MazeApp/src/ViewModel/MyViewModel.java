@@ -5,6 +5,7 @@ import Model.MovementDirection;
 import algorithms.mazeGenerators.Maze;
 import algorithms.search.Solution;
 import javafx.scene.input.KeyCode;
+import javafx.stage.Stage;
 
 import java.awt.event.KeyEvent;
 import java.util.Observable;
@@ -12,6 +13,7 @@ import java.util.Observer;
 
 public class MyViewModel extends Observable implements Observer {
     private IModel model;
+    public Stage primaryStage;
 
    // private Maze maze;
 //    private int charRow;
@@ -159,6 +161,10 @@ public class MyViewModel extends Observable implements Observer {
         return model.loadFile(name);
     }
 
+    public static void setPrimaryStage(Stage primaryStage) {
+
+        primaryStage = primaryStage;
+    }
 
 
 }

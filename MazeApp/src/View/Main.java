@@ -23,6 +23,8 @@ public class Main extends Application {
         Parent root = fxmlLoader.load();
         primaryStage.setTitle("Maze App");
         primaryStage.setScene(new Scene(root, 800, 800));
+
+        MyViewController.setPrimaryStage(primaryStage);
         primaryStage.show();
 
         IModel model = new MyModel();

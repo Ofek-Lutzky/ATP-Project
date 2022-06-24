@@ -72,7 +72,7 @@
        <ScrollPane fx:id="scrollPane" BorderPane.alignment="CENTER">
       <AnchorPane fx:id="boardPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onScroll="#zoomWithScroller" prefHeight="524.0" prefWidth="700.0">
           <children>
-              <MazeDisplayer fx:id="mazeDisplayer" height="550.0" imageFileNameEnd="./src/resources/Images/endPoint.png" imageFileNamePlayer="./src/Resources/Images/ash.png" imageFileNameSol="./src/resources/Images/pocadur.png" imageFileNameStart="./src/resources/Images/startPoint.png" imageFileNameWall="./src/Resources/Images/tree.png" onKeyPressed="#keyPressed" width="700.0" />
+              <MazeDisplayer fx:id="mazeDisplayer" height="550.0" onMouseDragged="#onMouseDrag" imageFileNameEnd="./src/resources/Images/endPoint.png" imageFileNamePlayer="./src/Resources/Images/ash.png" imageFileNameSol="./src/resources/Images/pocadur.png" imageFileNameStart="./src/resources/Images/startPoint.png" imageFileNameWall="./src/Resources/Images/tree.png" onKeyPressed="#keyPressed" width="700.0" />
           </children>
           <padding>
               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
