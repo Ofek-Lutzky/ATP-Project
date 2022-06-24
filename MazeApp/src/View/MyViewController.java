@@ -18,6 +18,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
@@ -30,7 +32,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
@@ -50,7 +51,8 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
     boolean solutionShow = false;
     boolean mouseDrag = false;
 
-    public static Stage primaryStage;
+    private boolean firstTimeBoot = true;
+    public static Stage primaryStage;//todo maybe change to private and make an object in the main class
 
 
     //private Maze maze;
@@ -85,15 +87,8 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
     MediaPlayer gameMusicPlayer = new MediaPlayer(new Media(gameMusic));
     String winMusic = new File("./src/resources/Music/WinMusic.mp3").toURI().toString();
     MediaPlayer endMusicPlayer = new MediaPlayer(new Media(winMusic));
-
-//    String video = new File("./src/resources/Videos/videoplayback.mp4").toURI().toString();
-//    MediaPlayer videoPlayer = new MediaPlayer(new Media(video));
-//    MediaView videoView = new MediaView(videoPlayer);
-
-
     File videoFileStart = new File("./src/resources/Videos/videoplayback.mp4");
     Media mediaStart;
-
     {
         try {
             mediaStart = new Media(videoFileStart.toURI().toURL().toString());
@@ -101,10 +96,8 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
             e.printStackTrace();
         }
     }
-
     MediaPlayer videoPlayerStart = new MediaPlayer(mediaStart);
     MediaView videoViewStart = new MediaView(videoPlayerStart);
-
 
     File videoFileEnd = new File("./src/resources/Videos/rickRoll.mp4");
     Media mediaEnd;
@@ -118,7 +111,6 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
     }
 
     MediaPlayer videoPlayerEnd = new MediaPlayer(mediaEnd);
-
     MediaView videoViewEnd = new MediaView(videoPlayerEnd);
 
 
@@ -131,14 +123,9 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
      //the initialize can get to the fxml design in running while regular constructor not
      @Override
      public void initialize(URL url, ResourceBundle resourceBundle) {
-
          lbl_player_row.textProperty().bind(update_player_position_row);
          lbl_player_column.textProperty().bind(update_player_position_col);
-         try {
-             openVideo("Start");
-         } catch (Exception e) {
-             e.printStackTrace();
-         }
+
      }
 
 
@@ -252,21 +239,28 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
         String action = (String) arg;
 
         switch (action){
-            case "mazeGenerated" -> mazeGenerated();
-            case "playerMoved" -> playerMoved();
-            case "mazeSolved" -> mazeSolved();
-            case "mazeLoaded" -> LoadedMaze();
-            case "removeSolution" -> removeSolution();
-            default -> System.out.println("Not implemented change: " + action);
+            case "mazeGenerated":
+                mazeGenerated();
+            case "playerMoved":
+                playerMoved();
+            case "mazeSolved":
+                mazeSolved();
+            case "mazeLoaded":
+                LoadedMaze();
+            case "removeSolution":
+                removeSolution();
+            default:
+                System.out.println("Not implemented change: " + action);
         }
         if (viewModel.gameOver()) {
             try {
                 winMusic();
-                openVideo("End");
+                openVideoBothStartAndEnd("End");
             } catch (Exception e) {
                 e.printStackTrace();
+                closeGame();
+
             }
-//            closeGame();
         }
 
     }
@@ -290,7 +284,7 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
 
 
 
-    public void openVideo(String chooseTheVideo) throws IOException, InterruptedException {
+    public void openVideoBothStartAndEnd(String chooseTheVideo) throws IOException, InterruptedException {
 
         if (chooseTheVideo.equals("Start")){
             videoViewStart.setMediaPlayer(videoPlayerStart);
@@ -302,7 +296,7 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
             root.getChildren().add(videoViewStart);
 
             Stage stage = new Stage();
-            Scene scene = new Scene(root, 500, 500);
+            Scene scene = new Scene(root, 800, 800);
 
             videoViewStart.fitWidthProperty().bind(root.widthProperty());
             videoViewStart.fitHeightProperty().bind(root.heightProperty());
@@ -329,43 +323,35 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
             videoPlayerEnd.play();
             gameMusicPlayer.setMute(true);
             videoPlayerEnd.setOnEndOfMedia(() -> videoPlayerEnd.seek(Duration.ZERO));
-            int w = videoPlayerEnd.getMedia().getWidth();
-            int h = videoPlayerEnd.getMedia().getHeight();
 
-
-
-            //Group root = new Group();
             StackPane root = new StackPane();
             root.getChildren().add(videoViewEnd);
 
             videoViewEnd.fitWidthProperty().bind(root.widthProperty());
             videoViewEnd.fitHeightProperty().bind(root.heightProperty());
 
-
-            Scene scene = new Scene(root, 1000, 700);
-            //scene.setFill(Color.BLACK);
+            Scene scene = new Scene(root, 500, 500);
 
             Stage stage = new Stage();
-            stage.setTitle("You Won!!!");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(scene);
             stage.setMaximized(true);
+            stage.setTitle("You Are the Winner");
             stage.show();
             primaryStage.hide();
             SetEndStageCloseEvent(stage);
 
         }
-
-
     }
+
     private void SetEndStageCloseEvent(Stage stage) {
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent windowEvent) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setContentText("You Won\n" + "what is your ");
+                alert.setContentText("You Won\n" + "what is your choice");
 
                 ButtonType newGame = new ButtonType("Start New Game");
-                ButtonType closeGame = new ButtonType("Close Game");
+                ButtonType closeGame = new ButtonType("Exit Game");
 
                 alert.getButtonTypes().setAll(newGame, closeGame);
 
@@ -445,6 +431,10 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
 
     // the Btns functions of the start Scean
     public void startGame(ActionEvent actionEvent) throws IOException, InterruptedException {
+        if (firstTimeBoot) {
+            openVideoBothStartAndEnd("Start");
+            firstTimeBoot = false;
+        }
         startMusic();
         this.mazeGenerate();
         //this.switchToGameSceneAndPassData(actionEvent);
@@ -647,5 +637,14 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
         double start = (canvasSize / 2 - (cellSize * mazeSize / 2)) / cellSize;
         double mouse = (int) ((mouseEvent) / (temp) - start);
         return mouse;
+    }
+
+    public void newMaze(ActionEvent event) throws IOException, InterruptedException {
+        if (firstTimeBoot) {
+            openVideoBothStartAndEnd("Start");
+            firstTimeBoot = false;
+        }
+        viewModel.generateMaze(20,20);
+        mazeDisplayer.drawMaze(viewModel.getMaze());
     }
 }
