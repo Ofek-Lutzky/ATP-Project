@@ -239,18 +239,24 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
         String action = (String) arg;
 
         switch (action){
-            case "mazeGenerated" ->
+            case "mazeGenerated":
                     mazeGenerated();
-            case "playerMoved" ->
+                    break;
+            case "playerMoved":
                     playerMoved();
-            case "mazeSolved" ->
+                    break;
+            case "mazeSolved":
                     mazeSolved();
-            case "mazeLoaded" ->
+                    break;
+            case "mazeLoaded":
                     LoadedMaze();
-            case "removeSolution" ->
+                    break;
+            case "removeSolution":
                     removeSolution();
-            default ->
+                    break;
+            default:
                     System.out.println("There is no such thing pls change action");
+                    break;
         }
         if (viewModel.gameOver()) {
             try {
@@ -372,7 +378,9 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
 
                 }
                 else if (chose.get() == closeGame) {
-                    closeGame();
+                    viewModel.setGameOver(true);
+                    stopServers();
+                    System.exit(0);
                 }
 
             }

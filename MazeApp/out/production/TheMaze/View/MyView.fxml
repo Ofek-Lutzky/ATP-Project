@@ -50,11 +50,6 @@
                   <MenuItem mnemonicParsing="false" onAction="#loadMaze" text="Load Maze" />
               </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
           <Menu fx:id="helpBtn" mnemonicParsing="false" onAction="#showInstrucion" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" text="Help" />
