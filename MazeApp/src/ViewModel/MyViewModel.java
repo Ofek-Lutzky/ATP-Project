@@ -1,13 +1,12 @@
 package ViewModel;
 
 import Model.IModel;
-import Model.MovementDirection;
+import Model.CharacterMovementDirection;
 import algorithms.mazeGenerators.Maze;
 import algorithms.search.Solution;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
-import java.awt.event.KeyEvent;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -63,7 +62,7 @@ public class MyViewModel extends Observable implements Observer {
      */
     public void moveCharacter(KeyCode keyCode)
     {
-        MovementDirection direction;
+        CharacterMovementDirection direction;
 
         /////////////
         /*
@@ -81,42 +80,50 @@ public class MyViewModel extends Observable implements Observer {
         switch(keyCode)
         {
 //            case 8:
+            case NUMPAD8:
             case UP:
             case DIGIT8:
-                direction = MovementDirection.UP;
+                direction = CharacterMovementDirection.UP;
                 break;
 //            case 2:
+            case NUMPAD2:
             case DOWN:
             case DIGIT2:
-                direction = MovementDirection.DOWN;
+                direction = CharacterMovementDirection.DOWN;
                 break;
 //            case 6:
+            case NUMPAD6:
             case RIGHT:
             case DIGIT6:
-                direction = MovementDirection.RIGHT;
+                direction = CharacterMovementDirection.RIGHT;
                 break;
 //            case 4:
+            case NUMPAD4:
             case LEFT:
             case DIGIT4:
-                direction = MovementDirection.LEFT;
+                direction = CharacterMovementDirection.LEFT;
                 break;
 
             //Slants
 //            case 9:
+            case NUMPAD9:
             case DIGIT9:
-                direction = MovementDirection.UR;
+                direction = CharacterMovementDirection.UR;
                 break;
 //            case 7:
+            case NUMPAD7:
             case DIGIT7:
-                direction = MovementDirection.UL;
+                direction = CharacterMovementDirection.UL;
                 break;
 //            case 3:
+            case NUMPAD3:
             case DIGIT3:
-                direction = MovementDirection.DR;
+                direction = CharacterMovementDirection.DR;
                 break;
+            case NUMPAD1:
             case DIGIT1:
            // case 1:
-                direction = MovementDirection.DL;
+                direction = CharacterMovementDirection.DL;
                 break;
             default:
                 // no move

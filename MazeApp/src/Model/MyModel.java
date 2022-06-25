@@ -5,7 +5,6 @@ import IO.MyCompressorOutputStream;
 import IO.MyDecompressorInputStream;
 import Server.*;
 import algorithms.mazeGenerators.Maze;
-import algorithms.mazeGenerators.MyMazeGenerator;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.*;
 
@@ -15,7 +14,6 @@ import java.net.UnknownHostException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
@@ -49,7 +47,7 @@ public class MyModel extends Observable implements IModel{
     }
 
     @Override
-    public void updateCharacterLocation(MovementDirection direction) {
+    public void updateCharacterLocation(CharacterMovementDirection direction) {
         /*
             direction = 8 -> Up
             direction = 2 -> Down

@@ -7,7 +7,7 @@ import java.util.Observer;
 public interface IModel {
     void generateMaze(int rows, int cols);
     Maze getMaze();
-    void updateCharacterLocation(MovementDirection direction);
+    void updateCharacterLocation(CharacterMovementDirection direction);
     int getCharacterRow();
     int getCharacterCol();
     void assignObserver(Observer o);

@@ -21,30 +21,24 @@ public class HelpController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//            DropShadow ds = new DropShadow();
-//            ds.setOffsetY((int) 3.0f);
-//            //ds.setColor(Color.color());
+            Text text  = new Text("You got stuck in the maze !\n" +
+                    "Now! Your Mission is - to get out\n" +
+                    "You must win the POKEMON COMPETITION and get\n"+ "to the Dragon Cup\n\n"+
+                    "you can walk with arrows or with the num pad also in a Slants\n"+ "Good Luck!");
 
-            Text text  = new Text("You got stuck in the maze!\n" +
-                    "and you need to get out\n" +
-                    "You must win the POKEMON COMPETITION and get to the Dragon Cup");
+//        text.setFill(Color.RED);
+//
+//        text.setFont(Font.font("BN Matan", FontPosture.ITALIC, 20));
+        Font font = Font.font("BN Matan", FontWeight.BOLD, FontPosture.REGULAR, 32);
+        text.setFont(font);
+        //Setting the color of the text
+        text.setFill(Color.BROWN);
+        //Setting the width
+        text.setStrokeWidth(2);
+        //Setting the stroke color
+        text.setStroke(Color.BLUE);
 
-//        text.setY(100);
-//        text.setX(20);
-        text.setFill(Color.RED);
-
-        text.setFont(Font.font("Lucida Sans Unicode", FontPosture.ITALIC, 20));
-
-//            t.setEffect(ds);
-//            t.setCache(true);
-//            t.setX(10.0f);
-//            t.setY(270.0f);
-//            //t.setEffect();
-//            t.setFill(Color.RED);
-//            t.setFont(Font.font(null, FontWeight.BOLD, 32));
-
-//            t.setFont(Font.loadFont("file:resources/fonts/isadoracyr.ttf", 120));
-            helpText.getChildren().add(text);
+        helpText.getChildren().add(text);
 
     }
 }

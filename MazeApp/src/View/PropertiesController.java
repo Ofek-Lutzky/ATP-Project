@@ -16,7 +16,6 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class PropertiesController implements Initializable {
-    MyViewModel viewModel;
 
     @FXML
     private ChoiceBox<String> searchAlgorithm;
@@ -32,17 +31,14 @@ public class PropertiesController implements Initializable {
     @FXML
     void saveProperties(javafx.event.ActionEvent event) {
 
-        Configurations.getInstance().setGeneratingAlgo(generateAlgorithm.getValue());
         Configurations.getInstance().setSearchingAlgo(searchAlgorithm.getValue());
         Configurations.getInstance().setThreadPoolSize(poolSizeTxt.getText());
+        Configurations.getInstance().setGeneratingAlgo(generateAlgorithm.getValue());
+
         closeStage(event);
     }
     //
-    private void closeStage(javafx.event.ActionEvent event) {
-        Node source = (Node) event.getSource();
-        var stage = (Stage) source.getScene().getWindow();
-        stage.close();
-    }
+
 
 
     @Override
@@ -58,19 +54,36 @@ public class PropertiesController implements Initializable {
             properties.load(new FileInputStream("./resources/config.properties"));
 
             String a1= properties.getProperty("searchingAlgorithm");
+
             String a2= properties.getProperty("generator");
-            if(a1.equals("BestFirstSearch")){
-                searchAlgorithm.setValue("BestFirstSearch");}
-            else if(a1.equals("DepthFirstSearch")){
-                searchAlgorithm.setValue("DepthFirstSearch");}
-            else if(a1.equals("BreadthFirstSearch")){
-                searchAlgorithm.setValue("BreadthFirstSearch");}
+
+            if(a1.equals("BEST")){
+                searchAlgorithm.setValue("BEST");}
+
+            else if(a1.equals("BREADTH")){
+                searchAlgorithm.setValue("BREADTH");}
+
+            else if(a1.equals("DFS")){
+                searchAlgorithm.setValue("DFS");}
+            else{
+
+            }
+
+
+
             if(a2.equals("MyMazeGenerator")){
                 generateAlgorithm.setValue("MyMazeGenerator");}
-            else if(a2.equals("SimpleMazeGenerator")){
-                generateAlgorithm.setValue("SimpleMazeGenerator");}
+
             else if(a2.equals("EmptyMazeGenerator")){
                 generateAlgorithm.setValue("EmptyMazeGenerator");}
+
+            else if(a2.equals("SimpleMazeGenerator")){
+                generateAlgorithm.setValue("SimpleMazeGenerator");}
+            else{
+
+            }
+
+
 
 
         }
@@ -78,13 +91,10 @@ public class PropertiesController implements Initializable {
 
     }
 
-
-
-//    public Stage getStage() {
-//        return stage;
-//    }
-//    public void setStage(Stage stage) {
-//        this.stage = stage;
-//    }
+    private void closeStage(javafx.event.ActionEvent event) {
+        Node source = (Node) event.getSource();
+        var stage = (Stage) source.getScene().getWindow();
+        stage.close();
+    }
 
 }

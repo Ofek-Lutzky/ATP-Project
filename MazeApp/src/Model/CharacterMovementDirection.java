@@ -1,0 +1,9 @@
+package Model;
+
+public enum CharacterMovementDirection {
+   UP, DOWN, LEFT, RIGHT, UR,UL,DR,DL,DIGIT8,DIGIT2,DIGIT6,DIGIT4,DIGIT9,DIGIT3,DIGIT1,DIGIT7,
+   NUMPAD8,NUMPAD2,NUMPAD6,NUMPAD4,NUMPAD9,NUMPAD3,NUMPAD1,NUMPAD7
+   //slant like ->  up Right
+   //D8,D2,D6,D4,D1,D3,D7,D9
+
+}

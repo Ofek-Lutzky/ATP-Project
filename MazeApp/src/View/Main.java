@@ -25,18 +25,24 @@ public class Main extends Application {
         //primaryStage.getIcons().add(new Image("/Images/icon.png"));
         FXMLLoader startFXML = new FXMLLoader(getClass().getResource("StartScreen.fxml"));
         FXMLLoader viewFXML = new FXMLLoader(getClass().getResource("MyView.fxml"));
+
         Parent root = startFXML.load();
         Parent game = viewFXML.load();
+
         MyViewController viewController = viewFXML.getController();
         startController startController = startFXML.getController();
+
         startScene = new Scene(root,420,400);
         gameScene = new Scene(game,700,700);
+
         startController.setStage(primaryStage);
         startController.setScene(gameScene);
+
         IModel model = new MyModel();
         MyViewModel myViewModel = new MyViewModel(model);
         viewController.setViewModel(myViewModel);
         closeGame(viewController,primaryStage);
+
         viewController.setPrimaryStage(primaryStage);
         primaryStage.setScene(startScene);
         primaryStage.show();
