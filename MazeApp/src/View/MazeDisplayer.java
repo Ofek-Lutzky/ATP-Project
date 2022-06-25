@@ -7,7 +7,7 @@ import algorithms.search.Solution;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.canvas.GraphicsContext;
-import java.awt.*;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -24,10 +24,23 @@ public class MazeDisplayer extends Canvas {
     private Maze maze;
     private int characterRow;
     private int characterCol;
+    private static String characterDirection;
+    private static int firstDraw = 0;
 
 
     private boolean solutionShow = false;
     private Solution sol;
+
+    StringProperty imageFileNameWall = new SimpleStringProperty();
+    StringProperty imageFileNameStart = new SimpleStringProperty();
+    StringProperty imageFileNameEnd = new SimpleStringProperty();
+    StringProperty imageFileNameSol = new SimpleStringProperty();
+    // all the sides of the character
+    StringProperty imageFileNameAshUp = new SimpleStringProperty();
+    StringProperty imageFileNameAshDown = new SimpleStringProperty();
+    StringProperty imageFileNameAshLeft = new SimpleStringProperty();
+    StringProperty imageFileNameAshRight = new SimpleStringProperty();
+
 
     public MazeDisplayer() { }
 
@@ -40,12 +53,6 @@ public class MazeDisplayer extends Canvas {
     }
 
 
-    StringProperty imageFileNameWall = new SimpleStringProperty();
-    StringProperty imageFileNamePlayer = new SimpleStringProperty();
-    StringProperty imageFileNameStart = new SimpleStringProperty();
-    StringProperty imageFileNameEnd = new SimpleStringProperty();
-    StringProperty imageFileNameSol = new SimpleStringProperty();
-
 
     public String getImageFileNameWall() {
         return imageFileNameWall.get();
@@ -53,14 +60,6 @@ public class MazeDisplayer extends Canvas {
 
     public void setImageFileNameWall(String imageFileNameWall) {
         this.imageFileNameWall.set(imageFileNameWall);
-    }
-
-    public String getImageFileNamePlayer() {
-        return imageFileNamePlayer.get();
-    }
-
-    public void setImageFileNamePlayer(String imageFileNamePlayer) {
-        this.imageFileNamePlayer.set(imageFileNamePlayer);
     }
 
     public String getImageFileNameEnd() {
@@ -87,6 +86,54 @@ public class MazeDisplayer extends Canvas {
         this.imageFileNameSol.set(imageFileNameSol);
     }
 
+    public String getImageFileNameAshUp() {
+        return imageFileNameAshUp.get();
+    }
+
+    public StringProperty imageFileNameAshUpProperty() {
+        return imageFileNameAshUp;
+    }
+
+    public void setImageFileNameAshUp(String imageFileNameAshUp) {
+        this.imageFileNameAshUp.set(imageFileNameAshUp);
+    }
+
+    public String getImageFileNameAshDown() {
+        return imageFileNameAshDown.get();
+    }
+
+    public StringProperty imageFileNameAshDownProperty() {
+        return imageFileNameAshDown;
+    }
+
+    public void setImageFileNameAshDown(String imageFileNameAshDown) {
+        this.imageFileNameAshDown.set(imageFileNameAshDown);
+    }
+
+    public String getImageFileNameAshLeft() {
+        return imageFileNameAshLeft.get();
+    }
+
+    public StringProperty imageFileNameAshLeftProperty() {
+        return imageFileNameAshLeft;
+    }
+
+    public void setImageFileNameAshLeft(String imageFileNameAshLeft) {
+        this.imageFileNameAshLeft.set(imageFileNameAshLeft);
+    }
+
+    public String getImageFileNameAshRight() {
+        return imageFileNameAshRight.get();
+    }
+
+    public StringProperty imageFileNameAshRightProperty() {
+        return imageFileNameAshRight;
+    }
+
+    public void setImageFileNameAshRight(String imageFileNameAshRight) {
+        this.imageFileNameAshRight.set(imageFileNameAshRight);
+    }
+
 
 
 
@@ -98,6 +145,10 @@ public class MazeDisplayer extends Canvas {
 
     public void draw()
     {
+        if(firstDraw == 0){
+            characterDirection = getImageFileNameAshLeft();
+            firstDraw++;
+        }
         if( maze!=null)
         {
             double canvasHeight = getHeight();
@@ -113,7 +164,7 @@ public class MazeDisplayer extends Canvas {
             //Draw Walls
             drawWalls(row,col,cellHeight,cellWidth,graphicsContext);
             //Draw Character
-            drawCharacter(cellHeight,cellWidth,graphicsContext);
+            drawCharacter(cellHeight,cellWidth,graphicsContext , characterDirection);
             //DrawStart
 //            drawStart(maze,cellHeight,cellWidth,graphicsContext);
             //DrawFinish
@@ -126,6 +177,19 @@ public class MazeDisplayer extends Canvas {
     }
 
     public void setPlayerPosition(int row, int col) {
+        if(characterRow < row && characterCol == col){
+            characterDirection = getImageFileNameAshDown();
+        }
+        if(characterRow > row && characterCol == col){
+            characterDirection = getImageFileNameAshUp();
+        }
+        if(characterCol < col && characterRow == row){
+            characterDirection = getImageFileNameAshRight();
+        }
+        if(characterCol > col && characterRow == row){
+            characterDirection = getImageFileNameAshLeft();
+        }
+
         this.characterRow = row;
         this.characterCol = col;
         draw();
@@ -170,13 +234,13 @@ public class MazeDisplayer extends Canvas {
     }
 
 
-    private void drawCharacter(double cellHeight, double cellWidth, GraphicsContext graphicsContext){
+    private void drawCharacter(double cellHeight, double cellWidth, GraphicsContext graphicsContext, String image){
         System.out.println(getCharacterRow() + " " + getCharacterCol());
         double h_player = getCharacterRow() * cellHeight;
         double w_player = getCharacterCol() * cellWidth;
         Image playerImage = null;
         try {
-            playerImage = new Image(new FileInputStream(getImageFileNamePlayer()));
+            playerImage = new Image(new FileInputStream(image));
         } catch (FileNotFoundException e) {
             System.out.println("There is no Image player....");
         }

@@ -239,18 +239,18 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
         String action = (String) arg;
 
         switch (action){
-            case "mazeGenerated":
-                mazeGenerated();
-            case "playerMoved":
-                playerMoved();
-            case "mazeSolved":
-                mazeSolved();
-            case "mazeLoaded":
-                LoadedMaze();
-            case "removeSolution":
-                removeSolution();
-            default:
-                System.out.println("Not implemented change: " + action);
+            case "mazeGenerated" ->
+                    mazeGenerated();
+            case "playerMoved" ->
+                    playerMoved();
+            case "mazeSolved" ->
+                    mazeSolved();
+            case "mazeLoaded" ->
+                    LoadedMaze();
+            case "removeSolution" ->
+                    removeSolution();
+            default ->
+                    System.out.println("There is no such thing pls change action");
         }
         if (viewModel.gameOver()) {
             try {
@@ -380,11 +380,29 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
     }
 
     private void closeGame() {
-        viewModel.setGameOver(true);
-        stopServers();
-        System.exit(0); // todo ask the client if he relly want to finish
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText("Are You Sure?");
+        ButtonType continueGame = new ButtonType("Continue playing");
+        ButtonType closeGame = new ButtonType("Exit Game");
+        alert.getButtonTypes().setAll(continueGame, closeGame);
+        Optional<ButtonType> chosed = alert.showAndWait();
 
+        if(chosed.get() == closeGame){
+            viewModel.setGameOver(true);
+            stopServers();
+            System.exit(0);
+            alert.close();
 
+        }
+        else{
+            alert.close();
+            Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("You have made a good choice\n"+
+                    "I Know were do you live!");
+            alert.getButtonTypes().setAll(continueGame, closeGame);
+
+            //alert2.close();
+        }
     }
 
 
