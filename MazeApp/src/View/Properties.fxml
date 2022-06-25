@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="View.PropertiesController"
+            prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <VBox alignment="CENTER" layoutX="131.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Properties:" />
+                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Generating Algorithm:" />
+                        <ChoiceBox fx:id="generateAlgorithm">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="MyMazeGenerator" />
+                                    <String fx:value="EmptyMazeGenerator" />
+                                    <String fx:value="SimpleMazeGenerator" />
+                                </FXCollections>
+                            </items>
+                        </ChoiceBox>
+                    </children>
+                    <padding>
+                        <Insets right="30.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Searching Algorithm:" />
+                        <ChoiceBox fx:id="searchAlgorithm">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="BestSearchAlgorithm" />
+                                    <String fx:value="BreadthSearchAlgorithm" />
+                                    <String fx:value="DepthSearchAlgorithm" />
+                                </FXCollections>
+                            </items>
+                        </ChoiceBox>
+                    </children>
+                    <padding>
+                        <Insets right="30.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_RIGHT">
+                    <children>
+                        <Label text="thread pool size:" />
+                        <TextField fx:id="poolSizeTxt"/>
+                    </children>
+                    <padding>
+                        <Insets right="30.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER_RIGHT">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#saveProperties" text="Save" />
+                    </children>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <padding>
+                        <Insets right="30.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+
+</AnchorPane>

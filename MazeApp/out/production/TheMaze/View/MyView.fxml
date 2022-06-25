@@ -50,6 +50,11 @@
                   <MenuItem mnemonicParsing="false" onAction="#loadMaze" text="Load Maze" />
               </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Options">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#openProperties" text="Properties" />
+                </items>
+            </Menu>
           <Menu fx:id="helpBtn" mnemonicParsing="false" onAction="#showInstrucion" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" text="Help" />
@@ -68,6 +73,7 @@
       <AnchorPane fx:id="boardPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onScroll="#zoomWithScroller" prefHeight="556.0" prefWidth="700.0">
           <children>
               <MazeDisplayer fx:id="mazeDisplayer" height="556.0"
+                             imageFileNameFloor = "./src/resources/Images/grass.png"
                              imageFileNameAshUp= "./src/resources/Images/AshU.png" imageFileNameAshDown="./src/resources/Images/AshD.png" imageFileNameAshLeft="./src/resources/Images/AshL.png" imageFileNameAshRight="./src/resources/Images/AshR.png"
                              imageFileNameEnd="./src/resources/Images/endPoint.png"  imageFileNameSol="./src/resources/Images/pocadur.png" imageFileNameStart="./src/resources/Images/startPoint.png" imageFileNameWall="./src/Resources/Images/tree.png" onKeyPressed="#keyPressed" onMouseDragged="#onMouseDrag" width="700.0"/>
           </children>

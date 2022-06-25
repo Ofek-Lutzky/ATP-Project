@@ -32,6 +32,7 @@ public class MazeDisplayer extends Canvas {
     private Solution sol;
 
     StringProperty imageFileNameWall = new SimpleStringProperty();
+    StringProperty imageFileNameFloor = new SimpleStringProperty();
     StringProperty imageFileNameStart = new SimpleStringProperty();
     StringProperty imageFileNameEnd = new SimpleStringProperty();
     StringProperty imageFileNameSol = new SimpleStringProperty();
@@ -135,6 +136,20 @@ public class MazeDisplayer extends Canvas {
     }
 
 
+    public String getImageFileNameFloor() {
+        return imageFileNameFloor.get();
+    }
+
+    public StringProperty imageFileNameFloorProperty() {
+        return imageFileNameFloor;
+    }
+
+    public void setImageFileNameFloor(String imageFileNameFloor) {
+        this.imageFileNameFloor.set(imageFileNameFloor);
+    }
+
+
+
 
 
     public void drawMaze(Maze maze)
@@ -209,8 +224,10 @@ public class MazeDisplayer extends Canvas {
     private void drawWalls(int row,int col, double cellHeight, double cellWidth, GraphicsContext graphicsContext){
         double w,h;
         Image wallImage = null;
+        Image floorImage = null;
         try {
             wallImage = new Image(new FileInputStream(getImageFileNameWall()));
+            floorImage = new Image(new FileInputStream(getImageFileNameFloor()));
         } catch (FileNotFoundException e) {
             System.out.println("There is no file....");
         }
@@ -225,9 +242,19 @@ public class MazeDisplayer extends Canvas {
                     if (wallImage == null){
                         graphicsContext.fillRect(w,h,cellWidth,cellHeight);
                     }else{
+                        graphicsContext.drawImage(floorImage,w,h,cellWidth,cellHeight);
                         graphicsContext.drawImage(wallImage,w,h,cellWidth,cellHeight);
                     }
                 }
+                else{
+
+                    h = i * cellHeight;
+                    w = j * cellWidth;
+                    if (wallImage == null){
+                        graphicsContext.fillRect(w,h,cellWidth,cellHeight);
+                    }else{
+                        graphicsContext.drawImage(floorImage,w,h,cellWidth,cellHeight);
+                    }                }
 
             }
         }

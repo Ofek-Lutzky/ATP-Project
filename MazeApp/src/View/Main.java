@@ -15,26 +15,31 @@ import javafx.stage.WindowEvent;
 import java.util.Optional;
 
 public class Main extends Application {
-
+    public Scene startScene;
+    public Scene gameScene;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/MyView.fxml"));
-        Parent root = fxmlLoader.load();
-        primaryStage.setTitle("Maze App");
-        primaryStage.setScene(new Scene(root, 800, 800));
-        MyViewController.setPrimaryStage(primaryStage);
 
-        MyViewController viewController = fxmlLoader.getController();
-
-        primaryStage.show();
-
+        primaryStage.setTitle("Pokemon Go");
+        //primaryStage.getIcons().add(new Image("/Images/icon.png"));
+        FXMLLoader startFXML = new FXMLLoader(getClass().getResource("StartScreen.fxml"));
+        FXMLLoader viewFXML = new FXMLLoader(getClass().getResource("MyView.fxml"));
+        Parent root = startFXML.load();
+        Parent game = viewFXML.load();
+        MyViewController viewController = viewFXML.getController();
+        startController startController = startFXML.getController();
+        startScene = new Scene(root,420,400);
+        gameScene = new Scene(game,700,700);
+        startController.setStage(primaryStage);
+        startController.setScene(gameScene);
         IModel model = new MyModel();
         MyViewModel myViewModel = new MyViewModel(model);
-        MyViewController view = fxmlLoader.getController();
-        view.setViewModel(myViewModel);
-
+        viewController.setViewModel(myViewModel);
         closeGame(viewController,primaryStage);
+        viewController.setPrimaryStage(primaryStage);
+        primaryStage.setScene(startScene);
+        primaryStage.show();
 
     }
 

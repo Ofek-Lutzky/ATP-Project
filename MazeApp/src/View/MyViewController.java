@@ -52,10 +52,8 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
     boolean mouseDrag = false;
 
     private boolean firstTimeBoot = true;
-    public static Stage primaryStage;//todo maybe change to private and make an object in the main class
+    public static Stage primaryStage;
 
-
-    //private Maze maze;
 
     @FXML
     public javafx.scene.control.TextField rowText;
@@ -672,5 +670,16 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
         }
         viewModel.generateMaze(20,20);
         mazeDisplayer.drawMaze(viewModel.getMaze());
+    }
+
+    public void openProperties(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Properties.fxml"));
+        Parent parent = fxmlLoader.load();
+        Scene scene = new Scene(parent, 300, 200);
+        Stage stage = new Stage();
+        stage.setTitle("Manage properties");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 }
