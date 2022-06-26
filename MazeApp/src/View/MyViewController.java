@@ -157,7 +157,7 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
 
 
     @Override
-    public void mazeGenerate() { // todo input check
+    public void mazeGenerate() {
         try {
             int rows = Integer.valueOf(rowText.getText());
             int cols = Integer.valueOf(colText.getText());

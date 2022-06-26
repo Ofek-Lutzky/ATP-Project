@@ -34,7 +34,7 @@ public class MyModel extends Observable implements IModel{
     public MyModel() {
        // maze = null;
         //rowChar =0;
-        //colChar =0; todo think about it
+        //colChar =0;
         serverMazeGenerator = new Server(5400,1000, new ServerStrategyGenerateMaze());
         serverMazeGenerator.start();
         serverSolveMaze = new Server(5401,1000, new ServerStrategySolveSearchProblem());
@@ -63,7 +63,7 @@ public class MyModel extends Observable implements IModel{
 
         switch(direction)
         {
-            case UP: // todo maybe need מקרי קצה לא חושב שצריך את המינוס אחד במקרה הקיצוני של כולם
+            case UP:
                 if (characterRow > 0 && checkIfNotWall(characterRow - 1, characterCol))
                     moveCharacter(characterRow - 1, characterCol);
                 break;
@@ -214,7 +214,7 @@ public class MyModel extends Observable implements IModel{
     }
 
     @Override
-    public boolean saveFile() // todo change it to be like getting name dialog like the loading
+    public boolean saveFile()
     {
         if(maze != null) {
 
