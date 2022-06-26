@@ -3,14 +3,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="418.0" stylesheets="@MainStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.startController">
+<AnchorPane prefHeight="400.0" prefWidth="418.0" stylesheets="@MainStyle.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.startController">
    <children>
       <ImageView fx:id="backroundFirstScene" fitHeight="400.0" fitWidth="500.0" layoutX="3.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/Images/backroundStartScene.png" />
          </image></ImageView>
 
-      <Button fx:id="startBtnFirstScene" layoutX="145.0" layoutY="298.0" mnemonicParsing="false" onAction="#ToGame" prefHeight="78.0" prefWidth="136.0" text="Catch Them All" />
+      <Button fx:id="startBtnFirstScene" layoutX="145.0" layoutY="298.0" mnemonicParsing="false" onAction="#ToGame" prefHeight="78.0" prefWidth="136.0" text="Catch Them All" textFill="#ffe405">
+         <font>
+            <Font name="BN Barak" size="1.0" />
+         </font></Button>
    </children>
 </AnchorPane>
