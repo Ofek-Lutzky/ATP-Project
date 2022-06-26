@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.HelpController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffcc99; -fx-border-color: #ff6666; -fx-border-radius: 50; -fx-border-width: 10;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.HelpController">
    <children>
       <AnchorPane layoutX="109.0" layoutY="85.0" prefHeight="230.0" prefWidth="382.0">
          <TextFlow fx:id="helpText" textAlignment="CENTER" />

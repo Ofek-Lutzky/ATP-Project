@@ -26,7 +26,8 @@ public class Maze implements Serializable {
     private int indexInArrayBytes=0;
 
     public Maze(Position startPosition, Position goalPosition, int[][] board) {
-        this.startPosition = startPosition;
+        //this.startPosition = startPosition;
+        this.setStartPosition(startPosition);
         this.goalPosition = goalPosition;
         this.board = board;
     }

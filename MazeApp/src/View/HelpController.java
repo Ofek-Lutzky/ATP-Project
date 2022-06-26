@@ -24,7 +24,18 @@ public class HelpController implements Initializable {
             Text text  = new Text("You got stuck in the maze !\n" +
                     "Now! Your Mission is - to get out\n" +
                     "You must win the POKEMON COMPETITION and get\n"+ "to the Dragon Cup\n\n"+
-                    "you can walk with arrows or with the num pad also in a Slants\n"+ "Good Luck!");
+                    "you can walk with arrows or with the num pad also in a Slants\n"+
+                    "direction = 8 -> Up\n" +
+                    "direction = 2 -> Down\n" +
+                    "direction = 4 -> Left\n" +
+                    "direction = 6 -> Right\n\n" +
+                    "Slants:\n" +
+                    "direction = 9 -> Up Right -> UR\n" +
+                    "direction = 7 -> Up Left -> UL\n" +
+                    "direction = 3 -> Down Right -> DR\n" +
+                    "direction = 1 -> Down Left -> DL\n"+
+                    "And Arrows \n"+
+                    "Good Luck!");
 
 //        text.setFill(Color.RED);
 //
@@ -32,7 +43,7 @@ public class HelpController implements Initializable {
         Font font = Font.font("BN Matan", FontWeight.BOLD, FontPosture.REGULAR, 32);
         text.setFont(font);
         //Setting the color of the text
-        text.setFill(Color.BROWN);
+        text.setFill(Color.TURQUOISE);
         //Setting the width
         text.setStrokeWidth(2);
         //Setting the stroke color

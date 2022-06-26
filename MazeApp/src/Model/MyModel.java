@@ -7,7 +7,6 @@ import Server.*;
 import algorithms.mazeGenerators.Maze;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.*;
-
 import java.io.*;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
