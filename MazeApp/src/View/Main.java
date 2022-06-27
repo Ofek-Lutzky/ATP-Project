@@ -37,15 +37,18 @@ public class Main extends Application {
 
         startController.setStage(primaryStage);
         startController.setScene(gameScene);
+        startController.nextController(viewController);
 
         IModel model = new MyModel();
         MyViewModel myViewModel = new MyViewModel(model);
         viewController.setViewModel(myViewModel);
         closeGame(viewController,primaryStage);
 
+
         viewController.setPrimaryStage(primaryStage);
         primaryStage.setScene(startScene);
         primaryStage.show();
+
 
     }
 
@@ -56,13 +59,17 @@ public class Main extends Application {
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
         public void handle(WindowEvent WE){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
         alert.setContentText("Are You Sure?");
         ButtonType continueGame = new ButtonType("Continue playing");
         ButtonType closeGame = new ButtonType("Exit Game");
+
         alert.getButtonTypes().setAll(continueGame, closeGame);
+
         Optional<ButtonType> chosed = alert.showAndWait();
 
         if(chosed.get() == closeGame){
+
             viewController.stopServers();
             System.exit(0);
             alert.close();

@@ -81,6 +81,7 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
     public Button dragMouse;
 
 
+
     String gameMusic = new File("./src/resources/Music/GameMusic.mp3").toURI().toString();
     MediaPlayer gameMusicPlayer = new MediaPlayer(new Media(gameMusic));
     String winMusic = new File("./src/resources/Music/WinMusic.mp3").toURI().toString();
@@ -681,5 +682,20 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.showAndWait();
+    }
+
+
+    public void setResize(Scene scene) {
+        scene.widthProperty().addListener((observable, oldValue, newValue) -> {
+            mazeDisplayer.widthProperty().bind(boardPane.widthProperty());
+        });
+        scene.heightProperty().addListener((observable, oldValue, newValue) -> {
+            mazeDisplayer.heightProperty().bind(boardPane.heightProperty());
+        });
+}
+
+
+    public void exitGame(ActionEvent event) {
+        closeGame();
     }
 }

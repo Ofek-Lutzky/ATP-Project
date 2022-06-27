@@ -43,7 +43,14 @@ public class MazeDisplayer extends Canvas {
     StringProperty imageFileNameAshRight = new SimpleStringProperty();
 
 
-    public MazeDisplayer() { }
+    public MazeDisplayer() {
+//        widthProperty().addListener(e->draw());
+//        heightProperty().addListener(e->draw());
+    }
+
+
+
+
 
     public int getCharacterRow() {
         return characterRow;

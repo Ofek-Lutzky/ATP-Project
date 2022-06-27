@@ -18,6 +18,8 @@ public class startController extends Canvas{
     public javafx.scene.control.Button startBtnFirstScene;
     public Stage primaryStage;
 
+    public MyViewController viewController;
+
 
 
     public void setScene(Scene scene) {
@@ -27,8 +29,15 @@ public class startController extends Canvas{
         this.primaryStage = primaryStage;
     }
 
+    public void nextController(MyViewController viewController){
+        this.viewController = viewController;
+    }
+
     public void ToGame(ActionEvent event) {
         primaryStage.setScene(scene);
-
+        //viewController.setResize(scene);
     }
+
+
+
 }
