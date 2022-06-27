@@ -6,6 +6,17 @@ MenuBar{
     -fx-background-color: Black;
 }
 
+#boardPane{
+    /*-fx-background-color: black;*/
+    -fx-background-image: url(/Images/PokemonLogoBack.jpg) ;
+    -fx-background-size: 700px 400px;
+
+    background-repeat: no-repeat;
+    -fx-background-attachment: fixed;
+    -fx-background-position: center center;
+    
+}
+
 
 Button {
     -fx-padding: 8 15 15 15;
