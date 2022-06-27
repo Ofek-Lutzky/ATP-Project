@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="418.0" stylesheets="@MainStyle.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.startController">
+<AnchorPane prefHeight="400.0" prefWidth="418.0" stylesheets="@MainStyleScenes.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.startController">
    <children>
       <ImageView fx:id="backroundFirstScene" fitHeight="400.0" fitWidth="500.0" layoutX="3.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
          <image>

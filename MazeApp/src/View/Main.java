@@ -37,7 +37,6 @@ public class Main extends Application {
 
         startController.setStage(primaryStage);
         startController.setScene(gameScene);
-        startController.nextController(viewController);
 
         IModel model = new MyModel();
         MyViewModel myViewModel = new MyViewModel(model);
@@ -48,7 +47,6 @@ public class Main extends Application {
         viewController.setPrimaryStage(primaryStage);
         primaryStage.setScene(startScene);
         primaryStage.show();
-
 
     }
 

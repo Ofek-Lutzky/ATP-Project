@@ -18,13 +18,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 
 
-
 public class MazeDisplayer extends Canvas {
 
-    private Maze maze;
+    public Maze maze;
     private int characterRow;
     private int characterCol;
-    private static String characterDirection;
+    private String characterDirection;
     private static int firstDraw = 0;
 
 
@@ -44,13 +43,11 @@ public class MazeDisplayer extends Canvas {
 
 
     public MazeDisplayer() {
-//        widthProperty().addListener(e->draw());
-//        heightProperty().addListener(e->draw());
+        //if(firstDraw != 0){
+        widthProperty().addListener(e -> draw());
+        heightProperty().addListener(e -> draw());
+        //}
     }
-
-
-
-
 
     public int getCharacterRow() {
         return characterRow;
@@ -274,7 +271,10 @@ public class MazeDisplayer extends Canvas {
         double w_player = getCharacterCol() * cellWidth;
         Image playerImage = null;
         try {
-            playerImage = new Image(new FileInputStream(image));
+            if(image != null)
+                playerImage = new Image(new FileInputStream(image));
+            else
+                playerImage = new Image(new FileInputStream(getImageFileNameAshLeft()));
         } catch (FileNotFoundException e) {
             System.out.println("There is no Image player....");
         }

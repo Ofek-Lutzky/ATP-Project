@@ -1,8 +1,13 @@
 package View;
 
+import Model.IModel;
+import Model.MyModel;
+import ViewModel.MyViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -10,6 +15,7 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -18,7 +24,7 @@ public class startController extends Canvas{
     public javafx.scene.control.Button startBtnFirstScene;
     public Stage primaryStage;
 
-    public MyViewController viewController;
+    //public MyViewController viewController;
 
 
 
@@ -29,14 +35,15 @@ public class startController extends Canvas{
         this.primaryStage = primaryStage;
     }
 
-    public void nextController(MyViewController viewController){
-        this.viewController = viewController;
-    }
+//    public void nextController(MyViewController viewController){
+//        this.viewController = viewController;
+//    }
 
     public void ToGame(ActionEvent event) {
         primaryStage.setScene(scene);
         //viewController.setResize(scene);
     }
+
 
 
 

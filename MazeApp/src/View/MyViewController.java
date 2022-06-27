@@ -60,8 +60,7 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
     @FXML
     public javafx.scene.control.TextField colText;
 
-    @FXML
-    public MazeDisplayer mazeDisplayer;
+
     @FXML
     public Button playBtn;
     @FXML
@@ -76,6 +75,8 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
     public AnchorPane boardPane;
     @FXML
     public ScrollPane scrollPane;
+    @FXML
+    public MazeDisplayer mazeDisplayer;
 
     @FXML
     public Button dragMouse;
@@ -122,8 +123,12 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
      //the initialize can get to the fxml design in running while regular constructor not
      @Override
      public void initialize(URL url, ResourceBundle resourceBundle) {
+
          lbl_player_row.textProperty().bind(update_player_position_row);
          lbl_player_column.textProperty().bind(update_player_position_col);
+
+         mazeDisplayer.widthProperty().bind(this.scrollPane.widthProperty());
+         mazeDisplayer.heightProperty().bind(this.scrollPane.heightProperty());
 
      }
 
