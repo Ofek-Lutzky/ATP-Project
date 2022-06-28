@@ -7,7 +7,8 @@ MenuBar{
 }
 
 #boardPane{
-    /*-fx-background-color: black;*/
+    -fx-background-color: black;
+    -fx-background-radius: 50 ;
     -fx-background-image: url(/Images/PokemonLogoBack.jpg) ;
     -fx-background-size: 700px 400px;
 

@@ -33,7 +33,7 @@ public class Main extends Application {
         startController startController = startFXML.getController();
 
         startScene = new Scene(root,420,400);
-        gameScene = new Scene(game,700,700);
+        gameScene = new Scene(game,700,710);
 
         startController.setStage(primaryStage);
         startController.setScene(gameScene);
