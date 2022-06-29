@@ -381,6 +381,7 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
                     stage.close();
 
                 }
+
                 else if (chose.get() == closeGame) {
                     viewModel.setGameOver(true);
                     stopServers();
@@ -587,11 +588,13 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
 
             if (deltaY > 0)
                 zoomFuctor += 0.1;
+
             else if (deltaY < 0)
                 zoomFuctor -= 0.1;
 
             zoomFuctor = Math.max(zoomFuctor, 1);
             zoomFuctor = Math.min(zoomFuctor, 5);
+
             boardPane.setScaleX(zoomFuctor);
             boardPane.setScaleY(zoomFuctor);
 
@@ -609,12 +612,13 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
             Group scrollZoomG = new Group();
             Group scrollContentG = new Group();
 
-            scrollContentG.getChildren().add(scrollZoomG);
+             scrollContentG.getChildren().add(scrollZoomG);
             scrollZoomG.getChildren().add(boardPane);
 
             scrollPane.setContent(scrollContentG);
 
-            Scale scaleTransform = new Scale(zoomFuctor, zoomFuctor, 0, 0);
+             Scale scaleTransform = new Scale(zoomFuctor, zoomFuctor, 0, 0);
+
             scrollZoomG.getTransforms().add(scaleTransform);
         }
         scrollEvent.consume();
@@ -644,17 +648,22 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
             double mouseX = helperMouseDragged(maximumSize,mazeDisplayer.getHeight(),
                     viewModel.getMaze().getMap().length ,mouseEvent.getX(),mazeDisplayer.getWidth() / maximumSize);
 
+
             double mouseY = helperMouseDragged(maximumSize,mazeDisplayer.getWidth(),
                     viewModel.getMaze().getMap()[0].length,mouseEvent.getY(),mazeDisplayer.getHeight() / maximumSize);
+
 
             if (mouseY < viewModel.getCharacterRow() &&  mouseX == viewModel.getCharacterCol() )
                 viewModel.moveCharacter(KeyCode.UP);
 
+
             else if (mouseY == viewModel.getCharacterRow() && mouseX > viewModel.getCharacterCol() )
                 viewModel.moveCharacter(KeyCode.RIGHT);
 
+
             else if ( mouseY == viewModel.getCharacterRow() && mouseX < viewModel.getCharacterCol() )
                 viewModel.moveCharacter(KeyCode.LEFT);
+
 
             else if (mouseX == viewModel.getCharacterCol() && mouseY > viewModel.getCharacterRow()  )
                 viewModel.moveCharacter(KeyCode.DOWN);
@@ -663,9 +672,12 @@ public class MyViewController implements IView ,Observer,Initializable, Serializ
     }
 
     private  double helperMouseDragged(int maxsize, double canvasSize, int mazeSize,double mouseEvent,double temp){
-        double cellSize=canvasSize/maxsize;
+        double cellSize=canvasSize/maxsize; // equal the cell size
+
         double start = (canvasSize / 2 - (cellSize * mazeSize / 2)) / cellSize;
+
         double mouse = (int) ((mouseEvent) / (temp) - start);
+
         return mouse;
     }
 

@@ -23,24 +23,30 @@ public class Main extends Application {
 
         primaryStage.setTitle("Pokemon Go");
         //primaryStage.getIcons().add(new Image("/Images/icon.png"));
-        FXMLLoader startFXML = new FXMLLoader(getClass().getResource("StartScreen.fxml"));
-        FXMLLoader viewFXML = new FXMLLoader(getClass().getResource("MyView.fxml"));
+        FXMLLoader startSceneFXML = new FXMLLoader(getClass().getResource("StartScreen.fxml"));
+        FXMLLoader myViewSceneFXML = new FXMLLoader(getClass().getResource("MyView.fxml"));
 
-        Parent root = startFXML.load();
-        Parent game = viewFXML.load();
+        //save the load of the scene
+        Parent root = startSceneFXML.load();
+        Parent game = myViewSceneFXML.load();
 
-        MyViewController viewController = viewFXML.getController();
-        startController startController = startFXML.getController();
+        //get the controller so we can do manipulate on them like set things
+        MyViewController viewController = myViewSceneFXML.getController();
+        startController startController = startSceneFXML.getController();
 
+        //chose the scene size window
         startScene = new Scene(root,420,400);
         gameScene = new Scene(game,700,710);
 
+        //sett stage and scene to pass when push the start buttomn
         startController.setStage(primaryStage);
         startController.setScene(gameScene);
 
+        //connection of the mvvm
         IModel model = new MyModel();
         MyViewModel myViewModel = new MyViewModel(model);
         viewController.setViewModel(myViewModel);
+
         closeGame(viewController,primaryStage);
 
 
