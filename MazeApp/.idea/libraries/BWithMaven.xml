@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="BWithMaven">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../BWithMaven/out/artifacts/BWithMaven_jar/BWithMaven.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

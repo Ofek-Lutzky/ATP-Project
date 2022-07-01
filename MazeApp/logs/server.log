@@ -76,3 +76,97 @@
 2022.07.01 15:33:37.748 DEBUG Server.Server - Socket timeout
 2022.07.01 15:33:38.000 INFO  Server.Server - Stopping server...
 2022.07.01 15:33:38.001 INFO  Server.Server - Stopping server...
+2022.07.01 15:40:24.416 INFO  Server.Server - Starting server at port = 5401
+2022.07.01 15:40:24.416 INFO  Server.Server - Starting server at port = 5400
+2022.07.01 15:40:25.419 DEBUG Server.Server - Socket timeout
+2022.07.01 15:40:25.419 DEBUG Server.Server - Socket timeout
+2022.07.01 15:40:26.419 DEBUG Server.Server - Socket timeout
+2022.07.01 15:40:26.419 DEBUG Server.Server - Socket timeout
+2022.07.01 15:40:26.668 INFO  Server.Server - Client accepted: Socket[addr=/169.254.218.40,port=63299,localport=5400]
+2022.07.01 15:40:26.673 INFO  Server.Server - Done handling client: Socket[addr=/169.254.218.40,port=63299,localport=5400]
+2022.07.01 15:40:27.420 DEBUG Server.Server - Socket timeout
+2022.07.01 15:40:27.668 DEBUG Server.Server - Socket timeout
+2022.07.01 15:40:28.256 INFO  Server.Server - Client accepted: Socket[addr=/169.254.218.40,port=63301,localport=5401]
+2022.07.01 15:40:28.265 INFO  Server.Server - Done handling client: Socket[addr=/169.254.218.40,port=63301,localport=5401]
+2022.07.01 15:40:28.668 DEBUG Server.Server - Socket timeout
+2022.07.01 15:40:29.256 DEBUG Server.Server - Socket timeout
+2022.07.01 15:40:29.669 DEBUG Server.Server - Socket timeout
+2022.07.01 15:40:29.922 INFO  Server.Server - Stopping server...
+2022.07.01 15:40:29.922 INFO  Server.Server - Stopping server...
+2022.07.01 15:43:51.637 INFO  Server.Server - Starting server at port = 5400
+2022.07.01 15:43:51.637 INFO  Server.Server - Starting server at port = 5401
+2022.07.01 15:43:52.640 DEBUG Server.Server - Socket timeout
+2022.07.01 15:43:52.640 DEBUG Server.Server - Socket timeout
+2022.07.01 15:43:53.640 DEBUG Server.Server - Socket timeout
+2022.07.01 15:43:53.640 DEBUG Server.Server - Socket timeout
+2022.07.01 15:43:54.640 DEBUG Server.Server - Socket timeout
+2022.07.01 15:43:54.640 DEBUG Server.Server - Socket timeout
+2022.07.01 15:43:55.111 INFO  Server.Server - Client accepted: Socket[addr=/169.254.218.40,port=63569,localport=5400]
+2022.07.01 15:43:55.123 INFO  Server.Server - Done handling client: Socket[addr=/169.254.218.40,port=63569,localport=5400]
+2022.07.01 15:43:55.641 DEBUG Server.Server - Socket timeout
+2022.07.01 15:43:56.111 DEBUG Server.Server - Socket timeout
+2022.07.01 15:43:56.641 DEBUG Server.Server - Socket timeout
+2022.07.01 15:43:57.112 DEBUG Server.Server - Socket timeout
+2022.07.01 15:43:57.642 DEBUG Server.Server - Socket timeout
+2022.07.01 15:43:57.861 INFO  Server.Server - Client accepted: Socket[addr=/169.254.218.40,port=63571,localport=5401]
+2022.07.01 15:43:57.871 INFO  Server.Server - Done handling client: Socket[addr=/169.254.218.40,port=63571,localport=5401]
+2022.07.01 15:43:58.112 DEBUG Server.Server - Socket timeout
+2022.07.01 15:43:58.862 DEBUG Server.Server - Socket timeout
+2022.07.01 15:43:59.114 DEBUG Server.Server - Socket timeout
+2022.07.01 15:43:59.862 DEBUG Server.Server - Socket timeout
+2022.07.01 15:44:00.114 DEBUG Server.Server - Socket timeout
+2022.07.01 15:44:00.864 DEBUG Server.Server - Socket timeout
+2022.07.01 15:44:01.115 DEBUG Server.Server - Socket timeout
+2022.07.01 15:44:01.728 INFO  Server.Server - Stopping server...
+2022.07.01 15:44:01.729 INFO  Server.Server - Stopping server...
+2022.07.01 15:51:00.951 INFO  Server.Server - Starting server at port = 5401
+2022.07.01 15:51:00.951 INFO  Server.Server - Starting server at port = 5400
+2022.07.01 15:51:01.954 DEBUG Server.Server - Socket timeout
+2022.07.01 15:51:01.954 DEBUG Server.Server - Socket timeout
+2022.07.01 15:51:02.954 DEBUG Server.Server - Socket timeout
+2022.07.01 15:51:02.954 DEBUG Server.Server - Socket timeout
+2022.07.01 15:51:03.316 INFO  Server.Server - Stopping server...
+2022.07.01 15:51:03.316 INFO  Server.Server - Stopping server...
+2022.07.01 15:57:31.999 INFO  Server.Server - Starting server at port = 5400
+2022.07.01 15:57:31.999 INFO  Server.Server - Starting server at port = 5401
+2022.07.01 15:57:33.002 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:33.002 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:34.003 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:34.003 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:35.005 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:35.005 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:36.005 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:36.005 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:37.005 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:37.005 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:38.006 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:38.006 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:39.006 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:39.006 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:40.007 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:40.007 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:40.938 INFO  Server.Server - Client accepted: Socket[addr=/169.254.218.40,port=49926,localport=5400]
+2022.07.01 15:57:40.943 INFO  Server.Server - Done handling client: Socket[addr=/169.254.218.40,port=49926,localport=5400]
+2022.07.01 15:57:41.008 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:41.940 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:42.014 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:42.784 INFO  Server.Server - Client accepted: Socket[addr=/169.254.218.40,port=49927,localport=5401]
+2022.07.01 15:57:42.797 INFO  Server.Server - Done handling client: Socket[addr=/169.254.218.40,port=49927,localport=5401]
+2022.07.01 15:57:42.940 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:43.785 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:43.940 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:44.785 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:44.940 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:45.326 INFO  Server.Server - Client accepted: Socket[addr=/169.254.218.40,port=49929,localport=5401]
+2022.07.01 15:57:45.331 INFO  Server.Server - Done handling client: Socket[addr=/169.254.218.40,port=49929,localport=5401]
+2022.07.01 15:57:45.496 INFO  Server.Server - Client accepted: Socket[addr=/169.254.218.40,port=49930,localport=5401]
+2022.07.01 15:57:45.502 INFO  Server.Server - Done handling client: Socket[addr=/169.254.218.40,port=49930,localport=5401]
+2022.07.01 15:57:45.940 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:46.497 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:46.941 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:47.496 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:47.941 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:48.497 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:48.941 DEBUG Server.Server - Socket timeout
+2022.07.01 15:57:49.237 INFO  Server.Server - Stopping server...
+2022.07.01 15:57:49.237 INFO  Server.Server - Stopping server...
