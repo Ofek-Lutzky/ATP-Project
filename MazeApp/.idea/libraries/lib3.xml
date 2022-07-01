@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../openjfx-18.0.1_windows-x64_bin-sdk (1)/javafx-sdk-18.0.1/lib" />
       <root url="jar://$PROJECT_DIR$/../ATP-Project-PartB/out/artifacts/ATP_Project_PartB_jar/ATP-Project-PartB.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../BWithMaven/out/artifacts/BWithMaven_jar/BWithMaven.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
