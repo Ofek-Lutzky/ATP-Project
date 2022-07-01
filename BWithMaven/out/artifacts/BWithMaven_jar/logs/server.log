@@ -1,0 +1,16 @@
+2022.07.01 15:24:17.846 INFO  Demo_Log4j2 - Logging level: DEBUG
+2022.07.01 15:24:17.847 DEBUG Demo_Log4j2 - Debug Message!
+2022.07.01 15:24:17.847 INFO  Demo_Log4j2 - Info Message!
+2022.07.01 15:24:17.847 WARN  Demo_Log4j2 - Warn Message!
+2022.07.01 15:24:17.847 ERROR Demo_Log4j2 - Error Message!
+2022.07.01 15:24:17.847 FATAL Demo_Log4j2 - Fatal Message!
+2022.07.01 15:25:38.272 INFO  Server.Server - Starting server at port = 5400
+2022.07.01 15:25:38.272 INFO  Server.Server - Starting server at port = 5401
+2022.07.01 15:25:38.274 INFO  Server.Server - Client accepted: Socket[addr=/169.254.218.40,port=62956,localport=5400]
+2022.07.01 15:25:38.289 INFO  Server.Server - Done handling client: Socket[addr=/169.254.218.40,port=62956,localport=5400]
+2022.07.01 15:25:38.308 INFO  Server.Server - Client accepted: Socket[addr=/169.254.218.40,port=62957,localport=5401]
+2022.07.01 15:25:38.357 INFO  Server.Server - Done handling client: Socket[addr=/169.254.218.40,port=62957,localport=5401]
+2022.07.01 15:25:38.372 INFO  Server.Server - Stopping server...
+2022.07.01 15:25:38.372 INFO  Server.Server - Stopping server...
+2022.07.01 15:25:39.278 DEBUG Server.Server - Socket timeout
+2022.07.01 15:25:39.309 DEBUG Server.Server - Socket timeout

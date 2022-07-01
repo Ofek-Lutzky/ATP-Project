@@ -1,0 +1,26 @@
+2022.07.01 14:58:29.277 INFO  Server.Server - Starting server at port = 5400
+2022.07.01 14:58:29.277 INFO  Server.Server - Starting server at port = 5401
+2022.07.01 14:58:29.280 INFO  Server.Server - Client accepted: Socket[addr=/169.254.218.40,port=62389,localport=5400]
+2022.07.01 14:58:29.302 INFO  Server.Server - Done handling client: Socket[addr=/169.254.218.40,port=62389,localport=5400]
+2022.07.01 14:58:29.308 INFO  Server.Server - Client accepted: Socket[addr=/169.254.218.40,port=62390,localport=5401]
+2022.07.01 14:58:29.337 INFO  Server.Server - Done handling client: Socket[addr=/169.254.218.40,port=62390,localport=5401]
+2022.07.01 14:58:29.340 INFO  Server.Server - Stopping server...
+2022.07.01 14:58:29.340 INFO  Server.Server - Stopping server...
+2022.07.01 14:58:30.282 DEBUG Server.Server - Socket timeout
+2022.07.01 14:58:30.313 DEBUG Server.Server - Socket timeout
+2022.07.01 15:03:23.577 INFO  Server.Server - Starting server at port = 5400
+2022.07.01 15:03:23.577 INFO  Server.Server - Starting server at port = 5401
+2022.07.01 15:03:23.579 INFO  Server.Server - Client accepted: Socket[addr=/169.254.218.40,port=62481,localport=5400]
+2022.07.01 15:03:23.599 INFO  Server.Server - Done handling client: Socket[addr=/169.254.218.40,port=62481,localport=5400]
+2022.07.01 15:03:23.606 INFO  Server.Server - Client accepted: Socket[addr=/169.254.218.40,port=62482,localport=5401]
+2022.07.01 15:03:23.632 INFO  Server.Server - Done handling client: Socket[addr=/169.254.218.40,port=62482,localport=5401]
+2022.07.01 15:03:23.633 INFO  Server.Server - Stopping server...
+2022.07.01 15:03:23.634 INFO  Server.Server - Stopping server...
+2022.07.01 15:03:24.584 DEBUG Server.Server - Socket timeout
+2022.07.01 15:03:24.615 DEBUG Server.Server - Socket timeout
+2022.07.01 15:21:39.683 INFO  Demo_Log4j2 - Logging level: DEBUG
+2022.07.01 15:21:39.685 DEBUG Demo_Log4j2 - Debug Message!
+2022.07.01 15:21:39.685 INFO  Demo_Log4j2 - Info Message!
+2022.07.01 15:21:39.685 WARN  Demo_Log4j2 - Warn Message!
+2022.07.01 15:21:39.686 ERROR Demo_Log4j2 - Error Message!
+2022.07.01 15:21:39.686 FATAL Demo_Log4j2 - Fatal Message!

@@ -2,9 +2,10 @@
   <library name="ATP-Project-PartB">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/../ATP-Project-PartB/out/artifacts/ATP_Project_PartB_jar/ATP-Project-PartB.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../ATP-Project-PartB/out/artifacts/ATP_Project_PartB_jar2/ATP-Project-PartB.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../ATP-Project-PartB/out/artifacts/ATP_Project_PartB_jar/ATP-Project-PartB.jar!/" />
+    </SOURCES>
   </library>
 </component>
